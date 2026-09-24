@@ -1,0 +1,14 @@
+[
+  {
+    "id": "mixed-128",
+    "kind": "mixed",
+    "length": "128",
+    "tokens": 128,
+    "bytes": 502,
+    "chars": 374,
+    "chars_per_token": 2.921875,
+    "length_error_ratio": 0.0,
+    "sha256": "c48bc437f51aa0ec1083fced7b3f218ad052b7e307714e8d85b0956ef1b6075d",
+    "head": "<|im_start|>system\n你是 Qwen3 的助手，回答尽量简短。<|im_end|"
+  }
+]

@@ -1,0 +1,168 @@
+{
+  "line": "D-nextgen",
+  "generated_at": "2026-09-24T23:23:07+0800",
+  "vllm_version": "0.26.0",
+  "vllm_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+  "host": {
+    "hostname": "LOCAL_HOST",
+    "arch": "x86_64",
+    "kernel": "7.1.5-arch1-2"
+  },
+  "scripts_sha256_16": {
+    "harness/rust-frontend/fetch_vllm_rs.py": "a32ec4e54212e569",
+    "harness/rust-frontend/verify_vllm_rs.sh": "6819d534aa530993",
+    "harness/rust-frontend/e2e_mock_engine.sh": "56f4d713ee54c267",
+    "harness/rust-frontend/trim_workspace.py": "a824a7c00fd6dfba"
+  },
+  "artifacts": {
+    "x86_64": {
+      "generated_at": "2026-09-24T23:08:20+0800",
+      "vllm_version": "0.26.0",
+      "vllm_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+      "arch": "x86_64",
+      "wheel_url": "https://files.pythonhosted.org/packages/20/96/86edd288415aafc2952bbb969b5ef4e8c58e5525185b60320730276921e6/vllm-0.26.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+      "wheel_size": 303698761,
+      "wheel_sha1_upstream": "87529b6f9f46de50d0217b3f5c6622296fcd336f",
+      "range_bytes_downloaded": 17437513,
+      "range_http_requests": 17,
+      "range_download_share": 0.0574,
+      "members": [
+        {
+          "wheel_member": "vllm/_rust_tool_parser.abi3.so",
+          "zip_size": 994328,
+          "zip_crc32": "2b203d73",
+          "zip_compress_type": 8,
+          "local_path": "/tmp/d-nextgen-wheel/_rust_tool_parser.abi3.so",
+          "local_size": 994328,
+          "sha256": "4741a0256bf888a4bf340087fe94fae4c1e0013011ee118b06c7addc47dc57f0",
+          "extract_seconds": 2.14,
+          "elf": true,
+          "class": "ELF64",
+          "endianness": "little",
+          "type": "DYN",
+          "e_machine": 62,
+          "machine": "x86_64",
+          "dt_needed_count": 4,
+          "dt_needed": [
+            "libgcc_s.so.1",
+            "libpthread.so.0",
+            "libc.so.6",
+            "ld-linux-x86-64.so.2"
+          ]
+        },
+        {
+          "wheel_member": "vllm/vllm-rs",
+          "zip_size": 42786872,
+          "zip_crc32": "09c5edfb",
+          "zip_compress_type": 8,
+          "local_path": "/tmp/d-nextgen-wheel/vllm-rs",
+          "local_size": 42786872,
+          "sha256": "0597bfc909f22d948a7f3e65627ca2e6bfcbced4e5c8bd5cbba73ae21d78f807",
+          "extract_seconds": 36.45,
+          "elf": true,
+          "class": "ELF64",
+          "endianness": "little",
+          "type": "DYN",
+          "e_machine": 62,
+          "machine": "x86_64",
+          "dt_needed_count": 0,
+          "dt_needed": []
+        }
+      ],
+      "range_download_share_pct_note": "实测 17.4 MB / 303.7 MB = 5.7%（HTTP Range 分块下载，17 次请求）"
+    },
+    "aarch64": {
+      "generated_at": "2026-09-24T23:10:20+0800",
+      "vllm_version": "0.26.0",
+      "vllm_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+      "arch": "aarch64",
+      "wheel_url": "https://files.pythonhosted.org/packages/58/27/6ff13689a5931f0c97b7008042f07aacc4a246e7eb06fd9b4d5a72de483c/vllm-0.26.0-cp38-abi3-manylinux_2_28_aarch64.whl",
+      "wheel_size": 298269785,
+      "wheel_sha1_upstream": "6eddc228b8ec69df77b9ce6af6744ad47c36b340",
+      "range_bytes_downloaded": 18299993,
+      "range_http_requests": 18,
+      "range_download_share": 0.0614,
+      "members": [
+        {
+          "wheel_member": "vllm/_rust_tool_parser.abi3.so",
+          "zip_size": 1070120,
+          "zip_crc32": "bf2707b2",
+          "zip_compress_type": 8,
+          "local_path": "/tmp/d-nextgen-wheel-aarch64/_rust_tool_parser.abi3.so",
+          "local_size": 1070120,
+          "sha256": "a4d7ce8bc07f44ba1ccfd185636db716e243cd81f1fa314ca430e2526cbc6b5d",
+          "extract_seconds": 2.18,
+          "elf": true,
+          "class": "ELF64",
+          "endianness": "little",
+          "type": "DYN",
+          "e_machine": 183,
+          "machine": "aarch64",
+          "dt_needed_count": 3,
+          "dt_needed": [
+            "libgcc_s.so.1",
+            "libpthread.so.0",
+            "libc.so.6"
+          ]
+        },
+        {
+          "wheel_member": "vllm/vllm-rs",
+          "zip_size": 39602120,
+          "zip_crc32": "3fe051f1",
+          "zip_compress_type": 8,
+          "local_path": "/tmp/d-nextgen-wheel-aarch64/vllm-rs",
+          "local_size": 39602120,
+          "sha256": "cae05321227ed3c7c7c386ca5c2e96d58f8261d80e03d3923890ef06d540dc0b",
+          "extract_seconds": 32.39,
+          "elf": true,
+          "class": "ELF64",
+          "endianness": "little",
+          "type": "DYN",
+          "e_machine": 183,
+          "machine": "aarch64",
+          "dt_needed_count": 0,
+          "dt_needed": []
+        }
+      ],
+      "range_download_share_pct_note": "实测 18.3 MB / 298.3 MB = 6.1%（18 次请求）"
+    }
+  },
+  "startup_verification": {
+    "method": "vllm-rs serve <MODEL> --data-parallel-size-local 0 (frontend-only, 纯 CPU)",
+    "model": "/home/chiro/models/Qwen3-0.6B",
+    "result": "pass",
+    "evidence": "data/nextgen/verify-serve-x86_64.log.txt"
+  },
+  "e2e_verification": {
+    "method": "vllm-rs frontend + vllm-mock-engine (ZMQ+msgpack), 真实 HTTP",
+    "result": "pass",
+    "evidence": [
+      "data/nextgen/2026-09-24-native-e2e-frontend.log.txt",
+      "data/nextgen/2026-09-24-native-e2e-mockengine.log.txt",
+      "data/nextgen/e2e-tokenize-response.json",
+      "data/nextgen/e2e-chat-response.json",
+      "data/nextgen/e2e-stream-sse.txt"
+    ]
+  },
+  "tokenizer_cross_check": {
+    "input": "你好，Hello!",
+    "rust_frontend_/tokenize_ids": [
+      108386,
+      3837,
+      9707,
+      0
+    ],
+    "python_hf_tokenizers_ids": [
+      108386,
+      3837,
+      9707,
+      0
+    ],
+    "verdict": "ids 完全一致（Python 侧：容器内 tokenizers 0.22.2, Tokenizer.from_file('/models/Qwen3-0.6B/tokenizer.json')）"
+  },
+  "resource_discipline": {
+    "cpu_cores_used": "构建走 heavy_lock.sh + limit.sh（绑 4-7 核，-j4）",
+    "measured_load_avg_at_start": "1.33 / 2.08 / 2.06",
+    "available_mem_gib_at_start": 17
+  }
+}

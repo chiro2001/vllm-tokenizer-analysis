@@ -1,0 +1,32 @@
+[package]
+name = "b-backends"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+description = "vLLM tokenizer 多后端微基准 harness（线 B）"
+
+[dependencies]
+anyhow = "1.0.100"
+clap = { version = "4.5.38", features = ["derive", "env"] }
+criterion = { version = "0.5.1", features = ["html_reports"] }
+fastokens = { version = "0.2.1", default-features = false }
+gigatoken_rs = { package = "gigatoken", path = "../vendor/gigatoken", optional = true }
+rayon = "1.11.0"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.145", features = ["preserve_order"] }
+sha2 = "0.10"
+tokenizers = "0.22.0"
+vllm-tokenizer = { path = "../vendor/vllm-tokenizer" }
+
+[features]
+default = []
+# gigatoken 的 lib.rs 里有 `#![feature(portable_simd)]`，**必须 nightly**（见 README 的复跑命令）。
+gigatoken = ["dep:gigatoken_rs"]
+
+[[bin]]
+name = "b-backends"
+path = "src/main.rs"
+
+[[bench]]
+name = "backends"
+harness = false

@@ -1,0 +1,45 @@
+{
+ "generated_at": "2026-09-25T00:28:49+0800",
+ "purpose": "跨装置桥梁校准：Rust harness vs Python harness（plan/COORDINATION.md §5.4）",
+ "threshold": 0.15,
+ "note": "两侧测的是**同一个实现**（HF tokenizers / fastokens），装置不同：Rust 侧是 vllm-tokenizer crate 的自建计时器 + taskset 绑核；Python 侧是 CPython 解释器 + time.perf_counter。注意 Rust 的 fastokens_byte_level 是 vLLM 自研旁路，Python 侧无此旁路，所以这一行的差值同时含装置差与实现差。",
+ "items": [
+  {
+   "item": "hf encode",
+   "length": "128",
+   "rust_us": 97.561,
+   "python_us": 122.403,
+   "rel_diff": 0.203,
+   "within_threshold": false
+  },
+  {
+   "item": "fastokens encode",
+   "length": "128",
+   "rust_us": 12.322,
+   "python_us": 11.606,
+   "rel_diff": 0.0581,
+   "within_threshold": true
+  },
+  {
+   "item": "hf encode",
+   "length": "1k",
+   "rust_us": 692.25,
+   "python_us": 1123.813,
+   "rel_diff": 0.384,
+   "within_threshold": false
+  },
+  {
+   "item": "fastokens encode",
+   "length": "1k",
+   "rust_us": 45.349,
+   "python_us": 78.957,
+   "rel_diff": 0.4256,
+   "within_threshold": false
+  }
+ ],
+ "summary": {
+  "total": 4,
+  "within_threshold": 1,
+  "verdict": "存在超阈值项：相关行禁止跨装置同表"
+ }
+}

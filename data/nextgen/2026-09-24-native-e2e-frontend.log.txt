@@ -1,0 +1,12 @@
+(RustFrontend pid=2507201) INFO 09-24 23:22:47 [cmd/src/main.rs:112] running Rust frontend without a managed local Python engine handshake_address=tcp://127.0.0.1:29577 engine_count=1
+(RustFrontend pid=2507201) INFO 09-24 23:22:47 [hf.rs:112] loading tokenizer with fastokens path=/home/chiro/models/Qwen3-0.6B/tokenizer.json
+(RustFrontend pid=2507201) INFO 09-24 23:22:48 [hf/mod.rs:71] loaded text backend with Hugging Face model files model_id="/home/chiro/models/Qwen3-0.6B"
+(RustFrontend pid=2507201) WARNING 09-24 23:22:48 [multimodal.rs:372] multimodal model spec is not registered; disabling image/video support for this model model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3"
+(RustFrontend pid=2507201) WARNING 09-24 23:22:48 [multimodal.rs:340] no multimodal modality resolved; disabling multimodal support for this model model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3"
+(RustFrontend pid=2507201) INFO 09-24 23:22:48 [hf.rs:78] loaded chat backend with Hugging Face model files model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3" renderer=hf
+(RustFrontend pid=2507201) INFO 09-24 23:22:48 [server/src/lib.rs:111] resolved coordinator mode engine_count=1 model_is_moe=false coordinator_mode=None
+(RustFrontend pid=2507201) INFO 09-24 23:22:48 [transport.rs:155] waiting for engines to connect engine_count=1 handshake_address="tcp://127.0.0.1:29577"
+(RustFrontend pid=2507201) INFO 09-24 23:22:48 [transport.rs:170] bound local transport sockets input_address=tcp://127.0.0.1:35117 output_address=tcp://127.0.0.1:34677
+(RustFrontend pid=2507201) INFO 09-24 23:22:53 [transport.rs:308] engines connected engine_count=1
+(RustFrontend pid=2507201) INFO 09-24 23:22:53 [server/src/lib.rs:223] starting OpenAI server bind_address=127.0.0.1:8199 scheme=http model=/home/chiro/models/Qwen3-0.6B
+(RustFrontend pid=2507201) INFO 09-24 23:23:02 [default/mod.rs:167] chat_completions{request_id=chatcmpl-f17b3ef2}: using reasoning parser parser_name="qwen3"

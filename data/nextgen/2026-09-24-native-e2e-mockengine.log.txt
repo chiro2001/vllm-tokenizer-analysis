@@ -1,0 +1,6 @@
+2026-09-24T15:22:53.680744Z  INFO vllm_mock_engine: starting mock engine opt=Opt { handshake_address: "tcp://127.0.0.1:29577", engine_count: 1, output_token_chunk_size: 1, vocab_size: 32000, seed: 0, log_requests: true }
+2026-09-24T15:22:53.681892Z  INFO vllm_mock_engine: mock engine connected to frontend engine_index=0
+2026-09-24T15:23:02.720020Z  INFO vllm_mock_engine::engine: mock request started request_id="chatcmpl-f17b3ef2-c542a121" prompt_len=12 max_tokens=5 chunk_size=1
+2026-09-24T15:23:02.720127Z  INFO vllm_mock_engine::engine: mock request finished request_id="chatcmpl-f17b3ef2-c542a121" prompt_len=12 output_tokens=5 finish_reason="length"
+2026-09-24T15:23:02.728295Z  INFO vllm_mock_engine::engine: mock request started request_id="chatcmpl-122cc993-98b7fc16" prompt_len=9 max_tokens=6 chunk_size=1
+2026-09-24T15:23:02.728414Z  INFO vllm_mock_engine::engine: mock request finished request_id="chatcmpl-122cc993-98b7fc16" prompt_len=9 output_tokens=6 finish_reason="length"

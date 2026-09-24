@@ -1,0 +1,131 @@
+{
+  "line": "B-backends",
+  "task": "E1 微基准矩阵",
+  "started_at": "2026-09-25T00:30:41+08:00",
+  "finished_at": "2026-09-25T00:31:01+08:00",
+  "script_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757",
+  "upstream_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+  "container_image": null,
+  "host": {
+    "hostname": "LOCAL_HOST",
+    "cpu_model": "AMD Eng Sample",
+    "nproc": 2,
+    "cpu_affinity": "4-5",
+    "loadavg": [
+      1.05,
+      1.33,
+      1.8
+    ],
+    "mem_available_gb": 18.618228912353516,
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+    "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+    "env_rayon_threads": "2",
+    "env_cores": "4-5"
+  },
+  "threads_requested": 0,
+  "threads_effective": 2,
+  "profile": "release",
+  "features": [
+    "gigatoken"
+  ],
+  "corpus_sha256": [
+    [
+      "zh-128",
+      "e18245b013a0ae9f84c462adf5e0f413aa0c0f8e8f39ae579b191540d7fb286e"
+    ],
+    [
+      "zh-1k",
+      "6472392c6430df40b60f770cdb857ea564d94624c648db162b5cb344071e949a"
+    ],
+    [
+      "zh-8k",
+      "df2397aa7e5117af5a964e166c184fb5efc004c40607f6c8716b489cb19c0a5d"
+    ],
+    [
+      "en-128",
+      "226ea51a2abb7765a01412956f1165818a2ca03174f7059ec94e719bab5540cb"
+    ],
+    [
+      "en-1k",
+      "97df1676f1f5dba45e6dbdefd457c48e820f988afb4788a11c52d4759ba147cd"
+    ],
+    [
+      "en-8k",
+      "b583111f26b1d7b37763cfc3bdc7756f462a6d4d548ec56cd97a1e0f88c3b6ba"
+    ],
+    [
+      "code-128",
+      "b2acd5d743a96b23cf72c33a7e6df5edf8efc0f9170ad4bd1cb5432078e6687f"
+    ],
+    [
+      "code-1k",
+      "6b70ef76c228a4129f1c91a23c42d06454acc6a8caa93994b938fabe6c617ee8"
+    ],
+    [
+      "code-8k",
+      "fd3e44a93a0051bc37deafa35a416e9503409d0d6215c5cd2396535dc3d145da"
+    ],
+    [
+      "mixed-128",
+      "c48bc437f51aa0ec1083fced7b3f218ad052b7e307714e8d85b0956ef1b6075d"
+    ],
+    [
+      "mixed-1k",
+      "c33b597ab8df17d7559eb84202a943ab5d8b1813e46565ef13583d8f74e2d6b5"
+    ],
+    [
+      "mixed-8k",
+      "152318d1996deb43679afe5fe298ac732b0229bd7db6651926a796dc58215667"
+    ]
+  ],
+  "artifacts": [
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/data/backends/e1-batch-2t.jsonl",
+      "bytes": 37653,
+      "sha256": "41967fce520ca893ec06af85d42e73d37e1cbc1ffe4d69ee7a2ad639c581575d"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/data/backends/e1-batch-2t.csv",
+      "bytes": 11775,
+      "sha256": "5ea4d298b21684a3425001d42f24929ce8f4717720a8e2f02113631354082df1"
+    }
+  ],
+  "script_sha256": [
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/main.rs",
+      "bytes": 71710,
+      "sha256": "dbf81511e40e03612db038a86186b3211ff722bc090fe1b6a2aeae69348b5c03"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/backends.rs",
+      "bytes": 21770,
+      "sha256": "c784e8c4c08ff4effd4b962ea26d11606c1c49dd8d67e18858347e707ba11d9b"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/corpus.rs",
+      "bytes": 18358,
+      "sha256": "bbd90b2306e4e90a97ed99a124238e3da3c32c6f6defdb757848ef35b7d728b7"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/stats.rs",
+      "bytes": 8469,
+      "sha256": "686fa89453a8fda0239d1b489069cc5e7950702a8b784aa2a4362ed5922930ef"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/manifest.rs",
+      "bytes": 7622,
+      "sha256": "e12e598f5006f99c2d8321ea3acbab534a3caeaeff271b69b1f070f1f7d13855"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/Cargo.toml",
+      "bytes": 962,
+      "sha256": "acfdf5d5d1d75a664c9a1587e188f9f3a205f22122ab6109f5511cdfb0f33fb6"
+    }
+  ],
+  "caveats": [
+    "语料长度按 Qwen3-0.6B 参考后端的 token 数对齐；其它家族看到的 token 数会不同，表里同时给出 bytes 与各后端实测 token 数（不假设等价）。",
+    "单条（single）路径在调用线程上直接跑，不进 rayon；批量（batch）路径走 rayon，线程数受 RAYON_NUM_THREADS 夹逼。",
+    "所有工件来自本地路径，harness 不联网（上游 bench 用 hf-hub，本项目改为本地）。",
+    "后端 fastokens 未测: fastokens 后端在 /home/chiro/models/Qwen3-0.6B/tokenizer.json 上被判为 ByteLevel-only，此时 `Fastokens` 与 `FastokensByteLevel` 是同一个对象（上游行为），请只保留一行"
+  ]
+}

@@ -1,0 +1,660 @@
+{
+  "generated_at": "2026-09-24T15:50:40.896888+00:00",
+  "definitions": {
+    "TTFT_denominator": "lite.log 里 engine core 线程的 Step:Model（>10ms 的步）p50 —— 只含模型执行，不含 scheduler / 前端 / 网络 / 队列 ⇒ 占比是**上界**",
+    "TPOT_denominator": "lite.log 里 engine core 线程的 Step:Model（≤10ms 的步）p50 —— 同上",
+    "encode_numerator": "API server 前端进程 vllm/renderers/base.py::_tokenize_prompt 里 tokenizer(text, **encode_kwargs) 的包裹区间",
+    "render_messages_numerator": "前端进程 vllm/renderers/base.py::render_chat 里 render_messages(conv, params) 的包裹区间；**不包含** encode（chat 模板内部已 tokenize，见 docs/02）",
+    "decode_numerator_historical": "前端进程 vllm/renderers/base.py::_decode —— 只做 prompt token ids 反解，与生成期解码**不是同一段代码**",
+    "detokenize_stream_numerator": "vllm/v1/engine/detokenizer.py 的 Fast/SlowIncrementalDetokenizer，每个生成步 update()+get_next_output_text()；LiteProfiler **没有**覆盖它",
+    "cross_device_warning": "标 cross-device 的行，分子来自本机 x86 容器、分母来自 a3-22 NPU run，仅作量级上界参考；同装置结论只看 comparable=yes 的行"
+  },
+  "numerators": {
+    "encode@128": {
+      "us": 283.161,
+      "source": "data/cost/e2_paths.json:encode",
+      "definition": "tokenizer: encode"
+    },
+    "encode@1024": {
+      "us": 1211.193,
+      "source": "data/cost/e2_paths.json:encode",
+      "definition": "tokenizer: encode"
+    },
+    "encode@8192": {
+      "us": 11830.349,
+      "source": "data/cost/e2_paths.json:encode",
+      "definition": "tokenizer: encode"
+    },
+    "render_messages@128/tools_1turn": {
+      "us": 877.734,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 519
+    },
+    "render_messages@1024/tools_1turn": {
+      "us": 1836.531,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 1289
+    },
+    "render_messages@8192/tools_1turn": {
+      "us": 11596.746,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 8439
+    },
+    "render_messages@128/no_tools_1turn": {
+      "us": 473.508,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 253
+    },
+    "render_messages@1024/no_tools_1turn": {
+      "us": 1235.857,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 1023
+    },
+    "render_messages@8192/no_tools_1turn": {
+      "us": 9996.594,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 8173
+    },
+    "render_messages@128/tools_2turn_toolresult": {
+      "us": 1210.68,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 812
+    },
+    "render_messages@1024/tools_2turn_toolresult": {
+      "us": 2833.383,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 2352
+    },
+    "render_messages@8192/tools_2turn_toolresult": {
+      "us": 19894.229,
+      "source": "data/cost/e2_paths.json:render_messages",
+      "definition": "tokenizer: render_messages",
+      "rendered_prompt_tokens": 16652
+    },
+    "detokenize_stream_fast@osl32": {
+      "us_per_token": 0.0,
+      "first_step_us": 231.011,
+      "init_us": 17.076,
+      "full_request_us": 321.329,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_fast",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    },
+    "detokenize_stream_fast@osl256": {
+      "us_per_token": 1.3726,
+      "first_step_us": 231.011,
+      "init_us": 17.076,
+      "full_request_us": 586.655,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_fast",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    },
+    "detokenize_stream_fast@osl1024": {
+      "us_per_token": 1.3827,
+      "first_step_us": 231.011,
+      "init_us": 17.076,
+      "full_request_us": 1568.363,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_fast",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    },
+    "detokenize_stream_slow@osl32": {
+      "us_per_token": 0.0,
+      "first_step_us": 262.947,
+      "init_us": 16.446,
+      "full_request_us": 320.173,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_slow",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    },
+    "detokenize_stream_slow@osl256": {
+      "us_per_token": 1.4661,
+      "first_step_us": 262.947,
+      "init_us": 16.446,
+      "full_request_us": 560.967,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_slow",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    },
+    "detokenize_stream_slow@osl1024": {
+      "us_per_token": 1.4592,
+      "first_step_us": 262.947,
+      "init_us": 16.446,
+      "full_request_us": 1611.632,
+      "source": "data/cost/e2_detokenize.json:detokenize_stream_slow",
+      "definition": "streaming detokenize (NOT covered by LiteProfiler)"
+    }
+  },
+  "anchors": {
+    "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z": {
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_a321_chip15_20260914T2142Z/lite-profiler/lite.log",
+      "engine": {
+        "engine_core_tid": 131,
+        "n_step_model": 544,
+        "prefill_step_Step_Model": {
+          "n": 9,
+          "mean_us": 3143555.3,
+          "p50_us": 199205.6,
+          "min_us": 17432.5,
+          "max_us": 26876693.3
+        },
+        "decode_step_Step_Model": {
+          "n": 535,
+          "mean_us": 4085.1,
+          "p50_us": 422.4,
+          "min_us": 28.9,
+          "max_us": 9659.3
+        },
+        "prefill_threshold_us": 10000
+      },
+      "frontend": {
+        "frontend_pids": [
+          1
+        ],
+        "frontend_tids": [
+          1,
+          1169
+        ],
+        "non_frontend_pids": [
+          131
+        ],
+        "evidence": "tokenizer scope 出现在这些 pid 上；同一 pid 的其他线程（asyncio 事件循环 tid=1 等）也属于前端进程",
+        "http: create_completion": {
+          "n": 8,
+          "mean_us": 3922911.9,
+          "p50_us": 583214.6,
+          "min_us": 575462.1,
+          "max_us": 27316810.4,
+          "tids": [
+            1
+          ]
+        },
+        "input: process_inputs": {
+          "n": 8,
+          "mean_us": 5651.2,
+          "p50_us": 221.7,
+          "min_us": 213.2,
+          "max_us": 43641.4,
+          "tids": [
+            1
+          ]
+        },
+        "tokenizer: encode": {
+          "n": 8,
+          "mean_us": 544.2,
+          "p50_us": 524.9,
+          "min_us": 489.6,
+          "max_us": 727.3,
+          "tids": [
+            1169
+          ]
+        }
+      }
+    },
+    "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z": {
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z/lite-profiler/lite.log",
+      "engine": {
+        "engine_core_tid": 130,
+        "n_step_model": 544,
+        "prefill_step_Step_Model": {
+          "n": 10,
+          "mean_us": 2846055.8,
+          "p50_us": 209060.8,
+          "min_us": 10171.6,
+          "max_us": 26971121.1
+        },
+        "decode_step_Step_Model": {
+          "n": 534,
+          "mean_us": 4196.5,
+          "p50_us": 425.3,
+          "min_us": 28.0,
+          "max_us": 9921.9
+        },
+        "prefill_threshold_us": 10000
+      },
+      "frontend": {
+        "frontend_pids": [
+          1
+        ],
+        "frontend_tids": [
+          1,
+          1703
+        ],
+        "non_frontend_pids": [
+          130
+        ],
+        "evidence": "tokenizer scope 出现在这些 pid 上；同一 pid 的其他线程（asyncio 事件循环 tid=1 等）也属于前端进程",
+        "http: create_completion": {
+          "n": 8,
+          "mean_us": 3953351.7,
+          "p50_us": 603184.1,
+          "min_us": 597249.8,
+          "max_us": 27416929.7,
+          "tids": [
+            1
+          ]
+        },
+        "input: process_inputs": {
+          "n": 8,
+          "mean_us": 5713.1,
+          "p50_us": 212.9,
+          "min_us": 197.5,
+          "max_us": 44224.5,
+          "tids": [
+            1
+          ]
+        },
+        "tokenizer: encode": {
+          "n": 8,
+          "mean_us": 613.2,
+          "p50_us": 484.3,
+          "min_us": 456.8,
+          "max_us": 1122.8,
+          "tids": [
+            1703
+          ]
+        }
+      }
+    },
+    "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z": {
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z/lite-profiler/lite.log",
+      "engine": {
+        "engine_core_tid": 131,
+        "n_step_model": 544,
+        "prefill_step_Step_Model": {
+          "n": 9,
+          "mean_us": 3022258.0,
+          "p50_us": 101029.4,
+          "min_us": 11873.7,
+          "max_us": 26476416.4
+        },
+        "decode_step_Step_Model": {
+          "n": 535,
+          "mean_us": 2384.4,
+          "p50_us": 240.4,
+          "min_us": 9.2,
+          "max_us": 5471.5
+        },
+        "prefill_threshold_us": 10000
+      },
+      "frontend": {
+        "frontend_pids": [
+          1
+        ],
+        "frontend_tids": [
+          1,
+          1693
+        ],
+        "non_frontend_pids": [
+          131
+        ],
+        "evidence": "tokenizer scope 出现在这些 pid 上；同一 pid 的其他线程（asyncio 事件循环 tid=1 等）也属于前端进程",
+        "http: create_completion": {
+          "n": 8,
+          "mean_us": 3605140.8,
+          "p50_us": 305673.9,
+          "min_us": 297860.0,
+          "max_us": 26712565.3,
+          "tids": [
+            1
+          ]
+        },
+        "input: process_inputs": {
+          "n": 8,
+          "mean_us": 2429.6,
+          "p50_us": 96.7,
+          "min_us": 77.9,
+          "max_us": 18736.1,
+          "tids": [
+            1
+          ]
+        },
+        "tokenizer: encode": {
+          "n": 8,
+          "mean_us": 452.1,
+          "p50_us": 391.6,
+          "min_us": 360.1,
+          "max_us": 786.2,
+          "tids": [
+            1693
+          ]
+        }
+      }
+    }
+  },
+  "table": [
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 524.9,
+      "denominator": "http: create_completion (前端整请求)",
+      "denominator_us": 583214.6,
+      "share_pct": 0.09,
+      "comparable": "yes",
+      "note": "同进程同装置，唯一可直接相除的一行"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 524.9,
+      "denominator": "Step:Model prefill (引擎侧 TTFT 下界)",
+      "denominator_us": 199205.6,
+      "share_pct": 0.2635,
+      "comparable": "yes",
+      "note": "跨进程但在同一台机器、同一次运行内"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "encode@128 (本机容器, ISL=128)",
+      "numerator_us": 283.161,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 199205.6,
+      "share_pct": 0.1421,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "encode@1024 (本机容器, ISL=1024)",
+      "numerator_us": 1211.193,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 199205.6,
+      "share_pct": 0.608,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "encode@8192 (本机容器, ISL=8192)",
+      "numerator_us": 11830.349,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 199205.6,
+      "share_pct": 5.9388,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.3726,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.325,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.3827,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.3273,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.4661,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.3471,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.4592,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 422.4,
+      "share_pct": 0.3455,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 484.3,
+      "denominator": "http: create_completion (前端整请求)",
+      "denominator_us": 603184.1,
+      "share_pct": 0.0803,
+      "comparable": "yes",
+      "note": "同进程同装置，唯一可直接相除的一行"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 484.3,
+      "denominator": "Step:Model prefill (引擎侧 TTFT 下界)",
+      "denominator_us": 209060.8,
+      "share_pct": 0.2317,
+      "comparable": "yes",
+      "note": "跨进程但在同一台机器、同一次运行内"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "encode@128 (本机容器, ISL=128)",
+      "numerator_us": 283.161,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 209060.8,
+      "share_pct": 0.1354,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "encode@1024 (本机容器, ISL=1024)",
+      "numerator_us": 1211.193,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 209060.8,
+      "share_pct": 0.5793,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "encode@8192 (本机容器, ISL=8192)",
+      "numerator_us": 11830.349,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 209060.8,
+      "share_pct": 5.6588,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.3726,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.3227,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.3827,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.3251,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.4661,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.3447,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.4592,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 425.3,
+      "share_pct": 0.3431,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 391.6,
+      "denominator": "http: create_completion (前端整请求)",
+      "denominator_us": 305673.9,
+      "share_pct": 0.1281,
+      "comparable": "yes",
+      "note": "同进程同装置，唯一可直接相除的一行"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "tokenizer: encode (同装置同 run)",
+      "numerator_us": 391.6,
+      "denominator": "Step:Model prefill (引擎侧 TTFT 下界)",
+      "denominator_us": 101029.4,
+      "share_pct": 0.3876,
+      "comparable": "yes",
+      "note": "跨进程但在同一台机器、同一次运行内"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "encode@128 (本机容器, ISL=128)",
+      "numerator_us": 283.161,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 101029.4,
+      "share_pct": 0.2803,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "encode@1024 (本机容器, ISL=1024)",
+      "numerator_us": 1211.193,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 101029.4,
+      "share_pct": 1.1989,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "encode@8192 (本机容器, ISL=8192)",
+      "numerator_us": 11830.349,
+      "denominator": "Step:Model prefill (真机, 引擎侧 TTFT 下界)",
+      "denominator_us": 101029.4,
+      "share_pct": 11.7098,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子 x86 CPU 容器，分母 a3-22 NPU；不得当作同装置结论"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.3726,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.571,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_fast 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.3827,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.5752,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=32)",
+      "numerator_us": 0.0,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.0,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=256)",
+      "numerator_us": 1.4661,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.6099,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    },
+    {
+      "anchor_run": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "numerator": "detokenize_stream_slow 稳定期/step (PSL≈1k, OSL=1024)",
+      "numerator_us": 1.4592,
+      "denominator": "Step:Model decode (真机, 引擎侧 TPOT 下界)",
+      "denominator_us": 240.4,
+      "share_pct": 0.607,
+      "comparable": "cross-device (上界参考)",
+      "note": "分子只含「update + emit_text」的稳定期每步成本；不含首次 step（其 prompt 预热成本按请求摊销）"
+    }
+  ]
+}

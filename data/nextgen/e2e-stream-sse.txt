@@ -1,0 +1,18 @@
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"role":"assistant"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":"\tvolatile"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":"II"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":" task"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":";\r\n"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":"';\r\n\r\n"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{"content":" handlers"}}]}
+
+data: {"id":"chatcmpl-122cc993","object":"chat.completion.chunk","created":1790263382,"model":"/home/chiro/models/Qwen3-0.6B","choices":[{"index":0,"delta":{},"finish_reason":"length"}]}
+
+data: [DONE]
+

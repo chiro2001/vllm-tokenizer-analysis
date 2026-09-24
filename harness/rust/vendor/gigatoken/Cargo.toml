@@ -1,0 +1,119 @@
+# NOTE(vendor patch): 删除了上游的 [profile.profiling] / [profile.profiling.package."*"] 两节。
+# 原因：它们用了 nightly 的 `rustflags` profile 键（`profile-rustflags` feature），
+# 会让 **stable cargo 连解析 manifest 都失败**，从而连带整个 workspace 无法构建。
+# 这两节只服务上游 `cargo instruments` 的本地 profile 工作流，不影响库的编译产物。
+# 补丁内容见 vendor/gigatoken-vendor.patch。
+[package]
+name = "gigatoken"
+version = "0.10.0"
+edition = "2024"
+license = "MIT"
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "gigatoken_rs"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+dashmap = "6.1"
+indicatif = "0.18"
+itertools = "0.15"
+priority-queue = "2.0"
+# For now uses abi3-py310, should use version-specific ABI in the future
+pyo3 = { version = "0.29", features = ["abi3-py310", "eyre"] }
+numpy = "0.29"
+rayon = "1.11"
+rustc-hash = "2.1"
+memmap2 = { version = "0.9", features = ["stable_deref_trait"] }
+base64 = "0.22"
+icu = { version = "2.2", features = ["compiled_data", "datagen"] }
+eyre = "0.6.12"
+sonic-rs = "0.5.8"
+memchr = "2.8.0"
+aho-corasick = "1.1"
+serde = { version = "1.0.228", features = ["derive"] }
+flate2 = "1.1"
+zstd = "0.13"
+spm_precompiled = "0.1.4"
+simdutf = "0.7.0"
+winnow = { version = "1", features = ["simd"] }
+parquet = { version = "59.1.0", default-features = false, features = [
+    "arrow",
+    "snap",
+    "zstd",
+    "flate2",
+    "lz4",
+    "brotli",
+    "flate2-rust_backend",
+] }
+arrow-array = "59"
+arrow-schema = "59"
+ureq = { version = "3.3.0", default-features = false, features = ["rustls"] }
+
+# madvise/prctl on Linux (pretoken cache table, batch gather, bench THP
+# setup); already in the tree transitively via memmap2/pyo3.
+[target.'cfg(target_os = "linux")'.dependencies]
+libc = "0.2"
+
+[profile.release]
+lto = "fat"
+
+# Profiling parity: benches keep the release codegen (fat LTO, same inlining)
+# but carry full debug info so profilers can resolve inlined frames and source
+# lines. Debug info does not change generated code; parity is verified by
+# comparing bench throughput against a stripped release build (within noise).
+[profile.bench]
+inherits = "release"
+debug = true
+strip = "none"
+split-debuginfo = "packed"
+
+[dev-dependencies]
+criterion = "0.8"
+fancy-regex = "0.18.0"
+rand = "0.10"
+simdutf = "0.7.0"
+tempfile = "3.27.0"
+
+
+[[bench]]
+name = "pretokenize"
+harness = false
+
+[[bench]]
+name = "encode"
+harness = false
+test = false
+
+[[bench]]
+name = "encode_st"
+harness = false
+test = false
+
+[[bench]]
+name = "encode_st_sp"
+harness = false
+test = false
+
+[[bench]]
+name = "encode_doc"
+harness = false
+test = false
+
+[[bench]]
+name = "pretokenize_profile"
+harness = false
+test = false
+
+[[bench]]
+name = "pretokenize_profile_all"
+harness = false
+test = false
+
+[[bench]]
+name = "simdutf_transcode"
+harness = false
+
+[lints.rust]
+unused = "allow"

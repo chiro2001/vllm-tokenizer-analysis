@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+#
+# 本包正文（src/）是从 vLLM 0.26.0 只读源码逐字节复制的快照：
+#   /home/chiro/projects/vllm/HIST_PROJECT/vllm/rust/src/tokenizer @ 568afb3a13806beb53bb2e6bd518269357b237c0
+# 仅把 workspace 继承字段（version/edition/license/lints）展开为字面量，
+# 版本号与上游 rust/Cargo.toml 的 [workspace.dependencies] 完全一致。
+# 复核方式：bash harness/rust/sync-vendor.sh --check
+
+[package]
+name = "vllm-tokenizer"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+
+[features]
+test-utils = []
+
+[dependencies]
+base64 = "0.22.1"
+fastokens = { version = "0.2.1", default-features = false }
+riptoken = { version = "0.3.0", default-features = false }
+rustc-hash = "1.1.0"
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.145", features = ["preserve_order"] }
+tekken = { package = "tekken-rs", version = "0.1.1", default-features = false }
+thiserror = "2.0.16"
+thiserror-ext = "0.3.0"
+tiktoken-rs = "0.9.1"
+tokenizers = "0.22.0"
+tracing = { version = "0.1.44", features = ["release_max_level_debug"] }
+
+[dev-dependencies]
+tempfile = "3.23.0"

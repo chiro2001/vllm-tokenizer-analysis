@@ -1,0 +1,21 @@
+Run the Rust OpenAI frontend as a Python-supervised worker
+
+Usage: vllm-rs frontend [OPTIONS] --listen-fd <LISTEN_FD> --input-address <INPUT_ADDRESS> --output-address <OUTPUT_ADDRESS> --args-json <JSON>
+
+Options:
+      --listen-fd <LISTEN_FD>
+          Inherited listening socket file descriptor passed by the Python supervisor
+      --input-address <INPUT_ADDRESS>
+          Frontend input ROUTER socket address that the Python engines will connect to
+      --output-address <OUTPUT_ADDRESS>
+          Frontend output PULL socket address that the Python engines will push responses to
+      --coordinator-address <COORDINATOR_ADDRESS>
+          Optional Python-owned frontend-side DP coordinator socket address for external coordinator mode in the bootstrapped frontend path, i.e., `stats_update_address`
+      --engine-start-index <ENGINE_START_INDEX>
+          First data-parallel engine rank expected to register with this bootstrapped frontend [default: 0]
+      --engine-count <ENGINE_COUNT>
+          Total number of data-parallel engines expected for this frontend [default: 1]
+      --args-json <JSON>
+          Shared frontend arguments as one JSON object
+  -h, --help
+          Print help

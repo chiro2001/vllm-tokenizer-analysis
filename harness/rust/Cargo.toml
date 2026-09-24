@@ -1,0 +1,21 @@
+[workspace]
+members = ["bench", "vendor/vllm-tokenizer"]
+resolver = "3"
+
+# 与 vLLM 0.26.0 `rust/Cargo.toml` 对齐：
+#   [profile.release] lto = "thin" / panic = "abort"
+#   [profile.dev.package] fastokens|regex-automata|serde_json|tokenizers opt-level = 3
+# 唯一有意偏离：保留 panic = unwind（默认），因为本 harness 必须在某个后端的
+# panic 面前活下来才能继续测其它后端；panic 策略不影响 tokenizer 热路径。
+# 复核：bash harness/rust/sync-vendor.sh --check
+[profile.release]
+lto = "thin"
+
+[profile.bench]
+lto = "thin"
+
+[profile.dev.package]
+fastokens = { opt-level = 3 }
+regex-automata = { opt-level = 3 }
+serde_json = { opt-level = 3 }
+tokenizers = { opt-level = 3 }

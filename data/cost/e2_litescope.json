@@ -1,0 +1,214 @@
+{
+  "manifest": {
+    "experiment": "E2 cross-check (real LiteScope)",
+    "timestamp": "2026-09-24T15:14:51+0000",
+    "script": "/workspace/harness/python/bench_litescope.py",
+    "script_sha256": "becaabfbb5baff9cd07802d5947614ab31e0594b81e873559e2190445034ef35",
+    "repo_commit": null,
+    "image": "local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922",
+    "image_id": null,
+    "model": "/models/Qwen3-0.6B",
+    "vllm_src": "/tmp/c-overlay/vllm",
+    "vllm_src_commit": null,
+    "liteprof_overlay": "/tmp/c-overlay",
+    "vllm_lite_profiler_log_path": "/tmp/c-litescope/lite.log",
+    "affinity": [
+      4,
+      5
+    ],
+    "host": {
+      "python": "3.12.13",
+      "platform": "Linux-7.1.5-arch1-2-x86_64-with-glibc2.38",
+      "machine": "x86_64",
+      "affinity": [
+        4,
+        5
+      ],
+      "cores_available_to_process": 2,
+      "cpu_count": 12,
+      "thread_env": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "NUMEXPR_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false"
+      },
+      "cpu_model": "AMD Eng Sample: 100-000000956-50_Y",
+      "transformers_version": "5.14.1",
+      "tokenizers_version": "0.22.2",
+      "torch_version": "2.10.0+cpu",
+      "vllm_version": "0.26.0"
+    },
+    "system_load": {
+      "loadavg_1_5_15": [
+        1.61,
+        2.07,
+        2.05
+      ],
+      "running_procs": "6/852",
+      "MemTotal_GiB": 29.33,
+      "MemFree_GiB": 0.53,
+      "MemAvailable_GiB": 16.35,
+      "SwapTotal_GiB": 25.0,
+      "SwapFree_GiB": 20.13,
+      "host_snapshot_at_launch": "2026-09-24T23:14:28+08:00\nloadavg 1.43 2.07 2.06 3/790 2480724\nMemTotal:       30753688 kB\nMemAvailable:   18293528 kB\ncpuset 4-5 docker_cpus=6 mem=8g\n"
+    },
+    "vllm_version": "0.26.0",
+    "args": {
+      "model": "/models/Qwen3-0.6B",
+      "log": "/tmp/c-litescope/lite.log",
+      "out": "/workspace/data/cost/e2_litescope.json",
+      "corpus": "mixed",
+      "isl": "128,1024,8192",
+      "repeats": 100,
+      "osl": "256",
+      "decode_offload": false
+    },
+    "scope_line_raw_count": 1800,
+    "tokenizer_scope_tids": {
+      "tokenizer: decode": [
+        214
+      ],
+      "tokenizer: encode": [
+        214
+      ],
+      "tokenizer: render_messages": [
+        214
+      ]
+    },
+    "tokenizer_scopes_single_frontend_thread": true,
+    "log_path_in_container": "/tmp/c-litescope/lite.log",
+    "note": "本脚本故意在 scope 外层再包一层 'c-cost: *.outer'，用来在同一份日志里同时读出 scope 内与 scope 外的成本",
+    "finished_at": "2026-09-24T15:14:51+0000"
+  },
+  "litescope_scopes": {
+    "c-cost: decode.outer": {
+      "n": 300,
+      "mean_us": 812.16,
+      "p50_us": 283.858,
+      "min_us": 101.498,
+      "max_us": 3255.952,
+      "tids": [
+        214
+      ]
+    },
+    "c-cost: encode.outer": {
+      "n": 300,
+      "mean_us": 4281.028,
+      "p50_us": 1255.735,
+      "min_us": 478.89,
+      "max_us": 14759.888,
+      "tids": [
+        214
+      ]
+    },
+    "c-cost: render.outer": {
+      "n": 300,
+      "mean_us": 5017.566,
+      "p50_us": 1918.276,
+      "min_us": 1091.769,
+      "max_us": 15215.155,
+      "tids": [
+        214
+      ]
+    },
+    "tokenizer: decode": {
+      "n": 300,
+      "mean_us": 763.696,
+      "p50_us": 245.957,
+      "min_us": 75.239,
+      "max_us": 3089.904,
+      "tids": [
+        214
+      ]
+    },
+    "tokenizer: encode": {
+      "n": 300,
+      "mean_us": 4025.401,
+      "p50_us": 1176.396,
+      "min_us": 423.257,
+      "max_us": 14097.858,
+      "tids": [
+        214
+      ]
+    },
+    "tokenizer: render_messages": {
+      "n": 300,
+      "mean_us": 4857.098,
+      "p50_us": 1823.269,
+      "min_us": 1027.59,
+      "max_us": 14834.978,
+      "tids": [
+        214
+      ]
+    }
+  },
+  "direct_perf_counter": {
+    "encode": {
+      "scope": {
+        "n": 300,
+        "mean_us": 5048.794,
+        "p50_us": 1324.597,
+        "p90_us": 13169.666,
+        "p99_us": 16953.608,
+        "min_us": 491.834,
+        "max_us": 19473.561,
+        "stdev_us": 5795.76
+      },
+      "outer": {
+        "n": 300,
+        "mean_us": 5029.071,
+        "p50_us": 1337.887,
+        "p90_us": 13529.595,
+        "p99_us": 16462.029,
+        "min_us": 363.225,
+        "max_us": 18614.192,
+        "stdev_us": 5882.955
+      }
+    },
+    "render": {
+      "scope": {
+        "n": 300,
+        "mean_us": 5938.119,
+        "p50_us": 2136.812,
+        "p90_us": 14751.698,
+        "p99_us": 16829.563,
+        "min_us": 1102.95,
+        "max_us": 18771.777,
+        "stdev_us": 5976.906
+      },
+      "outer": {
+        "n": 300,
+        "mean_us": 6000.48,
+        "p50_us": 2186.681,
+        "p90_us": 14837.739,
+        "p99_us": 18257.918,
+        "min_us": 957.71,
+        "max_us": 19779.309,
+        "stdev_us": 6101.492
+      }
+    },
+    "decode": {
+      "scope": {
+        "n": 300,
+        "mean_us": 941.54,
+        "p50_us": 336.88,
+        "p90_us": 2354.981,
+        "p99_us": 3321.903,
+        "min_us": 84.077,
+        "max_us": 3872.759,
+        "stdev_us": 1019.866
+      },
+      "outer": {
+        "n": 300,
+        "mean_us": 794.09,
+        "p50_us": 255.355,
+        "p90_us": 2032.071,
+        "p99_us": 2673.178,
+        "min_us": 57.857,
+        "max_us": 3043.529,
+        "stdev_us": 898.621
+      }
+    }
+  }
+}

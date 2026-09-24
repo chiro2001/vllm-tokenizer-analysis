@@ -1,0 +1,90 @@
+{
+  "line": "B-backends",
+  "task": "E1 微基准矩阵",
+  "started_at": "2026-09-25T00:28:46+08:00",
+  "finished_at": "2026-09-25T00:28:48+08:00",
+  "script_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757",
+  "upstream_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+  "container_image": null,
+  "host": {
+    "hostname": "LOCAL_HOST",
+    "cpu_model": "AMD Eng Sample",
+    "nproc": 1,
+    "cpu_affinity": "2",
+    "loadavg": [
+      0.67,
+      1.26,
+      1.83
+    ],
+    "mem_available_gb": 18.82442855834961,
+    "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+    "cargo": "cargo 1.98.0 (797e8a9bc 2026-08-05)",
+    "env_rayon_threads": "1",
+    "env_cores": "2"
+  },
+  "threads_requested": 0,
+  "threads_effective": 1,
+  "profile": "release",
+  "features": [
+    "gigatoken"
+  ],
+  "corpus_sha256": [
+    [
+      "mixed-128",
+      "c48bc437f51aa0ec1083fced7b3f218ad052b7e307714e8d85b0956ef1b6075d"
+    ],
+    [
+      "mixed-1k",
+      "c33b597ab8df17d7559eb84202a943ab5d8b1813e46565ef13583d8f74e2d6b5"
+    ]
+  ],
+  "artifacts": [
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/data/backends/bridge-rust.jsonl",
+      "bytes": 7255,
+      "sha256": "eab9fb651389ae704adbf1bf78772303a1f6a879f53a45017d6b1a6a53557d5a"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/data/backends/bridge-rust.csv",
+      "bytes": 2922,
+      "sha256": "b08c0085ca121e328afac6508d4428ab6675782a4012887a0d593daccd6c2c6a"
+    }
+  ],
+  "script_sha256": [
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/main.rs",
+      "bytes": 71710,
+      "sha256": "dbf81511e40e03612db038a86186b3211ff722bc090fe1b6a2aeae69348b5c03"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/backends.rs",
+      "bytes": 21770,
+      "sha256": "c784e8c4c08ff4effd4b962ea26d11606c1c49dd8d67e18858347e707ba11d9b"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/corpus.rs",
+      "bytes": 18358,
+      "sha256": "bbd90b2306e4e90a97ed99a124238e3da3c32c6f6defdb757848ef35b7d728b7"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/stats.rs",
+      "bytes": 8469,
+      "sha256": "686fa89453a8fda0239d1b489069cc5e7950702a8b784aa2a4362ed5922930ef"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/src/manifest.rs",
+      "bytes": 7622,
+      "sha256": "e12e598f5006f99c2d8321ea3acbab534a3caeaeff271b69b1f070f1f7d13855"
+    },
+    {
+      "path": "/home/chiro/projects/vllm/tokenizer-wt/B-backends/harness/rust/bench/Cargo.toml",
+      "bytes": 962,
+      "sha256": "acfdf5d5d1d75a664c9a1587e188f9f3a205f22122ab6109f5511cdfb0f33fb6"
+    }
+  ],
+  "caveats": [
+    "语料长度按 Qwen3-0.6B 参考后端的 token 数对齐；其它家族看到的 token 数会不同，表里同时给出 bytes 与各后端实测 token 数（不假设等价）。",
+    "单条（single）路径在调用线程上直接跑，不进 rayon；批量（batch）路径走 rayon，线程数受 RAYON_NUM_THREADS 夹逼。",
+    "所有工件来自本地路径，harness 不联网（上游 bench 用 hf-hub，本项目改为本地）。"
+  ]
+}

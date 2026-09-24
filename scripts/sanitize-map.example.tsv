@@ -1,0 +1,22 @@
+# 净化映射表模板 —— 复制到仓库根目录的 .sanitize-map.tsv 后填入**你的**真实值。
+#
+#   cp scripts/sanitize-map.example.tsv .sanitize-map.tsv
+#   $EDITOR .sanitize-map.tsv
+#   bash scripts/sanitize_for_publish.sh --check     # 先看命中数
+#   bash scripts/sanitize_for_publish.sh --apply
+#
+# 格式：原值 <TAB> 占位符 <TAB> 说明
+# 顺序无关：脚本按"原值长度降序"处理，避免子串互相吃掉。
+# 提示：占位符请用 ASCII 大写+下划线，避免在 shell 里被当成重定向/变量。
+#
+# ⚠️ .sanitize-map.tsv 已被 .gitignore 排除，不会随仓库分发。
+#    真实值只存在于本地与内部渠道，仓库里只有本模板。
+#
+# 示例（把下面几行换成你的实际值）：
+internal-project-dir	HIST_PROJECT	内部分析项目目录名
+another-project	OTHER_PROJECT	另一个内部项目目录名
+local-hostname	LOCAL_HOST	本地开发机主机名
+employee-id	REMOTE_USER	内部账号/员工号（出现在 /home/<id>/ 等路径）
+internal.example.com	INTERNAL_HOST	内部主机名
+10.0.0.1	INTERNAL_IP	内网地址
+publisher@example.com	PUBLISHER_EMAIL	发布者邮箱

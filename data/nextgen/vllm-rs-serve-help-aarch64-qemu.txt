@@ -1,0 +1,394 @@
+Launch a managed Python headless engine, then run the Rust OpenAI frontend
+
+Usage: vllm-rs serve <MODEL> [OPTIONS] [-- <PYTHON_ARGS>...]
+
+Arguments:
+  <MODEL>
+          Model identifier or local model directory used for backend loading and public model ID
+
+Options:
+      --headless
+          Only launch the managed Python headless engine and do not start the Rust frontend
+
+      --host <HOST>
+          HTTP bind host for the OpenAI-compatible server
+          
+          [default: 127.0.0.1]
+
+      --port <PORT>
+          HTTP bind port for the OpenAI-compatible server
+          
+          [default: 8000]
+
+      --uds <UDS>
+          Unix domain socket path. If set, host and port arguments are ignored
+
+      --engine-ready-timeout-secs <ENGINE_READY_TIMEOUT_SECS>
+          Maximum time to wait for the expected engines to register on the frontend transport
+          
+          [env: VLLM_ENGINE_READY_TIMEOUT_S=]
+          [default: 600]
+
+      --tool-call-parser <TOOL_CALL_PARSER>
+          Select the tool call parser depending on the model that you're using. Use `auto` to infer from the model or `none` to disable parsing
+          
+          [default: auto]
+
+      --reasoning-parser <REASONING_PARSER>
+          Select the reasoning parser depending on the model that you're using. Use `auto` to infer from the model or `none` to disable parsing
+          
+          [default: auto]
+
+      --tokenizer-mode <RENDERER>
+          Select the chat renderer implementation
+          
+          [default: auto]
+
+      --language-model-only
+          Disable multimodal inputs and treat the model as language-only
+
+      --max-model-len <MAX_MODEL_LEN>
+          Override the maximum model context length. When set, the frontend uses this value instead of the model's `max_position_embeddings` from `config.json`
+
+      --max-logprobs <MAX_LOGPROBS>
+          Maximum number of log probabilities to return when `logprobs` is specified in sampling parameters. `-1` means no cap
+
+      --grpc-port <GRPC_PORT>
+          TCP port for the gRPC Generate service. When not set, no gRPC server is started
+
+      --shutdown-timeout <SHUTDOWN_TIMEOUT>
+          Maximum time to wait for active requests to drain during shutdown
+          
+          [default: 0]
+
+      --http-timeout-keep-alive <HTTP_TIMEOUT_KEEP_ALIVE>
+          Maximum idle time (seconds) on a keep-alive HTTP connection before the server closes it (default 5)
+          
+          [env: VLLM_HTTP_TIMEOUT_KEEP_ALIVE=]
+
+      --chat-template <CHAT_TEMPLATE>
+          The file path to the chat template, or the template in single-line form for the specified model
+
+      --default-chat-template-kwargs <JSON>
+          Default keyword arguments to pass to the chat template renderer.
+          
+          These will be merged with request-level chat_template_kwargs, with request values taking precedence. Useful for setting default behavior for reasoning models.
+          
+          Example: `{"enable_thinking": false}` to disable thinking mode by default for Qwen3/DeepSeek models.
+
+      --chat-template-content-format <CHAT_TEMPLATE_CONTENT_FORMAT>
+          The format to render message content within a chat template.
+          
+          * "auto" detects the format from the template * "string" renders content as a string. Example: `"Hello World"` * "openai" renders content as a list of dictionaries, similar to OpenAI schema. Example: `[{"type": "text", "text": "Hello world!"}]`
+          
+          [default: auto]
+
+      --enable-log-requests
+          Log a summary line for each completed request, including prompt/output token counts and finish reason
+
+      --enable-prompt-tokens-details [<ENABLE_PROMPT_TOKENS_DETAILS>]
+          Include prompt_tokens_details in usage when cached prompt tokens are present
+          
+          [default: false]
+          [possible values: true, false]
+
+      --enable-request-id-headers [<ENABLE_REQUEST_ID_HEADERS>]
+          If specified, API server will add X-Request-Id header to responses
+          
+          [default: false]
+          [possible values: true, false]
+
+      --api-key <API_KEY>
+          If provided, the server will require one of these keys to be presented in the Authorization header
+          
+          [env: VLLM_API_KEY=]
+
+      --disable-log-stats
+          Disable periodic logging of engine statistics (throughput, queue depth, cache usage)
+
+      --served-model-name [<SERVED_MODEL_NAME>...]
+          The model name(s) used in the API. If multiple names are provided, the server will respond to any of the provided names. The model name in the model field of a response will be the first name in this list. If not specified, the model name will be the same as the `--model` argument. Noted that this name(s) will also be used in `model_name` tag content of prometheus metrics, if multiple names provided, metrics tag will take the first one
+
+      --allowed-origins <JSON>
+          CORS allowed origins as a JSON list. `["*"]` allows any origin
+          
+          [default: ["*"]]
+
+      --allowed-methods <JSON>
+          CORS allowed methods as a JSON list. `["*"]` allows the standard set
+          
+          [default: ["*"]]
+
+      --allowed-headers <JSON>
+          CORS allowed request headers as a JSON list. `["*"]` mirrors the request
+          
+          [default: ["*"]]
+
+      --allow-credentials [<ALLOW_CREDENTIALS>]
+          Allow CORS credentials (cookies, authorization headers)
+          
+          [default: false]
+          [possible values: true, false]
+
+      --ssl-keyfile <SSL_KEYFILE>
+          The file path to the SSL key file. When omitted, the key is read from `--ssl-certfile` (combined PEM)
+
+      --ssl-certfile <SSL_CERTFILE>
+          The file path to the SSL cert file. Enables TLS when set
+
+      --ssl-ca-certs <SSL_CA_CERTS>
+          The CA certificates file used to verify client certificates (mTLS)
+
+      --ssl-cert-reqs <SSL_CERT_REQS>
+          Whether a client certificate is required: 0 = none, 1 = optional, 2 = required (mirrors Python's `ssl.CERT_*`)
+          
+          [default: 0]
+
+      --ssl-ciphers <SSL_CIPHERS>
+          OpenSSL cipher string for HTTPS (TLS 1.2 and below). When unset, the linked OpenSSL's default suites are used
+
+      --profiler-config <JSON>
+          Profiler configuration forwarded by the Python supervisor.
+          
+          When set with a non-null `profiler` type, the Rust frontend registers the `/start_profile` and `/stop_profile` routes and forwards calls to the engine via the `"profile"` utility RPC.
+
+  -h, --help
+          Print help (see a summary with '-h')
+
+Options not implemented in Rust frontend yet:
+      --config <CONFIG>
+          Read CLI options from a config file. Must be a YAML with the following options: https://docs.vllm.ai/en/latest/configuration/serve_args.html
+
+      --grpc [<GRPC>]
+          Launch a gRPC server instead of the HTTP OpenAI-compatible server. Requires: pip install vllm[grpc]
+
+      --tokenizer <TOKENIZER>
+          Name or path of the Hugging Face tokenizer to use. If unspecified, model name or path will be used
+
+      --hf-config-path <HF_CONFIG_PATH>
+          Name or path of the Hugging Face config to use. If unspecified, model name or path will be used
+
+      --allowed-local-media-path <ALLOWED_LOCAL_MEDIA_PATH>
+          Allowing API requests to read local images or videos from directories specified by the server file system. This is a security risk. Should only be enabled in trusted environments
+
+      --allowed-media-domains <ALLOWED_MEDIA_DOMAINS>
+          If set, only media URLs that belong to this domain can be used for multi-modal inputs
+
+      --tokenizer-revision <TOKENIZER_REVISION>
+          The specific revision to use for the tokenizer on the Hugging Face Hub. It can be a branch name, a tag name, or a commit id. If unspecified, will use the default version
+
+      --skip-tokenizer-init [<SKIP_TOKENIZER_INIT>]
+          Skip initialization of tokenizer and detokenizer. Expects valid `prompt_token_ids` and `None` for prompt from the input. The generated output will contain token ids
+          
+          [aliases: --no-skip-tokenizer-init]
+
+      --enable-prompt-embeds [<ENABLE_PROMPT_EMBEDS>]
+          If `True`, enables passing text embeddings as inputs via the `prompt_embeds` key.
+          
+          WARNING: The vLLM engine may crash if incorrect shape of embeddings is passed. Only enable this flag for trusted users!
+          
+          [aliases: --no-enable-prompt-embeds]
+
+      --hf-token [<HF_TOKEN>]
+          The token to use as HTTP bearer authorization for remote files. If `True`, will use the token generated when running `hf auth login` (stored in `~/.cache/huggingface/token`)
+
+      --hf-overrides <HF_OVERRIDES>
+          If a dictionary, contains arguments to be forwarded to the Hugging Face config. If a callable, it is called to update the HuggingFace config
+
+      --generation-config <GENERATION_CONFIG>
+          The folder path to the generation config. Defaults to `"auto"`, the generation config will be loaded from model path. If set to `"vllm"`, no generation config is loaded, vLLM defaults will be used. If set to a folder path, the generation config will be loaded from the specified folder path. If `max_new_tokens` is specified in generation config, then it sets a server-wide limit on the number of output tokens for all requests
+
+      --io-processor-plugin <IO_PROCESSOR_PLUGIN>
+          IOProcessor plugin name to load at model startup
+
+      --reasoning-parser-plugin <REASONING_PARSER_PLUGIN>
+          Path to a dynamically reasoning parser plugin that can be dynamically loaded and registered
+
+      --data-parallel-rank <DATA_PARALLEL_RANK>
+          Rank of the data parallel group
+          
+          [env: VLLM_DP_RANK=]
+
+      --data-parallel-hybrid-lb [<DATA_PARALLEL_HYBRID_LB>]
+          Whether to use "hybrid" DP LB mode. Applies only to online serving and when data_parallel_size > 0. Enables running an AsyncLLM and API server on a "per-node" basis where vLLM load balances between local data parallel ranks, but an external LB balances between vLLM nodes/replicas. Set explicitly in conjunction with --data-parallel-start-rank
+          
+          [aliases: --no-data-parallel-hybrid-lb]
+
+      --data-parallel-external-lb [<DATA_PARALLEL_EXTERNAL_LB>]
+          Whether to use "external" DP LB mode. Applies only to online serving and when data_parallel_size > 0. This is useful for a "one-pod-per-rank" wide-EP setup in Kubernetes. Set implicitly when --data-parallel-rank is provided explicitly to vllm serve
+          
+          [aliases: --no-data-parallel-external-lb]
+
+      --kv-sharing-fast-prefill [<KV_SHARING_FAST_PREFILL>]
+          This feature is work in progress and no prefill optimization takes place with this flag enabled currently
+          
+          [aliases: --no-kv-sharing-fast-prefill]
+
+      --limit-mm-per-prompt <LIMIT_MM_PER_PROMPT>
+          The maximum number of input items and options allowed per prompt for each modality
+
+      --media-io-kwargs <MEDIA_IO_KWARGS>
+          Additional args passed to process media inputs, keyed by modalities
+
+      --mm-processor-kwargs <MM_PROCESSOR_KWARGS>
+          Arguments to be forwarded to the model's processor for multi-modal data, e.g., image processor
+
+      --mm-processor-cache-gb <MM_PROCESSOR_CACHE_GB>
+          The size (in GiB) of the multi-modal processor cache
+
+      --mm-processor-cache-type <MM_PROCESSOR_CACHE_TYPE>
+          Type of cache to use for the multi-modal preprocessor/mapper
+
+      --default-mm-loras <DEFAULT_MM_LORAS>
+          Dictionary mapping specific modalities to LoRA model paths
+
+      --otlp-traces-endpoint <OTLP_TRACES_ENDPOINT>
+          Target URL to which OpenTelemetry traces will be sent
+
+      --collect-detailed-traces <COLLECT_DETAILED_TRACES>
+          It makes sense to set this only if `--otlp-traces-endpoint` is set
+
+      --stream-interval <STREAM_INTERVAL>
+          The interval (or buffer size) for streaming in terms of token length
+
+      --structured-outputs-config <STRUCTURED_OUTPUTS_CONFIG>
+          Structured outputs configuration
+
+      --aggregate-engine-logging [<AGGREGATE_ENGINE_LOGGING>]
+          Log aggregate rather than per-engine statistics when using data parallelism
+
+      --lora-modules <LORA_MODULES>
+          LoRA modules configurations in either 'name=path' format or JSON format or JSON list format. Example (old format): `'name=path'` Example (new format): `{"name": "name", "path": "lora_path", "base_model_name": "id"}`
+
+      --trust-request-chat-template [<TRUST_REQUEST_CHAT_TEMPLATE>]
+          Whether to trust the chat template provided in the request. If False, the server will always use the chat template specified by `--chat-template` or the ones from tokenizer
+          
+          [aliases: --no-trust-request-chat-template]
+
+      --response-role <RESPONSE_ROLE>
+          The role name to return if `request.add_generation_prompt=true`
+
+      --return-tokens-as-token-ids [<RETURN_TOKENS_AS_TOKEN_IDS>]
+          When `--max-logprobs` is specified, represents single tokens as strings of the form 'token_id:{token_id}' so that tokens that are not JSON-encodable can be identified
+          
+          [aliases: --no-return-tokens-as-token-ids]
+
+      --exclude-tools-when-tool-choice-none [<EXCLUDE_TOOLS_WHEN_TOOL_CHOICE_NONE>]
+          If specified, exclude tool definitions in prompts when tool_choice='none'
+          
+          [aliases: --no-exclude-tools-when-tool-choice-none]
+
+      --tool-parser-plugin <TOOL_PARSER_PLUGIN>
+          Special the tool parser plugin write to parse the model-generated tool into OpenAI API format, the name register in this plugin can be used in `--tool-call-parser`
+
+      --tool-server <TOOL_SERVER>
+          Comma-separated list of host:port pairs (IPv4, IPv6, or hostname). Examples: 127.0.0.1:8000, [::1]:8000, localhost:1234. Or `demo` for built-in demo tools (browser and Python code interpreter). WARNING: The `demo` Python tool executes model-generated code in Docker without network isolation by default. See the security guide for more information
+
+      --log-config-file <LOG_CONFIG_FILE>
+          Path to logging config JSON file for both vllm and uvicorn
+
+      --max-log-len <MAX_LOG_LEN>
+          Max number of prompt characters or prompt ID numbers being printed in log. The default of None means unlimited
+
+      --enable-server-load-tracking [<ENABLE_SERVER_LOAD_TRACKING>]
+          If set to True, enable tracking server_load_metrics in the app state
+          
+          [aliases: --no-enable-server-load-tracking]
+
+      --enable-force-include-usage [<ENABLE_FORCE_INCLUDE_USAGE>]
+          If set to True, including usage on every request
+          
+          [aliases: --no-enable-force-include-usage]
+
+      --enable-log-outputs [<ENABLE_LOG_OUTPUTS>]
+          If set to True, log model outputs (generations). Requires `--enable-log-requests`. As with `--enable-log-requests`, information is only logged at INFO level at maximum
+          
+          [aliases: --no-enable-log-outputs]
+
+      --enable-log-deltas [<ENABLE_LOG_DELTAS>]
+          If set to False, output deltas will not be logged. Relevant only if --enable-log-outputs is set
+          
+          [aliases: --no-enable-log-deltas]
+
+      --log-error-stack [<LOG_ERROR_STACK>]
+          If set to True, log the stack trace of error responses
+          
+          [aliases: --no-log-error-stack]
+
+      --tokens-only [<TOKENS_ONLY>]
+          If set to True, only enable the Tokens In<>Out endpoint. This is intended for use in a Disaggregated Everything setup
+          
+          [aliases: --no-tokens-only]
+
+      --uvicorn-log-level <UVICORN_LOG_LEVEL>
+          Log level for uvicorn
+
+      --disable-uvicorn-access-log [<DISABLE_UVICORN_ACCESS_LOG>]
+          Disable uvicorn access log
+          
+          [aliases: --no-disable-uvicorn-access-log]
+
+      --disable-access-log-for-endpoints <DISABLE_ACCESS_LOG_FOR_ENDPOINTS>
+          Comma-separated list of endpoint paths to exclude from uvicorn access logs. This is useful to reduce log noise from high-frequency endpoints like health checks. Example: "/health,/metrics,/ping". When set, access logs for requests to these paths will be suppressed while keeping logs for other endpoints
+
+      --enable-ssl-refresh [<ENABLE_SSL_REFRESH>]
+          Refresh SSL Context when SSL certificate files change
+          
+          [aliases: --no-enable-ssl-refresh]
+
+      --root-path <ROOT_PATH>
+          FastAPI root_path when app is behind a path based routing proxy
+
+      --middleware <MIDDLEWARE>
+          Additional ASGI middleware to apply to the app. We accept multiple --middleware arguments. The value should be an import path. If a function is provided, vLLM will add it to the server using `@app.middleware('http')`. If a class is provided, vLLM will add it to the server using `app.add_middleware()`
+
+      --disable-fastapi-docs [<DISABLE_FASTAPI_DOCS>]
+          Disable FastAPI's OpenAPI schema, Swagger UI, and ReDoc endpoint
+          
+          [aliases: --no-disable-fastapi-docs]
+
+      --h11-max-incomplete-event-size <H11_MAX_INCOMPLETE_EVENT_SIZE>
+          Maximum size (bytes) of an incomplete HTTP event (header or body) for h11 parser. Helps mitigate header abuse. Default: 4194304 (4 MB)
+
+      --h11-max-header-count <H11_MAX_HEADER_COUNT>
+          Maximum number of HTTP headers allowed in a request for h11 parser. Helps mitigate header abuse. Default: 256
+
+      --enable-offline-docs [<ENABLE_OFFLINE_DOCS>]
+          Enable offline FastAPI documentation for air-gapped environments. Uses vendored static assets bundled with vLLM
+          
+          [aliases: --no-enable-offline-docs]
+
+      --python <PYTHON>
+          Python executable used to launch the managed headless vLLM engine
+          
+          [env: VLLM_RS_PYTHON=]
+          [default: python3]
+
+      --data-parallel-address <HANDSHAKE_HOST>
+          Host/IP used both for the managed-engine handshake endpoint and the frontend-advertised input/output ZMQ socket addresses
+          
+          [default: 127.0.0.1]
+          [aliases: --handshake-host]
+
+      --data-parallel-rpc-port <HANDSHAKE_PORT>
+          Optional TCP port for the managed-engine handshake / data-parallel RPC endpoint.
+          
+          When omitted, the CLI allocates an ephemeral port automatically.
+          
+          [aliases: --handshake-port]
+
+      --data-parallel-size <DATA_PARALLEL_SIZE>
+          Number of data parallel replicas across the whole deployment
+          
+          [default: 1]
+
+      --data-parallel-size-local <DATA_PARALLEL_SIZE_LOCAL>
+          Number of data parallel replicas to run on this node
+
+Passthrough arguments:
+  [PYTHON_ARGS]...
+          Additional arguments forwarded to `python -m vllm.entrypoints.cli.main serve ...`.
+          
+          Arguments after an explicit `--` are forwarded verbatim. Before `--`, `vllm-rs serve` automatically keeps recognized frontend options on the Rust side and forwards everything else to Python.
+          
+          The explicit `--` passthrough is a last-resort escape hatch. Rust does not interpret, validate, or de-duplicate those arguments against managed-engine arguments that it appends later; if the same Python flag appears more than once, Python argparse owns the final result.

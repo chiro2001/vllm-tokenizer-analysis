@@ -1,0 +1,861 @@
+{
+  "manifest": {
+    "experiment": "E2.1+E2.2+E2.3",
+    "timestamp": "2026-09-24T15:56:04+0000",
+    "script": "/workspace/harness/python/bench_paths.py",
+    "script_sha256": "9922b7b6299fbe243fe9c220c8ece3b73bbcd2a50477e22b6ed2bf29fafe6b3d",
+    "repo_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757",
+    "repo_branch": "agent/C-cost",
+    "image": "local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922",
+    "image_id": "sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d",
+    "model": "/models/Qwen3-0.6B",
+    "vllm_src": "/tmp/c-overlay/vllm",
+    "vllm_src_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+    "liteprof_overlay": "/tmp/c-overlay",
+    "vllm_lite_profiler_log_path": null,
+    "affinity": [
+      4,
+      5
+    ],
+    "host": {
+      "python": "3.12.13",
+      "platform": "Linux-7.1.5-arch1-2-x86_64-with-glibc2.38",
+      "machine": "x86_64",
+      "affinity": [
+        4,
+        5
+      ],
+      "cores_available_to_process": 2,
+      "cpu_count": 12,
+      "thread_env": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "NUMEXPR_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false"
+      },
+      "cpu_model": "AMD Eng Sample: 100-000000956-50_Y",
+      "transformers_version": "5.14.1",
+      "tokenizers_version": "0.22.2",
+      "torch_version": "2.10.0+cpu",
+      "vllm_version": "0.26.0"
+    },
+    "system_load": {
+      "loadavg_1_5_15": [
+        1.79,
+        2.68,
+        2.73
+      ],
+      "running_procs": "1/810",
+      "MemTotal_GiB": 29.33,
+      "MemFree_GiB": 2.41,
+      "MemAvailable_GiB": 17.36,
+      "SwapTotal_GiB": 25.0,
+      "SwapFree_GiB": 17.58,
+      "host_snapshot_at_launch": "2026-09-24T23:56:03+08:00\nloadavg 1.77 2.69 2.73 2/783 2645405\nMemTotal:       30753688 kB\nMemAvailable:   18784128 kB\ncpuset 4-5 docker_cpus=6 mem=8g\nimage=local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922\nimage_id=sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d\nworktree_head=93c3c36e4f5feab069dcb7b3b0e755f8d84a9757\nworktree_branch=agent/C-cost\nvllm_src=/home/chiro/projects/vllm/HIST_PROJECT/vllm\nvllm_src_commit=568afb3a13806beb53bb2e6bd518269357b237c0\n"
+    },
+    "vllm_version": "0.26.0",
+    "args": {
+      "model": "/models/Qwen3-0.6B",
+      "out": "/workspace/data/cost/e2_paths.json",
+      "corpus": "mixed",
+      "isl": "128,1024,8192",
+      "osl": "32,256,1024",
+      "repeats": 100,
+      "warmup": 10,
+      "tasks": "encode,render,decompose",
+      "renderer_num_workers": null,
+      "tag": ""
+    },
+    "started_at": "2026-09-24T15:56:04+0000",
+    "model_revision": {
+      "path": "/models/Qwen3-0.6B",
+      "tokenizer.json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer.json_bytes": 11422654,
+      "tokenizer_config.json_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "tokenizer_config.json_bytes": 9732,
+      "config.json_sha256": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+      "config.json_bytes": 726
+    },
+    "tokenizer_scope_boundaries": {
+      "encode": "BaseRenderer._tokenize_prompt -> tokenizer(text, **kwargs)",
+      "render_messages": "BaseRenderer.render_chat -> render_messages(conversation, chat_params)",
+      "decode": "BaseRenderer._decode -> tokenizer.decode(...)",
+      "streaming_detokenize": "vllm.v1.engine.detokenizer.*IncrementalDetokenizer (未插桩)"
+    },
+    "renderer_init_s": 6.3,
+    "renderer_cls": "vllm.renderers.hf.HfRenderer",
+    "tokenizer_cls": "vllm.tokenizers.hf.TokenizerPoolCachedQwen2Tokenizer",
+    "tokenizer_class_name": "TokenizerPoolCachedQwen2Tokenizer",
+    "tokenizer_is_tokenizers_backend": false,
+    "renderer_num_workers": 1,
+    "vocab_size": 151643,
+    "finished_at": "2026-09-24T15:56:39+0000",
+    "elapsed_s": 29.955
+  },
+  "results": [
+    {
+      "case": "encode",
+      "scope": "tokenizer: encode",
+      "corpus": "mixed",
+      "target_isl_tokens": 128,
+      "actual_tokens": 220,
+      "n_chars": 774,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 261.88,
+        "p50_us": 258.29,
+        "p90_us": 296.854,
+        "p99_us": 329.766,
+        "min_us": 227.658,
+        "max_us": 331.412,
+        "stdev_us": 24.731
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 246.903,
+        "p50_us": 240.747,
+        "p90_us": 269.77,
+        "p99_us": 310.408,
+        "min_us": 225.793,
+        "max_us": 330.751,
+        "stdev_us": 18.934
+      },
+      "outer_definition": "renderer.tokenize_prompt()"
+    },
+    {
+      "case": "encode",
+      "scope": "tokenizer: encode",
+      "corpus": "mixed",
+      "target_isl_tokens": 1024,
+      "actual_tokens": 990,
+      "n_chars": 3483,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 986.615,
+        "p50_us": 965.318,
+        "p90_us": 1051.684,
+        "p99_us": 1182.893,
+        "min_us": 926.21,
+        "max_us": 1196.978,
+        "stdev_us": 56.624
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 1039.408,
+        "p50_us": 996.997,
+        "p90_us": 1183.418,
+        "p99_us": 1314.042,
+        "min_us": 949.913,
+        "max_us": 1315.48,
+        "stdev_us": 91.917
+      },
+      "outer_definition": "renderer.tokenize_prompt()"
+    },
+    {
+      "case": "encode",
+      "scope": "tokenizer: encode",
+      "corpus": "mixed",
+      "target_isl_tokens": 8192,
+      "actual_tokens": 8140,
+      "n_chars": 28638,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 10897.407,
+        "p50_us": 10683.767,
+        "p90_us": 12370.175,
+        "p99_us": 17094.307,
+        "min_us": 9253.096,
+        "max_us": 17713.842,
+        "stdev_us": 1483.331
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 11092.633,
+        "p50_us": 10906.61,
+        "p90_us": 13145.942,
+        "p99_us": 15491.619,
+        "min_us": 8654.08,
+        "max_us": 15555.099,
+        "stdev_us": 1584.323
+      },
+      "outer_definition": "renderer.tokenize_prompt()"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 128,
+      "actual_filler_tokens": 220,
+      "rendered_prompt_tokens": 519,
+      "n_messages": 2,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 805.049,
+        "p50_us": 786.262,
+        "p90_us": 888.609,
+        "p99_us": 984.306,
+        "min_us": 720.413,
+        "max_us": 1037.649,
+        "stdev_us": 62.832
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 920.024,
+        "p50_us": 862.805,
+        "p90_us": 1162.498,
+        "p99_us": 1343.491,
+        "min_us": 778.793,
+        "max_us": 1440.434,
+        "stdev_us": 142.552
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 1024,
+      "actual_filler_tokens": 990,
+      "rendered_prompt_tokens": 1289,
+      "n_messages": 2,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 1675.053,
+        "p50_us": 1620.337,
+        "p90_us": 1892.885,
+        "p99_us": 2249.845,
+        "min_us": 1491.271,
+        "max_us": 2326.278,
+        "stdev_us": 171.416
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 1868.042,
+        "p50_us": 1816.536,
+        "p90_us": 2072.866,
+        "p99_us": 2295.815,
+        "min_us": 1654.476,
+        "max_us": 3050.999,
+        "stdev_us": 191.019
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 8192,
+      "actual_filler_tokens": 8140,
+      "rendered_prompt_tokens": 8439,
+      "n_messages": 2,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 12291.756,
+        "p50_us": 12190.321,
+        "p90_us": 14008.724,
+        "p99_us": 17970.609,
+        "min_us": 9761.79,
+        "max_us": 18366.006,
+        "stdev_us": 1540.39
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 10332.185,
+        "p50_us": 10134.129,
+        "p90_us": 11205.69,
+        "p99_us": 12100.21,
+        "min_us": 9628.079,
+        "max_us": 12477.138,
+        "stdev_us": 556.576
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "no_tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 128,
+      "actual_filler_tokens": 220,
+      "rendered_prompt_tokens": 253,
+      "n_messages": 2,
+      "n_tools": 0,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 401.741,
+        "p50_us": 393.635,
+        "p90_us": 443.313,
+        "p99_us": 493.609,
+        "min_us": 375.415,
+        "max_us": 523.593,
+        "stdev_us": 26.955
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 415.975,
+        "p50_us": 405.331,
+        "p90_us": 471.45,
+        "p99_us": 516.19,
+        "min_us": 381.787,
+        "max_us": 533.261,
+        "stdev_us": 31.993
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "no_tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 1024,
+      "actual_filler_tokens": 990,
+      "rendered_prompt_tokens": 1023,
+      "n_messages": 2,
+      "n_tools": 0,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 1141.812,
+        "p50_us": 1118.816,
+        "p90_us": 1203.31,
+        "p99_us": 1380.453,
+        "min_us": 1074.097,
+        "max_us": 1496.449,
+        "stdev_us": 65.175
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 1133.719,
+        "p50_us": 1117.448,
+        "p90_us": 1196.965,
+        "p99_us": 1283.104,
+        "min_us": 1091.099,
+        "max_us": 1331.219,
+        "stdev_us": 44.384
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "no_tools_1turn",
+      "corpus": "mixed",
+      "target_isl_tokens": 8192,
+      "actual_filler_tokens": 8140,
+      "rendered_prompt_tokens": 8173,
+      "n_messages": 2,
+      "n_tools": 0,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 9159.684,
+        "p50_us": 8798.024,
+        "p90_us": 10173.938,
+        "p99_us": 14842.31,
+        "min_us": 8244.36,
+        "max_us": 15075.477,
+        "stdev_us": 1082.117
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 9398.865,
+        "p50_us": 9208.249,
+        "p90_us": 10244.349,
+        "p99_us": 12511.108,
+        "min_us": 8381.787,
+        "max_us": 13262.651,
+        "stdev_us": 758.977
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_2turn_toolresult",
+      "corpus": "mixed",
+      "target_isl_tokens": 128,
+      "actual_filler_tokens": 220,
+      "rendered_prompt_tokens": 812,
+      "n_messages": 6,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 1150.315,
+        "p50_us": 1108.852,
+        "p90_us": 1281.322,
+        "p99_us": 1353.965,
+        "min_us": 1074.778,
+        "max_us": 1421.638,
+        "stdev_us": 79.789
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 1288.523,
+        "p50_us": 1162.518,
+        "p90_us": 1881.716,
+        "p99_us": 2277.704,
+        "min_us": 1094.475,
+        "max_us": 2313.032,
+        "stdev_us": 302.937
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_2turn_toolresult",
+      "corpus": "mixed",
+      "target_isl_tokens": 1024,
+      "actual_filler_tokens": 990,
+      "rendered_prompt_tokens": 2352,
+      "n_messages": 6,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 2869.15,
+        "p50_us": 2807.04,
+        "p90_us": 3202.438,
+        "p99_us": 3997.043,
+        "min_us": 2548.424,
+        "max_us": 4363.824,
+        "stdev_us": 295.22
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 2732.942,
+        "p50_us": 2660.691,
+        "p90_us": 3017.982,
+        "p99_us": 3402.358,
+        "min_us": 2511.807,
+        "max_us": 3683.036,
+        "stdev_us": 209.06
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_messages",
+      "scope": "tokenizer: render_messages",
+      "variant": "tools_2turn_toolresult",
+      "corpus": "mixed",
+      "target_isl_tokens": 8192,
+      "actual_filler_tokens": 8140,
+      "rendered_prompt_tokens": 16652,
+      "n_messages": 6,
+      "n_tools": 2,
+      "scope_stats": {
+        "n": 100,
+        "mean_us": 18789.352,
+        "p50_us": 18485.807,
+        "p90_us": 20255.775,
+        "p99_us": 21268.487,
+        "min_us": 17693.029,
+        "max_us": 22274.651,
+        "stdev_us": 999.353
+      },
+      "outer_stats": {
+        "n": 100,
+        "mean_us": 20323.581,
+        "p50_us": 19848.825,
+        "p90_us": 22304.284,
+        "p99_us": 29251.367,
+        "min_us": 17794.91,
+        "max_us": 31596.972,
+        "stdev_us": 2297.795
+      },
+      "outer_definition": "renderer.render_chat([messages],...)"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_1turn",
+      "target_isl_tokens": 128,
+      "rendered_prompt_tokens": 519,
+      "rendered_chars": 2015,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 69.81,
+        "p50_us": 66.65,
+        "p90_us": 86.666,
+        "p99_us": 107.523,
+        "min_us": 54.823,
+        "max_us": 131.496,
+        "stdev_us": 13.772
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 578.061,
+        "p50_us": 573.006,
+        "p90_us": 633.867,
+        "p99_us": 695.674,
+        "min_us": 530.866,
+        "max_us": 706.447,
+        "stdev_us": 38.737
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 719.035,
+        "p50_us": 703.08,
+        "p90_us": 790.573,
+        "p99_us": 859.673,
+        "min_us": 678.053,
+        "max_us": 866.487,
+        "stdev_us": 43.215
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 647.871,
+        "scope_us": 719.0351300000001,
+        "ratio": 0.901
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_1turn",
+      "target_isl_tokens": 1024,
+      "rendered_prompt_tokens": 1289,
+      "rendered_chars": 4724,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 57.149,
+        "p50_us": 54.848,
+        "p90_us": 61.283,
+        "p99_us": 84.719,
+        "min_us": 53.48,
+        "max_us": 152.156,
+        "stdev_us": 10.51
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 1234.953,
+        "p50_us": 1217.697,
+        "p90_us": 1305.541,
+        "p99_us": 1405.608,
+        "min_us": 1180.506,
+        "max_us": 1426.428,
+        "stdev_us": 53.0
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 1404.633,
+        "p50_us": 1376.42,
+        "p90_us": 1533.721,
+        "p99_us": 1642.396,
+        "min_us": 1339.204,
+        "max_us": 1669.375,
+        "stdev_us": 72.696
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 1292.103,
+        "scope_us": 1404.6326999999999,
+        "ratio": 0.9199
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_1turn",
+      "target_isl_tokens": 8192,
+      "rendered_prompt_tokens": 8439,
+      "rendered_chars": 29879,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 70.223,
+        "p50_us": 62.753,
+        "p90_us": 83.534,
+        "p99_us": 122.817,
+        "min_us": 58.349,
+        "max_us": 333.546,
+        "stdev_us": 28.899
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 8475.383,
+        "p50_us": 8305.773,
+        "p90_us": 9219.981,
+        "p99_us": 9616.759,
+        "min_us": 8037.509,
+        "max_us": 10485.987,
+        "stdev_us": 455.346
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 9086.026,
+        "p50_us": 8682.225,
+        "p90_us": 10286.928,
+        "p99_us": 13484.754,
+        "min_us": 8287.82,
+        "max_us": 15895.823,
+        "stdev_us": 1159.216
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 8545.606,
+        "scope_us": 9086.02642,
+        "ratio": 0.9405
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "no_tools_1turn",
+      "target_isl_tokens": 128,
+      "rendered_prompt_tokens": 253,
+      "rendered_chars": 944,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 47.627,
+        "p50_us": 46.157,
+        "p90_us": 50.003,
+        "p99_us": 61.045,
+        "min_us": 45.024,
+        "max_us": 78.918,
+        "stdev_us": 4.463
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 267.889,
+        "p50_us": 263.179,
+        "p90_us": 291.224,
+        "p99_us": 313.929,
+        "min_us": 250.509,
+        "max_us": 324.799,
+        "stdev_us": 14.595
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 392.336,
+        "p50_us": 385.127,
+        "p90_us": 412.609,
+        "p99_us": 502.972,
+        "min_us": 362.882,
+        "max_us": 503.775,
+        "stdev_us": 25.861
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 315.517,
+        "scope_us": 392.33571000000006,
+        "ratio": 0.8042
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "no_tools_1turn",
+      "target_isl_tokens": 1024,
+      "rendered_prompt_tokens": 1023,
+      "rendered_chars": 3653,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 48.723,
+        "p50_us": 46.422,
+        "p90_us": 51.544,
+        "p99_us": 70.152,
+        "min_us": 45.365,
+        "max_us": 126.567,
+        "stdev_us": 8.69
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 961.796,
+        "p50_us": 944.123,
+        "p90_us": 1010.656,
+        "p99_us": 1170.677,
+        "min_us": 924.265,
+        "max_us": 1220.17,
+        "stdev_us": 51.256
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 1122.702,
+        "p50_us": 1092.856,
+        "p90_us": 1240.263,
+        "p99_us": 1334.261,
+        "min_us": 1068.035,
+        "max_us": 1334.936,
+        "stdev_us": 70.047
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 1010.519,
+        "scope_us": 1122.70156,
+        "ratio": 0.9001
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "no_tools_1turn",
+      "target_isl_tokens": 8192,
+      "rendered_prompt_tokens": 8173,
+      "rendered_chars": 28808,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 54.984,
+        "p50_us": 49.968,
+        "p90_us": 61.389,
+        "p99_us": 88.549,
+        "min_us": 48.791,
+        "max_us": 295.103,
+        "stdev_us": 25.097
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 8129.486,
+        "p50_us": 7953.877,
+        "p90_us": 8757.63,
+        "p99_us": 9572.711,
+        "min_us": 7691.77,
+        "max_us": 10004.191,
+        "stdev_us": 444.598
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 9239.338,
+        "p50_us": 8933.285,
+        "p90_us": 10335.891,
+        "p99_us": 15812.574,
+        "min_us": 8110.947,
+        "max_us": 15857.168,
+        "stdev_us": 1237.473
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 8184.471,
+        "scope_us": 9239.337660000001,
+        "ratio": 0.8858
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_2turn_toolresult",
+      "target_isl_tokens": 128,
+      "rendered_prompt_tokens": 812,
+      "rendered_chars": 3122,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 145.458,
+        "p50_us": 138.81,
+        "p90_us": 168.585,
+        "p99_us": 215.818,
+        "min_us": 125.635,
+        "max_us": 222.969,
+        "stdev_us": 20.125
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 899.658,
+        "p50_us": 876.37,
+        "p90_us": 1012.021,
+        "p99_us": 1109.748,
+        "min_us": 801.686,
+        "max_us": 1341.318,
+        "stdev_us": 81.047
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 1259.423,
+        "p50_us": 1229.789,
+        "p90_us": 1390.591,
+        "p99_us": 1598.049,
+        "min_us": 1144.699,
+        "max_us": 1622.797,
+        "stdev_us": 108.08
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 1045.116,
+        "scope_us": 1259.42261,
+        "ratio": 0.8298
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_2turn_toolresult",
+      "target_isl_tokens": 1024,
+      "rendered_prompt_tokens": 2352,
+      "rendered_chars": 8540,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 140.574,
+        "p50_us": 130.82,
+        "p90_us": 156.941,
+        "p99_us": 231.326,
+        "min_us": 123.222,
+        "max_us": 472.437,
+        "stdev_us": 37.992
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 2486.078,
+        "p50_us": 2451.512,
+        "p90_us": 2691.867,
+        "p99_us": 3009.193,
+        "min_us": 2272.285,
+        "max_us": 3046.218,
+        "stdev_us": 165.837
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 3246.66,
+        "p50_us": 3196.095,
+        "p90_us": 3780.187,
+        "p99_us": 4350.028,
+        "min_us": 2519.079,
+        "max_us": 4465.222,
+        "stdev_us": 388.742
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 2626.651,
+        "scope_us": 3246.6601899999996,
+        "ratio": 0.809
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    },
+    {
+      "case": "render_decompose",
+      "variant": "tools_2turn_toolresult",
+      "target_isl_tokens": 8192,
+      "rendered_prompt_tokens": 16652,
+      "rendered_chars": 58850,
+      "jinja_tokenize_false_us": {
+        "n": 100,
+        "mean_us": 147.173,
+        "p50_us": 135.831,
+        "p90_us": 164.339,
+        "p99_us": 238.855,
+        "min_us": 131.056,
+        "max_us": 615.445,
+        "stdev_us": 50.763
+      },
+      "encode_rendered_text_us": {
+        "n": 100,
+        "mean_us": 19771.301,
+        "p50_us": 19603.27,
+        "p90_us": 21681.429,
+        "p99_us": 24335.57,
+        "min_us": 17541.017,
+        "max_us": 24690.429,
+        "stdev_us": 1416.883
+      },
+      "render_messages_scope_us": {
+        "n": 100,
+        "mean_us": 22590.57,
+        "p50_us": 22363.23,
+        "p90_us": 24857.464,
+        "p99_us": 29027.431,
+        "min_us": 19053.226,
+        "max_us": 36267.398,
+        "stdev_us": 2291.829
+      },
+      "sum_vs_scope": {
+        "jinja_plus_encode_us": 19918.474,
+        "scope_us": 22590.57042,
+        "ratio": 0.8817
+      },
+      "note": "encode 臂用 add_special_tokens=False；模板内部那次编码用的是 chat 模板自己的 add_special_tokens 设定，所以 sum/scope 不会精确等于 1"
+    }
+  ],
+  "notes": []
+}

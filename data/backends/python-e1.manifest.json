@@ -1,0 +1,54 @@
+{
+ "line": "B-backends",
+ "task": "E1 Python 侧三实现对比",
+ "line_kind": "python-harness",
+ "generated_at": "2026-09-25T00:08:39+0800",
+ "upstream_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+ "container_image": null,
+ "host": {
+  "hostname": "LOCAL_HOST",
+  "python": "3.12.10",
+  "platform": "Linux-7.1.5-arch1-2-x86_64-with-glibc2.44",
+  "machine": "x86_64",
+  "cpu_affinity": "2",
+  "loadavg": [
+   1.41,
+   1.88,
+   2.32
+  ],
+  "mem_available_gb": 17.54,
+  "nproc": 12,
+  "env": {
+   "RAYON_NUM_THREADS": "1",
+   "TOKENIZERS_PARALLELISM": "false",
+   "OMP_NUM_THREADS": "1",
+   "VLLM_USE_FASTOKENS": null,
+   "CORES": "2"
+  },
+  "container_image": null,
+  "git_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757"
+ },
+ "threads_requested": 0,
+ "corpus_sha256": {
+  "zh-128": "e18245b013a0ae9f84c462adf5e0f413aa0c0f8e8f39ae579b191540d7fb286e",
+  "zh-1024": "6472392c6430df40b60f770cdb857ea564d94624c648db162b5cb344071e949a",
+  "en-128": "226ea51a2abb7765a01412956f1165818a2ca03174f7059ec94e719bab5540cb",
+  "en-1024": "97df1676f1f5dba45e6dbdefd457c48e820f988afb4788a11c52d4759ba147cd",
+  "code-128": "b2acd5d743a96b23cf72c33a7e6df5edf8efc0f9170ad4bd1cb5432078e6687f",
+  "code-1024": "6b70ef76c228a4129f1c91a23c42d06454acc6a8caa93994b938fabe6c617ee8",
+  "mixed-128": "c48bc437f51aa0ec1083fced7b3f218ad052b7e307714e8d85b0956ef1b6075d",
+  "mixed-1024": "c33b597ab8df17d7559eb84202a943ab5d8b1813e46565ef13583d8f74e2d6b5"
+ },
+ "script_sha256": {
+  "harness/python/bench_backends.py": "3b59806f90e3a6e1e432cd895b069f6d113ace489ae6a41a5747384edfa7648f"
+ },
+ "artifacts": {
+  "path": "data/backends/python-e1.json",
+  "sha256": "03dc801773c0e7ef1028b8580d10b81c493dd026847fa02b936eefc560e899d5"
+ },
+ "caveats": [
+  "本装置是裸库（不 import vLLM）；与 Rust harness 的数字要靠 fastokens / HF tokenizers 两个双端都存在的实现做桥梁校准后才能同表比较。",
+  "gigatoken 的 decode 返回 bytes，本脚本用 errors='replace' 转 str，与 HF 的 decode 语义不完全等价。",
+  "fastokens 的 Python 绑定没有暴露有状态流式解码接口，stream_decode 一行只对 HF tokenizers 有数；Rust 侧覆盖全部六个后端。"
+ ]
+}

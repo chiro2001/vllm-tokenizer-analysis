@@ -1,0 +1,4710 @@
+{
+  "generated_at": "2026-09-24T16:07:59.730151+00:00",
+  "scope_definitions": {
+    "tokenizer: encode": "vllm/renderers/base.py:_tokenize_prompt -> tokenizer(text)",
+    "tokenizer: decode": "vllm/renderers/base.py:_decode -> tokenizer.decode(ids)",
+    "tokenizer: render_messages": "vllm/renderers/base.py:render_chat -> render_messages(conv)"
+  },
+  "runs": [
+    {
+      "source": "local-preparing-input-phase",
+      "host": null,
+      "run_id": "real-b1",
+      "run_dir": "/home/chiro/projects/vllm/preparing-input-phase/data/profiles/real-b1",
+      "lite_log": "/home/chiro/projects/vllm/preparing-input-phase/data/profiles/real-b1/lite.log",
+      "lite_log_bytes": 14582065,
+      "run_mtime": "2026-09-24T09:23:58.134492+00:00",
+      "n_requests": 0,
+      "endpoint": null,
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 0,
+      "response_objects": [],
+      "prompt_tokens_from_usage": [],
+      "completion_tokens_from_usage": [],
+      "evidence_kind": null,
+      "all_tids_in_log": [
+        700907,
+        704908,
+        712698
+      ],
+      "frontend_tids": [
+        712698
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 10,
+          "avg_us": 442.8,
+          "min_us": 407,
+          "max_us": 476
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "local-a321",
+      "host": null,
+      "run_id": "liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "run_dir": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_a321_chip15_20260914T2142Z",
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_a321_chip15_20260914T2142Z/lite-profiler/lite.log",
+      "lite_log_bytes": 205832,
+      "run_mtime": "2026-09-14T13:34:19+00:00",
+      "n_requests": 8,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": true,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "ignore_eos",
+        "max_tokens",
+        "model",
+        "prompt",
+        "temperature"
+      ],
+      "max_tokens_values": [
+        32
+      ],
+      "ignore_eos_true": 8,
+      "n_response_files": 0,
+      "response_objects": [],
+      "prompt_tokens_from_usage": [],
+      "completion_tokens_from_usage": [],
+      "evidence_kind": "request",
+      "all_tids_in_log": [
+        1,
+        131,
+        1169
+      ],
+      "frontend_tids": [
+        1169
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 8,
+          "avg_us": 543.625,
+          "min_us": 489,
+          "max_us": 727
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "local-a321",
+      "host": null,
+      "run_id": "liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "run_dir": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z",
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v1_torch_uni_wide_a321_chip15_20260914T2158Z/lite-profiler/lite.log",
+      "lite_log_bytes": 205854,
+      "run_mtime": "2026-09-14T15:44:47.766499+00:00",
+      "n_requests": 8,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": true,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "ignore_eos",
+        "max_tokens",
+        "model",
+        "prompt",
+        "temperature"
+      ],
+      "max_tokens_values": [
+        32
+      ],
+      "ignore_eos_true": 8,
+      "n_response_files": 0,
+      "response_objects": [],
+      "prompt_tokens_from_usage": [],
+      "completion_tokens_from_usage": [],
+      "evidence_kind": "request",
+      "all_tids_in_log": [
+        1,
+        130,
+        1703
+      ],
+      "frontend_tids": [
+        1703
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 8,
+          "avg_us": 612.625,
+          "min_us": 456,
+          "max_us": 1122
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "local-a321",
+      "host": null,
+      "run_id": "liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "run_dir": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z",
+      "lite_log": "/home/chiro/projects/vllm/HIST_PROJECT/runs/liteprof_v2_only_uni_wide_a321_chip15_20260914T2148Z/lite-profiler/lite.log",
+      "lite_log_bytes": 204766,
+      "run_mtime": "2026-09-14T14:04:37.002829+00:00",
+      "n_requests": 8,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": true,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "ignore_eos",
+        "max_tokens",
+        "model",
+        "prompt",
+        "temperature"
+      ],
+      "max_tokens_values": [
+        32
+      ],
+      "ignore_eos_true": 8,
+      "n_response_files": 0,
+      "response_objects": [],
+      "prompt_tokens_from_usage": [],
+      "completion_tokens_from_usage": [],
+      "evidence_kind": "request",
+      "all_tids_in_log": [
+        1,
+        131,
+        1693
+      ],
+      "frontend_tids": [
+        1693
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 8,
+          "avg_us": 451.75,
+          "min_us": 360,
+          "max_us": 786
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50122,
+      "run_mtime": "2026-09-24T15:56:36.958724+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1711
+      ],
+      "frontend_tids": [
+        1711
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1139.0,
+          "min_us": 1139,
+          "max_us": 1139
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50071,
+      "run_mtime": "2026-09-24T15:57:36.080787+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1715
+      ],
+      "frontend_tids": [
+        1715
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 846.0,
+          "min_us": 846,
+          "max_us": 846
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50067,
+      "run_mtime": "2026-09-24T15:57:40.009788+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1725
+      ],
+      "frontend_tids": [
+        1725
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 793.0,
+          "min_us": 793,
+          "max_us": 793
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50082,
+      "run_mtime": "2026-09-24T15:57:43.392788+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1719
+      ],
+      "frontend_tids": [
+        1719
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 785.0,
+          "min_us": 785,
+          "max_us": 785
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50076,
+      "run_mtime": "2026-09-24T15:57:46.498788+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1690
+      ],
+      "frontend_tids": [
+        1690
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1728.0,
+          "min_us": 1728,
+          "max_us": 1728
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50070,
+      "run_mtime": "2026-09-24T15:57:50.248788+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1696
+      ],
+      "frontend_tids": [
+        1696
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1988.0,
+          "min_us": 1988,
+          "max_us": 1988
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50071,
+      "run_mtime": "2026-09-24T15:57:53.474787+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1704
+      ],
+      "frontend_tids": [
+        1704
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 363.0,
+          "min_us": 363,
+          "max_us": 363
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v1_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v1_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50100,
+      "run_mtime": "2026-09-24T15:57:55.317787+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1687
+      ],
+      "frontend_tids": [
+        1687
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 462.0,
+          "min_us": 462,
+          "max_us": 462
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50057,
+      "run_mtime": "2026-09-24T15:57:58.127786+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1713
+      ],
+      "frontend_tids": [
+        1713
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1054.0,
+          "min_us": 1054,
+          "max_us": 1054
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50042,
+      "run_mtime": "2026-09-24T15:58:00.149786+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1740
+      ],
+      "frontend_tids": [
+        1740
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 342.0,
+          "min_us": 342,
+          "max_us": 342
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50028,
+      "run_mtime": "2026-09-24T15:58:02.362785+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1703
+      ],
+      "frontend_tids": [
+        1703
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 253.0,
+          "min_us": 253,
+          "max_us": 253
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50009,
+      "run_mtime": "2026-09-24T15:58:05.001783+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1733
+      ],
+      "frontend_tids": [
+        1733
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 320.0,
+          "min_us": 320,
+          "max_us": 320
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50031,
+      "run_mtime": "2026-09-24T15:58:07.589782+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1738
+      ],
+      "frontend_tids": [
+        1738
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 292.0,
+          "min_us": 292,
+          "max_us": 292
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50028,
+      "run_mtime": "2026-09-24T15:58:10.852780+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1697
+      ],
+      "frontend_tids": [
+        1697
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 413.0,
+          "min_us": 413,
+          "max_us": 413
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50032,
+      "run_mtime": "2026-09-24T15:58:13.178778+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1698
+      ],
+      "frontend_tids": [
+        1698
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 315.0,
+          "min_us": 315,
+          "max_us": 315
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave1_v2_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave1_v2_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50037,
+      "run_mtime": "2026-09-24T15:58:15.551777+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1704
+      ],
+      "frontend_tids": [
+        1704
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 292.0,
+          "min_us": 292,
+          "max_us": 292
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2051339,
+      "run_mtime": "2026-09-24T15:58:17.963775+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1724
+      ],
+      "frontend_tids": [
+        1724
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 162.341,
+          "min_us": 120,
+          "max_us": 310
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2051466,
+      "run_mtime": "2026-09-24T15:58:30.350762+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1694
+      ],
+      "frontend_tids": [
+        1694
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 268.244,
+          "min_us": 174,
+          "max_us": 1104
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052092,
+      "run_mtime": "2026-09-24T15:58:42.494747+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1708
+      ],
+      "frontend_tids": [
+        1708
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 220.707,
+          "min_us": 164,
+          "max_us": 351
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2050845,
+      "run_mtime": "2026-09-24T15:58:54.675728+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1702
+      ],
+      "frontend_tids": [
+        1702
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 216.927,
+          "min_us": 160,
+          "max_us": 492
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2051862,
+      "run_mtime": "2026-09-24T15:59:06.660706+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1717
+      ],
+      "frontend_tids": [
+        1717
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 216.634,
+          "min_us": 172,
+          "max_us": 796
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2051179,
+      "run_mtime": "2026-09-24T15:59:19.614678+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1700
+      ],
+      "frontend_tids": [
+        1700
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 343.268,
+          "min_us": 182,
+          "max_us": 1495
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2050406,
+      "run_mtime": "2026-09-24T15:59:31.085650+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1703
+      ],
+      "frontend_tids": [
+        1703
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 322.0,
+          "min_us": 185,
+          "max_us": 1698
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave3_v2_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave3_v2_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2051108,
+      "run_mtime": "2026-09-24T15:59:43.401618+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1715
+      ],
+      "frontend_tids": [
+        1715
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 254.39,
+          "min_us": 160,
+          "max_us": 588
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052602,
+      "run_mtime": "2026-09-24T15:59:55.973581+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1727
+      ],
+      "frontend_tids": [
+        1727
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 270.0,
+          "min_us": 231,
+          "max_us": 347
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052974,
+      "run_mtime": "2026-09-24T16:00:09.975537+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1704
+      ],
+      "frontend_tids": [
+        1704
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 328.463,
+          "min_us": 267,
+          "max_us": 523
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052953,
+      "run_mtime": "2026-09-24T16:02:29.540895+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1697
+      ],
+      "frontend_tids": [
+        1697
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 264.561,
+          "min_us": 214,
+          "max_us": 1096
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052956,
+      "run_mtime": "2026-09-24T16:02:52.588758+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1691
+      ],
+      "frontend_tids": [
+        1691
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 297.244,
+          "min_us": 254,
+          "max_us": 469
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052345,
+      "run_mtime": "2026-09-24T16:03:27.267538+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1692
+      ],
+      "frontend_tids": [
+        1692
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 460.976,
+          "min_us": 293,
+          "max_us": 713
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2053133,
+      "run_mtime": "2026-09-24T16:03:49.395389+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1704
+      ],
+      "frontend_tids": [
+        1704
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 454.122,
+          "min_us": 276,
+          "max_us": 2196
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2052833,
+      "run_mtime": "2026-09-24T16:03:55.213349+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1703
+      ],
+      "frontend_tids": [
+        1703
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 323.902,
+          "min_us": 231,
+          "max_us": 1423
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave4_v1_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave4_v1_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 2053259,
+      "run_mtime": "2026-09-24T16:04:06.704268+00:00",
+      "n_requests": 41,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 41,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        10,
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1700
+      ],
+      "frontend_tids": [
+        1700
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 41,
+          "avg_us": 281.195,
+          "min_us": 238,
+          "max_us": 828
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50063,
+      "run_mtime": "2026-09-24T16:04:35.711057+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1719
+      ],
+      "frontend_tids": [
+        1719
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 305.0,
+          "min_us": 305,
+          "max_us": 305
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50042,
+      "run_mtime": "2026-09-24T16:04:43.377000+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        130,
+        1710
+      ],
+      "frontend_tids": [
+        1710
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 2382.0,
+          "min_us": 2382,
+          "max_us": 2382
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50050,
+      "run_mtime": "2026-09-24T16:04:47.184971+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1701
+      ],
+      "frontend_tids": [
+        1701
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 962.0,
+          "min_us": 962,
+          "max_us": 962
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50054,
+      "run_mtime": "2026-09-24T16:04:50.666945+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1709
+      ],
+      "frontend_tids": [
+        1709
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 457.0,
+          "min_us": 457,
+          "max_us": 457
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50069,
+      "run_mtime": "2026-09-24T16:04:53.861920+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1708
+      ],
+      "frontend_tids": [
+        1708
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 289.0,
+          "min_us": 289,
+          "max_us": 289
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50072,
+      "run_mtime": "2026-09-24T16:04:56.370901+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1710
+      ],
+      "frontend_tids": [
+        1710
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 739.0,
+          "min_us": 739,
+          "max_us": 739
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50035,
+      "run_mtime": "2026-09-24T16:04:59.370878+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1718
+      ],
+      "frontend_tids": [
+        1718
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 729.0,
+          "min_us": 729,
+          "max_us": 729
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave5_v2_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave5_v2_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50059,
+      "run_mtime": "2026-09-24T16:05:03.277848+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1704
+      ],
+      "frontend_tids": [
+        1704
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 751.0,
+          "min_us": 751,
+          "max_us": 751
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen3508b_chip0_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip0_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip0_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50088,
+      "run_mtime": "2026-09-24T16:05:06.058826+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1712
+      ],
+      "frontend_tids": [
+        1712
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 350.0,
+          "min_us": 350,
+          "max_us": 350
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen3508b_chip2_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip2_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip2_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50084,
+      "run_mtime": "2026-09-24T16:05:10.108794+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1699
+      ],
+      "frontend_tids": [
+        1699
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1409.0,
+          "min_us": 1409,
+          "max_us": 1409
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen3508b_chip5_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip5_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip5_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50089,
+      "run_mtime": "2026-09-24T16:05:13.249769+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1702
+      ],
+      "frontend_tids": [
+        1702
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 578.0,
+          "min_us": 578,
+          "max_us": 578
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen3508b_chip7_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip7_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen3508b_chip7_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50070,
+      "run_mtime": "2026-09-24T16:05:17.077739+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1696
+      ],
+      "frontend_tids": [
+        1696
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 499.0,
+          "min_us": 499,
+          "max_us": 499
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen352b_chip1_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip1_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip1_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50087,
+      "run_mtime": "2026-09-24T16:05:20.878709+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1699
+      ],
+      "frontend_tids": [
+        1699
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1543.0,
+          "min_us": 1543,
+          "max_us": 1543
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen352b_chip3_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip3_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip3_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50078,
+      "run_mtime": "2026-09-24T16:05:23.736686+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1697
+      ],
+      "frontend_tids": [
+        1697
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1928.0,
+          "min_us": 1928,
+          "max_us": 1928
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen352b_chip6_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip6_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip6_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50068,
+      "run_mtime": "2026-09-24T16:05:27.265658+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1692
+      ],
+      "frontend_tids": [
+        1692
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 423.0,
+          "min_us": 423,
+          "max_us": 423
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    },
+    {
+      "source": "remote-a322",
+      "host": null,
+      "run_id": "liteprof_wave6_v1_qwen352b_chip8_20260914T2355Z",
+      "run_dir": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip8_20260914T2355Z",
+      "lite_log": "/tmp/c-remote/liteprof_wave6_v1_qwen352b_chip8_20260914T2355Z/lite-profiler/lite.log",
+      "lite_log_bytes": 50069,
+      "run_mtime": "2026-09-24T16:05:29.842637+00:00",
+      "n_requests": 1,
+      "endpoint": "/v1/completions",
+      "has_messages": false,
+      "has_text_prompt": false,
+      "has_token_ids_prompt": false,
+      "has_tools": false,
+      "sample_prompt_keys": [
+        "choices",
+        "created",
+        "ec_transfer_params",
+        "id",
+        "kv_transfer_params",
+        "metrics",
+        "model",
+        "object",
+        "service_tier",
+        "system_fingerprint",
+        "usage"
+      ],
+      "max_tokens_values": [],
+      "ignore_eos_true": 0,
+      "n_response_files": 1,
+      "response_objects": [
+        "text_completion"
+      ],
+      "prompt_tokens_from_usage": [
+        11
+      ],
+      "completion_tokens_from_usage": [
+        64
+      ],
+      "evidence_kind": "response",
+      "all_tids_in_log": [
+        1,
+        131,
+        1700
+      ],
+      "frontend_tids": [
+        1700
+      ],
+      "n_tids": 3,
+      "malformed_lines": 0,
+      "tokenizer_scopes": {
+        "tokenizer: encode": {
+          "count": 1,
+          "avg_us": 1557.0,
+          "min_us": 1557,
+          "max_us": 1557
+        },
+        "tokenizer: decode": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        },
+        "tokenizer: render_messages": {
+          "count": 0,
+          "avg_us": null,
+          "min_us": null,
+          "max_us": null
+        }
+      },
+      "scope_names_present": [
+        "Input:Process",
+        "Step:Model",
+        "Step:Output",
+        "Step:Schedule",
+        "async_state_update",
+        "draft_token",
+        "forward",
+        "http: create_completion",
+        "input: process_inputs",
+        "output: process_outputs",
+        "post process",
+        "prepare input",
+        "sample_token",
+        "schedule: allocate_slots",
+        "schedule: get_num_common_prefix_blocks",
+        "schedule: make_cached_request_data",
+        "schedule: update_after_schedule",
+        "tokenizer: encode"
+      ]
+    }
+  ]
+}

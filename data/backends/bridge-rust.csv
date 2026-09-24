@@ -1,0 +1,13 @@
+backend,family,corpus,length,op,mode,threads,bytes,tokens,docs,measured_tokens,iters,median_us,min_us,p90_us,max_us,mb_per_s,tokens_per_s,us_per_token,loadavg_before,loadavg_after,mem_available_gb_before,note
+hf,hf,mixed,128,encode,single,1,502,128,1,128,30,97.561,79.719,129.892,172.301,5.145,1311999.7,0.7622,0.70,0.70,18.50,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 4 ms
+hf,hf,mixed,128,decode,single,1,502,128,1,128,30,8.276,7.985,8.656,9.137,60.661,15467343.4,0.0647,0.70,0.70,18.50,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,128,decode_generic_fastokens,single,1,502,128,1,128,30,4.498,4.319,6.041,18.223,111.605,28457092.0,0.0351,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,mixed,1k,encode,single,1,3643,1024,1,1024,30,692.250,639.631,886.762,985.114,5.263,1479235.4,0.6760,0.70,0.70,18.50,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 25 ms
+hf,hf,mixed,1k,decode,single,1,3643,1024,1,1024,30,100.041,56.836,115.174,130.523,36.415,10235752.2,0.0977,0.70,0.70,18.49,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,1k,decode_generic_fastokens,single,1,3643,1024,1,1024,30,34.344,33.714,36.016,50.583,106.074,29815979.5,0.0335,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,mixed,128,encode,single,1,502,128,1,128,30,12.322,9.057,14.668,43.441,40.738,10387502.5,0.0963,0.70,0.70,18.49,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 1 ms
+fastokens_byte_level,hf,mixed,128,decode,single,1,502,128,1,128,30,2.325,2.164,2.464,4.789,215.914,55053763.4,0.0182,0.70,0.70,18.49,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,128,decode_generic_fastokens,single,1,502,128,1,128,30,4.604,4.368,6.643,13.825,109.047,27804931.0,0.0360,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,mixed,1k,encode,single,1,3643,1024,1,1024,30,45.349,44.172,54.803,56.896,80.332,22580182.8,0.0443,0.70,0.70,18.49,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 2 ms
+fastokens_byte_level,hf,mixed,1k,decode,single,1,3643,1024,1,1024,30,16.260,16.019,18.063,25.727,224.054,62978566.4,0.0159,0.70,0.70,18.49,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,1k,decode_generic_fastokens,single,1,3643,1024,1,1024,30,35.341,34.404,39.924,46.076,103.081,28974845.1,0.0345,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids

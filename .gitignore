@@ -1,0 +1,49 @@
+# 大文件与原始数据
+*.perf.data
+perf.data*
+data/profiles/**/*.data
+*.svgz
+
+# 模型与缓存
+models/
+*.safetensors
+*.bin
+*.gguf
+
+# Python / Rust 构建产物
+__pycache__/
+*.pyc
+*.so
+*.o
+target/
+Cargo.lock.bak
+node_modules/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 中间产物
+*.log
+*.stdout
+tmp/
+.DS_Store
+
+# vendored 源码之外的下载物
+*.whl
+*.tar.gz
+# 例外：vendor 目录里的上游源码包要留着，否则无法复现（B 线的 gigatoken sdist）
+!data/vendor/**/*.tar.gz
+!harness/**/vendor/**/*.tar.gz
+!harness/**/vendor/**/*.whl
+
+# 发布净化映射
+.sanitize-map.tsv
+.locks/
+# docker 文件挂载副作用：宿主机不存在目标文件时，-v 会以 root 创建空文件。
+# scripts/c_cost_run.sh 的 -c 模式走 mktemp（在 /tmp），但手工调试时可能中招。
+_inline_code.py
+system-snapshot.txt
+
+# 临时/冒烟产物（. 开头的 JSON 是调试残留）
+data/cost/.*.json

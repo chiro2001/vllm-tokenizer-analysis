@@ -1,0 +1,55 @@
+{
+  "generated_at": "2026-09-24T23:08:20+0800",
+  "vllm_version": "0.26.0",
+  "vllm_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+  "arch": "x86_64",
+  "wheel_url": "https://files.pythonhosted.org/packages/20/96/86edd288415aafc2952bbb969b5ef4e8c58e5525185b60320730276921e6/vllm-0.26.0-cp38-abi3-manylinux_2_28_x86_64.whl",
+  "wheel_size": 303698761,
+  "wheel_sha1_upstream": "87529b6f9f46de50d0217b3f5c6622296fcd336f",
+  "range_bytes_downloaded": 17437513,
+  "range_http_requests": 17,
+  "range_download_share": 0.0574,
+  "members": [
+    {
+      "wheel_member": "vllm/_rust_tool_parser.abi3.so",
+      "zip_size": 994328,
+      "zip_crc32": "2b203d73",
+      "zip_compress_type": 8,
+      "local_path": "/tmp/d-nextgen-wheel/_rust_tool_parser.abi3.so",
+      "local_size": 994328,
+      "sha256": "4741a0256bf888a4bf340087fe94fae4c1e0013011ee118b06c7addc47dc57f0",
+      "extract_seconds": 2.14,
+      "elf": true,
+      "class": "ELF64",
+      "endianness": "little",
+      "type": "DYN",
+      "e_machine": 62,
+      "machine": "x86_64",
+      "dt_needed_count": 4,
+      "dt_needed": [
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ]
+    },
+    {
+      "wheel_member": "vllm/vllm-rs",
+      "zip_size": 42786872,
+      "zip_crc32": "09c5edfb",
+      "zip_compress_type": 8,
+      "local_path": "/tmp/d-nextgen-wheel/vllm-rs",
+      "local_size": 42786872,
+      "sha256": "0597bfc909f22d948a7f3e65627ca2e6bfcbced4e5c8bd5cbba73ae21d78f807",
+      "extract_seconds": 36.45,
+      "elf": true,
+      "class": "ELF64",
+      "endianness": "little",
+      "type": "DYN",
+      "e_machine": 62,
+      "machine": "x86_64",
+      "dt_needed_count": 0,
+      "dt_needed": []
+    }
+  ]
+}

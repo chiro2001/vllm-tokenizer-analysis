@@ -1,0 +1,13 @@
+(RustFrontend pid=2506638) INFO 09-24 23:22:32 [cmd/src/main.rs:112] running Rust frontend without a managed local Python engine handshake_address=tcp://127.0.0.1:29577 engine_count=1
+(RustFrontend pid=2506638) INFO 09-24 23:22:32 [hf.rs:112] loading tokenizer with fastokens path=/home/chiro/models/Qwen3-0.6B/tokenizer.json
+(RustFrontend pid=2506638) INFO 09-24 23:22:33 [hf/mod.rs:71] loaded text backend with Hugging Face model files model_id="/home/chiro/models/Qwen3-0.6B"
+(RustFrontend pid=2506638) WARNING 09-24 23:22:33 [multimodal.rs:372] multimodal model spec is not registered; disabling image/video support for this model model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3"
+(RustFrontend pid=2506638) WARNING 09-24 23:22:33 [multimodal.rs:340] no multimodal modality resolved; disabling multimodal support for this model model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3"
+(RustFrontend pid=2506638) INFO 09-24 23:22:33 [hf.rs:78] loaded chat backend with Hugging Face model files model_id="/home/chiro/models/Qwen3-0.6B" model_type="qwen3" renderer=hf
+(RustFrontend pid=2506638) INFO 09-24 23:22:33 [server/src/lib.rs:111] resolved coordinator mode engine_count=1 model_is_moe=false coordinator_mode=None
+(RustFrontend pid=2506638) INFO 09-24 23:22:33 [transport.rs:155] waiting for engines to connect engine_count=1 handshake_address="tcp://127.0.0.1:29577"
+(RustFrontend pid=2506638) INFO 09-24 23:22:33 [transport.rs:170] bound local transport sockets input_address=tcp://127.0.0.1:36287 output_address=tcp://127.0.0.1:35487
+Error: failed to connect to engine core
+
+Caused by:
+    startup handshake timed out while waiting for HELLO after 14s

@@ -1,0 +1,252 @@
+{
+  "manifest": {
+    "experiment": "E2.1 short-prompt encode",
+    "timestamp": "2026-09-24T16:09:24+0000",
+    "script": "/workspace/harness/python/bench_encode_short.py",
+    "script_sha256": "db30c9e5f7d32114e23a3c829ea5ff36bc12bd294cb31467393adfa2d3edbf9a",
+    "repo_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757",
+    "repo_branch": "agent/C-cost",
+    "image": "local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922",
+    "image_id": "sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d",
+    "model": "/models/Qwen3-0.6B",
+    "vllm_src": "/vllm-workspace/vllm/vllm",
+    "vllm_src_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
+    "liteprof_overlay": "",
+    "vllm_lite_profiler_log_path": null,
+    "affinity": [
+      4,
+      5
+    ],
+    "host": {
+      "python": "3.12.13",
+      "platform": "Linux-7.1.5-arch1-2-x86_64-with-glibc2.38",
+      "machine": "x86_64",
+      "affinity": [
+        4,
+        5
+      ],
+      "cores_available_to_process": 2,
+      "cpu_count": 12,
+      "thread_env": {
+        "RAYON_NUM_THREADS": "2",
+        "OMP_NUM_THREADS": "2",
+        "MKL_NUM_THREADS": "2",
+        "NUMEXPR_NUM_THREADS": "2",
+        "TOKENIZERS_PARALLELISM": "false"
+      },
+      "cpu_model": "AMD Eng Sample: 100-000000956-50_Y",
+      "transformers_version": "5.14.1",
+      "tokenizers_version": "0.22.2",
+      "torch_version": "2.10.0+cpu",
+      "vllm_version": "0.26.0"
+    },
+    "system_load": {
+      "loadavg_1_5_15": [
+        1.95,
+        1.96,
+        2.32
+      ],
+      "running_procs": "4/805",
+      "MemTotal_GiB": 29.33,
+      "MemFree_GiB": 0.93,
+      "MemAvailable_GiB": 16.9,
+      "SwapTotal_GiB": 25.0,
+      "SwapFree_GiB": 17.44,
+      "host_snapshot_at_launch": "2026-09-25T00:09:12+08:00\nloadavg 1.93 1.96 2.33 2/806 2675935\nMemTotal:       30753688 kB\nMemAvailable:   18648532 kB\ncpuset 4-5 docker_cpus=6 mem=8g\nimage=local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922\nimage_id=sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d\nworktree_head=93c3c36e4f5feab069dcb7b3b0e755f8d84a9757\nworktree_branch=agent/C-cost\nvllm_src=/home/chiro/projects/vllm/HIST_PROJECT/vllm\nvllm_src_commit=568afb3a13806beb53bb2e6bd518269357b237c0\n"
+    },
+    "vllm_version": "0.26.0",
+    "args": {
+      "model": "/models/Qwen3-0.6B",
+      "corpus": "mixed",
+      "isls": "4,8,10,16,32,64,128,256,512,1024",
+      "repeats": 100,
+      "warmup": 20,
+      "out": "/workspace/data/cost/e2_encode_short.json"
+    },
+    "fixed_cost_note": "用小 token 数两点的差分估计边际成本；固定成本 = mean(最小点) − 边际 × 该点 token 数",
+    "marginal_us_per_token_from_two_smallest": 1.4192,
+    "finished_at": "2026-09-24T16:09:24+0000"
+  },
+  "results": [
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 4,
+      "actual_tokens": 4,
+      "n_chars": 16,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 43.54,
+        "p50_us": 43.908,
+        "p90_us": 52.994,
+        "p99_us": 73.275,
+        "min_us": 25.027,
+        "max_us": 74.169,
+        "stdev_us": 10.535
+      },
+      "us_per_token": 10.885
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 8,
+      "actual_tokens": 8,
+      "n_chars": 35,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 49.217,
+        "p50_us": 52.017,
+        "p90_us": 60.942,
+        "p99_us": 78.899,
+        "min_us": 31.338,
+        "max_us": 79.047,
+        "stdev_us": 11.478
+      },
+      "us_per_token": 6.152
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 10,
+      "actual_tokens": 10,
+      "n_chars": 44,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 47.374,
+        "p50_us": 46.632,
+        "p90_us": 64.196,
+        "p99_us": 80.115,
+        "min_us": 32.441,
+        "max_us": 91.631,
+        "stdev_us": 12.954
+      },
+      "us_per_token": 4.737
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 16,
+      "actual_tokens": 16,
+      "n_chars": 75,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 48.565,
+        "p50_us": 41.462,
+        "p90_us": 61.455,
+        "p99_us": 110.675,
+        "min_us": 38.992,
+        "max_us": 168.976,
+        "stdev_us": 17.495
+      },
+      "us_per_token": 3.035
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 32,
+      "actual_tokens": 32,
+      "n_chars": 149,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 65.186,
+        "p50_us": 58.79,
+        "p90_us": 82.798,
+        "p99_us": 107.525,
+        "min_us": 55.803,
+        "max_us": 120.746,
+        "stdev_us": 12.324
+      },
+      "us_per_token": 2.037
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 64,
+      "actual_tokens": 64,
+      "n_chars": 205,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 84.294,
+        "p50_us": 80.3,
+        "p90_us": 95.529,
+        "p99_us": 122.895,
+        "min_us": 74.258,
+        "max_us": 132.387,
+        "stdev_us": 10.638
+      },
+      "us_per_token": 1.317
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 128,
+      "actual_tokens": 220,
+      "n_chars": 774,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 303.568,
+        "p50_us": 292.211,
+        "p90_us": 349.035,
+        "p99_us": 434.554,
+        "min_us": 257.37,
+        "max_us": 454.618,
+        "stdev_us": 39.622
+      },
+      "us_per_token": 1.38
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 256,
+      "actual_tokens": 220,
+      "n_chars": 774,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 313.198,
+        "p50_us": 307.534,
+        "p90_us": 372.297,
+        "p99_us": 423.781,
+        "min_us": 255.637,
+        "max_us": 428.75,
+        "stdev_us": 38.722
+      },
+      "us_per_token": 1.424
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 512,
+      "actual_tokens": 440,
+      "n_chars": 1548,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 592.059,
+        "p50_us": 560.656,
+        "p90_us": 694.176,
+        "p99_us": 769.187,
+        "min_us": 499.872,
+        "max_us": 868.55,
+        "stdev_us": 71.631
+      },
+      "us_per_token": 1.346
+    },
+    {
+      "case": "encode_short",
+      "scope": "tokenizer: encode",
+      "target_tokens": 1024,
+      "actual_tokens": 990,
+      "n_chars": 3483,
+      "stats_us": {
+        "n": 100,
+        "mean_us": 1261.818,
+        "p50_us": 1152.264,
+        "p90_us": 1683.672,
+        "p99_us": 1923.272,
+        "min_us": 1065.356,
+        "max_us": 2018.876,
+        "stdev_us": 221.092
+      },
+      "us_per_token": 1.275
+    }
+  ]
+}

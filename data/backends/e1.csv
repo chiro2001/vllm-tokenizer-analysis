@@ -1,0 +1,423 @@
+backend,family,corpus,length,op,mode,threads,bytes,tokens,docs,measured_tokens,iters,median_us,min_us,p90_us,max_us,mb_per_s,tokens_per_s,us_per_token,loadavg_before,loadavg_after,mem_available_gb_before,note
+hf,hf,zh,128,encode,single,1,583,128,1,128,30,64.000,52.387,85.830,136.183,9.109,2000015.6,0.5000,1.88,1.88,18.23,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 2 ms
+hf,hf,zh,128,decode,single,1,583,128,1,128,30,18.044,16.231,19.286,19.757,32.311,7093967.4,0.1410,1.88,1.88,18.23,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,zh,128,decode_generic_fastokens,single,1,583,128,1,128,30,14.567,12.763,15.920,25.828,40.021,8786682.7,0.1138,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,zh,1k,encode,single,1,4612,1024,1,1024,30,488.314,455.528,572.466,659.648,9.445,2097009.2,0.4769,1.88,1.88,18.23,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 17 ms
+hf,hf,zh,1k,decode,single,1,4612,1024,1,1024,30,154.343,145.962,171.889,217.416,29.882,6634595.1,0.1507,1.88,1.88,18.22,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,zh,1k,decode_generic_fastokens,single,1,4612,1024,1,1024,30,127.488,115.155,155.429,167.212,36.176,8032160.0,0.1245,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,82.453,79.428,100.498,133.398,0.000,3104799.1,0.3221,1.88,1.88,18.22,prompt_tokens=512 min_bytes_to_buffer=1
+hf,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,81.948,78.757,132.647,149.608,0.000,3123951.3,0.3201,1.88,1.88,18.22,prompt_tokens=512 min_bytes_to_buffer=4
+hf,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,81.381,78.466,90.970,98.133,0.000,3145678.1,0.3179,1.88,1.88,18.22,prompt_tokens=512 min_bytes_to_buffer=8
+hf,hf,zh,8k,encode,single,1,36771,8192,1,8192,23,4479.684,3889.814,5137.989,5756.531,8.208,1828700.4,0.5468,1.88,1.88,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 119 ms
+hf,hf,zh,8k,decode,single,1,36771,8192,1,8192,30,1356.947,1148.670,1662.026,1913.904,27.098,6037079.5,0.1656,1.88,1.88,18.18,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,zh,8k,decode_generic_fastokens,single,1,36771,8192,1,8192,30,929.361,715.813,1266.799,1355.394,39.566,8814663.4,0.1134,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,zh,8k,stream_decode,single,1,0,256,1,256,30,82.543,79.338,92.022,97.411,0.000,3101395.0,0.3224,1.88,1.88,18.16,prompt_tokens=4096 min_bytes_to_buffer=1
+hf,hf,zh,8k,stream_decode,single,1,0,256,1,256,30,82.459,78.897,92.272,117.709,0.000,3104592.0,0.3221,1.88,1.88,18.16,prompt_tokens=4096 min_bytes_to_buffer=4
+hf,hf,zh,8k,stream_decode,single,1,0,256,1,256,30,90.633,79.218,126.485,161.190,0.000,2824562.7,0.3540,1.88,1.88,18.15,prompt_tokens=4096 min_bytes_to_buffer=8
+hf,hf,en,128,encode,single,1,705,128,1,128,30,191.447,173.584,276.565,327.501,3.682,668592.4,1.4957,1.88,1.88,18.15,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 7 ms
+hf,hf,en,128,decode,single,1,705,128,1,128,30,20.974,19.867,22.232,30.316,33.614,6102939.4,0.1639,1.88,1.88,18.15,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,en,128,decode_generic_fastokens,single,1,705,128,1,128,30,16.175,14.788,16.981,27.430,43.584,7913202.1,0.1264,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,en,1k,encode,single,1,5693,1024,1,1024,30,1571.186,1336.519,1697.230,1885.181,3.623,651736.8,1.5344,1.88,1.88,18.15,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 52 ms
+hf,hf,en,1k,decode,single,1,5693,1024,1,1024,30,187.244,167.421,230.970,269.512,30.404,5468800.1,0.1829,1.88,1.88,18.13,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,en,1k,decode_generic_fastokens,single,1,5693,1024,1,1024,30,129.796,115.315,152.073,188.480,43.861,7889272.8,0.1268,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,en,1k,stream_decode,single,1,0,256,1,256,30,87.233,82.173,116.447,136.965,0.000,2934686.0,0.3408,1.88,1.88,18.13,prompt_tokens=512 min_bytes_to_buffer=1
+hf,hf,en,1k,stream_decode,single,1,0,256,1,256,30,84.086,81.852,100.037,141.353,0.000,3044502.1,0.3285,1.88,1.88,18.13,prompt_tokens=512 min_bytes_to_buffer=4
+hf,hf,en,1k,stream_decode,single,1,0,256,1,256,30,85.314,81.892,129.892,152.695,0.000,3000679.8,0.3333,1.88,1.88,18.13,prompt_tokens=512 min_bytes_to_buffer=8
+hf,hf,en,8k,encode,single,1,45412,8192,1,8192,5,17931.587,16579.059,18025.763,18025.763,2.533,456847.5,2.1889,1.88,1.88,18.12,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 149 ms
+hf,hf,en,8k,decode,single,1,45412,8192,1,8192,30,1647.544,1411.749,2034.328,2359.084,27.563,4972251.1,0.2011,1.88,1.88,18.04,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,en,8k,decode_generic_fastokens,single,1,45412,8192,1,8192,30,1119.345,916.306,1379.981,1610.530,40.570,7318565.8,0.1366,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,en,8k,stream_decode,single,1,0,256,1,256,30,87.308,83.546,99.636,105.357,0.000,2932148.3,0.3410,1.88,1.88,17.98,prompt_tokens=4096 min_bytes_to_buffer=1
+hf,hf,en,8k,stream_decode,single,1,0,256,1,256,30,86.085,82.945,94.766,108.081,0.000,2973805.0,0.3363,1.88,1.88,17.98,prompt_tokens=4096 min_bytes_to_buffer=4
+hf,hf,en,8k,stream_decode,single,1,0,256,1,256,30,85.704,82.534,87.323,97.221,0.000,2987007.7,0.3348,1.88,1.88,17.98,prompt_tokens=4096 min_bytes_to_buffer=8
+hf,hf,code,128,encode,single,1,526,128,1,128,30,178.407,153.185,198.621,282.576,2.948,717458.6,1.3938,1.88,1.88,17.98,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 6 ms
+hf,hf,code,128,decode,single,1,526,128,1,128,30,21.500,20.166,23.664,42.790,24.465,5953488.4,0.1680,1.88,1.88,17.97,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,128,decode_generic_fastokens,single,1,526,128,1,128,30,17.894,16.600,24.827,31.097,29.396,7153435.6,0.1398,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,code,1k,encode,single,1,4098,1024,1,1024,30,1478.899,1328.083,1603.257,1884.891,2.771,692407.0,1.4442,1.88,1.88,17.97,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 50 ms
+hf,hf,code,1k,decode,single,1,4098,1024,1,1024,30,155.981,146.072,166.400,173.483,26.273,6564923.2,0.1523,1.88,1.88,17.92,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,1k,decode_generic_fastokens,single,1,4098,1024,1,1024,30,130.407,120.946,156.932,179.866,31.425,7852309.1,0.1274,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,code,1k,stream_decode,single,1,0,256,1,256,30,83.331,77.475,104.554,115.515,0.000,3072104.5,0.3255,1.88,1.88,17.91,prompt_tokens=512 min_bytes_to_buffer=1
+hf,hf,code,1k,stream_decode,single,1,0,256,1,256,30,131.164,111.618,140.682,163.144,0.000,1951755.1,0.5124,1.88,1.88,17.91,prompt_tokens=512 min_bytes_to_buffer=4
+hf,hf,code,1k,stream_decode,single,1,0,256,1,256,30,85.353,76.964,134.039,144.679,0.000,2999291.2,0.3334,1.88,1.88,17.91,prompt_tokens=512 min_bytes_to_buffer=8
+hf,hf,code,8k,encode,single,1,32854,8192,1,8192,7,16336.677,13973.345,18097.357,18097.357,2.011,501448.4,1.9942,1.88,1.88,17.88,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 155 ms
+hf,hf,code,8k,decode,single,1,32854,8192,1,8192,30,1337.641,983.192,1472.733,1572.799,24.561,6124214.2,0.1633,1.88,1.88,18.30,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,8k,decode_generic_fastokens,single,1,32854,8192,1,8192,30,925.168,776.436,1137.418,1309.068,35.511,8854603.2,0.1129,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,code,8k,stream_decode,single,1,0,256,1,256,30,78.536,75.621,89.677,99.345,0.000,3259651.6,0.3068,1.89,1.89,18.30,prompt_tokens=4096 min_bytes_to_buffer=1
+hf,hf,code,8k,stream_decode,single,1,0,256,1,256,30,76.212,75.140,84.147,93.164,0.000,3359051.1,0.2977,1.89,1.89,18.30,prompt_tokens=4096 min_bytes_to_buffer=4
+hf,hf,code,8k,stream_decode,single,1,0,256,1,256,30,75.791,73.807,79.408,89.326,0.000,3377709.8,0.2961,1.89,1.89,18.30,prompt_tokens=4096 min_bytes_to_buffer=8
+hf,hf,mixed,128,encode,single,1,502,128,1,128,30,127.412,105.536,162.583,189.583,3.940,1004611.0,0.9954,1.89,1.89,18.30,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 5 ms
+hf,hf,mixed,128,decode,single,1,502,128,1,128,30,21.460,18.383,22.873,36.287,23.392,5964585.3,0.1677,1.89,1.89,18.30,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,128,decode_generic_fastokens,single,1,502,128,1,128,30,17.738,16.620,19.326,22.052,28.301,7216146.1,0.1386,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,mixed,1k,encode,single,1,3643,1024,1,1024,30,1052.951,988.622,1174.147,1593.198,3.460,972504.9,1.0283,1.89,1.89,18.30,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 36 ms
+hf,hf,mixed,1k,decode,single,1,3643,1024,1,1024,30,171.480,153.656,187.680,202.227,21.245,5971559.3,0.1675,1.89,1.89,18.30,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,1k,decode_generic_fastokens,single,1,3643,1024,1,1024,30,150.701,136.835,173.894,182.180,24.174,6794934.3,0.1472,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,81.171,76.883,101.730,118.610,0.000,3153835.7,0.3171,1.89,1.89,18.30,prompt_tokens=512 min_bytes_to_buffer=1
+hf,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,80.079,75.080,95.719,108.842,0.000,3196823.2,0.3128,1.89,1.89,18.30,prompt_tokens=512 min_bytes_to_buffer=4
+hf,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,75.691,74.298,84.688,93.594,0.000,3382172.3,0.2957,1.89,1.89,18.30,prompt_tokens=512 min_bytes_to_buffer=8
+hf,hf,mixed,8k,encode,single,1,29274,8192,1,8192,10,11719.658,10222.680,12338.350,12727.084,2.498,698996.5,1.4306,1.89,1.89,18.30,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 151 ms
+hf,hf,mixed,8k,decode,single,1,29274,8192,1,8192,30,1778.653,1339.856,2926.901,3593.893,16.459,4605731.2,0.2171,1.89,1.89,18.29,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,8k,decode_generic_fastokens,single,1,29274,8192,1,8192,30,1042.742,796.404,1597.315,1783.962,28.074,7856209.9,0.1273,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+hf,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,79.052,75.671,86.661,88.686,0.000,3238374.7,0.3088,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=1
+hf,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,77.349,75.260,85.409,98.532,0.000,3309695.7,0.3021,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=4
+hf,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,76.603,74.108,90.038,100.457,0.000,3341905.7,0.2992,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=8
+fastokens_byte_level,hf,zh,128,encode,single,1,583,128,1,128,30,10.079,6.943,13.054,41.328,57.843,12699672.6,0.0787,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 0 ms
+fastokens_byte_level,hf,zh,128,decode,single,1,583,128,1,128,30,2.836,2.695,3.166,7.383,205.571,45133991.5,0.0222,1.89,1.89,18.21,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,zh,128,decode_generic_fastokens,single,1,583,128,1,128,30,22.343,20.107,26.549,36.158,26.094,5728991.8,0.1746,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,zh,1k,encode,single,1,4612,1024,1,1024,30,23.910,23.384,24.676,32.251,192.890,42827268.9,0.0233,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 1 ms
+fastokens_byte_level,hf,zh,1k,decode,single,1,4612,1024,1,1024,30,31.098,19.677,33.002,41.158,148.305,32928162.6,0.0304,1.89,1.89,18.21,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,zh,1k,decode_generic_fastokens,single,1,4612,1024,1,1024,30,165.569,150.891,202.958,220.080,27.855,6184732.6,0.1617,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,51.450,37.640,56.024,67.886,0.000,4975704.6,0.2010,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=1
+fastokens_byte_level,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,36.047,34.854,53.770,55.935,0.000,7101740.8,0.1408,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=4
+fastokens_byte_level,hf,zh,1k,stream_decode,single,1,0,256,1,256,30,35.261,34.585,39.323,60.102,0.000,7260248.7,0.1377,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=8
+fastokens_byte_level,hf,zh,8k,encode_prepass,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: panic in encode: index out of bounds: the len is 1 but the index is 1
+fastokens_byte_level,hf,en,128,encode,single,1,705,128,1,128,30,14.853,14.327,15.589,34.585,47.467,8618077.8,0.1160,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 1 ms
+fastokens_byte_level,hf,en,128,decode,single,1,705,128,1,128,30,2.389,2.204,2.635,6.192,295.041,53567692.0,0.0187,1.89,1.89,18.21,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,en,128,decode_generic_fastokens,single,1,705,128,1,128,30,21.144,18.604,24.897,31.790,33.343,6053726.8,0.1652,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,en,1k,encode,single,1,5693,1024,1,1024,30,61.811,57.527,65.421,70.992,92.104,16566764.5,0.0604,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 2 ms
+fastokens_byte_level,hf,en,1k,decode,single,1,5693,1024,1,1024,30,16.005,15.880,16.250,31.689,355.701,63980006.2,0.0156,1.89,1.89,18.21,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,en,1k,decode_generic_fastokens,single,1,5693,1024,1,1024,30,150.169,129.952,168.795,181.567,37.910,6818961.2,0.1466,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,en,1k,stream_decode,single,1,0,256,1,256,30,39.554,36.958,42.450,48.991,0.000,6472164.6,0.1545,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=1
+fastokens_byte_level,hf,en,1k,stream_decode,single,1,0,256,1,256,30,39.103,37.389,41.887,51.415,0.000,6546728.6,0.1527,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=4
+fastokens_byte_level,hf,en,1k,stream_decode,single,1,0,256,1,256,30,39.133,37.199,40.104,49.071,0.000,6541793.4,0.1529,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=8
+fastokens_byte_level,hf,en,8k,encode_prepass,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: panic in encode: index out of bounds: the len is 1 but the index is 1
+fastokens_byte_level,hf,code,128,encode,single,1,526,128,1,128,30,15.755,14.517,21.310,51.936,33.387,8124662.8,0.1231,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 1 ms
+fastokens_byte_level,hf,code,128,decode,single,1,526,128,1,128,30,2.214,2.124,2.414,4.759,237.579,57813911.5,0.0173,1.89,1.89,18.21,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,128,decode_generic_fastokens,single,1,526,128,1,128,30,18.891,17.062,20.989,30.306,27.845,6775892.6,0.1476,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,code,1k,encode,single,1,4098,1024,1,1024,30,64.314,62.727,70.181,78.006,63.718,15921759.5,0.0628,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 2 ms
+fastokens_byte_level,hf,code,1k,decode,single,1,4098,1024,1,1024,30,15.183,15.028,17.031,25.528,269.898,67441630.7,0.0148,1.89,1.89,18.21,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,1k,decode_generic_fastokens,single,1,4098,1024,1,1024,30,132.181,119.272,144.770,162.512,31.003,7746953.0,0.1291,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,code,1k,stream_decode,single,1,0,256,1,256,30,42.389,39.584,48.481,59.861,0.000,6039302.6,0.1656,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=1
+fastokens_byte_level,hf,code,1k,stream_decode,single,1,0,256,1,256,30,38.356,32.030,46.216,66.494,0.000,6674227.3,0.1498,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=4
+fastokens_byte_level,hf,code,1k,stream_decode,single,1,0,256,1,256,30,34.721,31.950,50.485,71.984,0.000,7373165.7,0.1356,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=8
+fastokens_byte_level,hf,code,8k,encode,single,1,32854,8192,1,8192,30,447.404,431.603,475.586,527.702,73.433,18310073.2,0.0546,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 15 ms
+fastokens_byte_level,hf,code,8k,decode,single,1,32854,8192,1,8192,30,117.173,116.046,128.639,134.121,280.388,69913419.0,0.0143,1.89,1.89,18.21,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,code,8k,decode_generic_fastokens,single,1,32854,8192,1,8192,30,807.590,699.243,1001.046,1148.419,40.682,10143767.3,0.0986,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,code,8k,stream_decode,single,1,0,256,1,256,30,34.724,32.401,37.390,55.863,0.000,7372316.4,0.1356,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=1
+fastokens_byte_level,hf,code,8k,stream_decode,single,1,0,256,1,256,30,33.909,31.859,42.250,58.559,0.000,7549618.1,0.1325,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=4
+fastokens_byte_level,hf,code,8k,stream_decode,single,1,0,256,1,256,30,33.417,31.969,42.860,51.726,0.000,7660771.5,0.1305,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=8
+fastokens_byte_level,hf,mixed,128,encode,single,1,502,128,1,128,30,13.631,12.403,19.828,46.086,36.828,9390360.2,0.1065,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 1 ms
+fastokens_byte_level,hf,mixed,128,decode,single,1,502,128,1,128,30,2.295,2.274,2.424,4.618,218.736,55773420.5,0.0179,1.89,1.89,18.21,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,128,decode_generic_fastokens,single,1,502,128,1,128,30,16.857,15.318,19.016,24.525,29.780,7593284.7,0.1317,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,mixed,1k,encode,single,1,3643,1024,1,1024,30,48.329,47.388,51.176,58.038,75.378,21187887.3,0.0472,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 2 ms
+fastokens_byte_level,hf,mixed,1k,decode,single,1,3643,1024,1,1024,30,16.381,16.291,16.491,27.792,222.392,62511446.2,0.0160,1.89,1.89,18.21,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,1k,decode_generic_fastokens,single,1,3643,1024,1,1024,30,113.968,103.984,130.072,138.389,31.965,8984978.2,0.1113,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,33.758,32.259,42.919,49.924,0.000,7583500.0,0.1319,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=1
+fastokens_byte_level,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,33.417,32.170,35.736,55.483,0.000,7660771.5,0.1305,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=4
+fastokens_byte_level,hf,mixed,1k,stream_decode,single,1,0,256,1,256,30,34.254,32.060,45.065,53.088,0.000,7473579.7,0.1338,1.89,1.89,18.21,prompt_tokens=512 min_bytes_to_buffer=8
+fastokens_byte_level,hf,mixed,8k,encode,single,1,29274,8192,1,8192,30,322.065,311.110,331.688,361.242,90.895,25435819.7,0.0393,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 11 ms
+fastokens_byte_level,hf,mixed,8k,decode,single,1,29274,8192,1,8192,30,128.795,127.287,155.550,201.976,227.291,63604953.6,0.0157,1.89,1.89,18.21,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,hf,mixed,8k,decode_generic_fastokens,single,1,29274,8192,1,8192,30,902.867,725.031,1077.266,1213.892,32.423,9073323.7,0.1102,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+fastokens_byte_level,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,34.514,32.920,35.526,44.372,0.000,7417279.9,0.1348,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=1
+fastokens_byte_level,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,35.305,33.061,44.182,65.682,0.000,7251097.6,0.1379,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=4
+fastokens_byte_level,hf,mixed,8k,stream_decode,single,1,0,256,1,256,30,36.879,32.871,40.846,48.732,0.000,6941619.9,0.1441,1.89,1.89,18.21,prompt_tokens=4096 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,zh,128,encode,single,1,583,128,1,128,30,37.610,29.174,52.699,86.772,15.501,3403350.2,0.2938,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 110 tokens；encode 全流程 1 ms
+tiktoken_rs,tiktoken,zh,128,decode,single,1,583,110,1,110,30,4.513,4.027,6.451,7.374,129.182,24374030.6,0.0410,1.89,1.89,18.21,ids 来自本后端 encode（110 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,128,decode_generic_fastokens,single,1,583,110,1,110,30,15.855,13.876,16.531,18.164,36.771,6937874.5,0.1441,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,zh,1k,encode,single,1,4612,1024,1,1024,30,207.296,204.350,219.188,248.333,22.248,4939796.2,0.2024,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 887 tokens；encode 全流程 7 ms
+tiktoken_rs,tiktoken,zh,1k,decode,single,1,4612,887,1,887,30,30.015,28.773,41.879,44.853,153.654,29551398.4,0.0338,1.89,1.89,18.21,ids 来自本后端 encode（887 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,1k,decode_generic_fastokens,single,1,4612,887,1,887,30,116.502,105.116,129.080,142.755,39.587,7613603.2,0.1313,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,50.735,50.033,53.820,63.198,0.000,5045826.4,0.1982,1.89,1.89,18.21,prompt_tokens=443 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,51.421,49.703,54.511,82.293,0.000,4978510.7,0.2009,1.89,1.89,18.21,prompt_tokens=443 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,50.775,49.392,52.608,80.640,0.000,5041901.0,0.1983,1.89,1.89,18.21,prompt_tokens=443 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,zh,8k,encode,single,1,36771,8192,1,8192,30,1780.636,1627.892,1924.275,2108.317,20.650,4600603.4,0.2174,1.89,1.89,18.21,input=变体轮转(4 个变体)；本后端在变体 0 上实测 7083 tokens；encode 全流程 59 ms
+tiktoken_rs,tiktoken,zh,8k,decode,single,1,36771,7083,1,7083,30,225.143,221.925,250.456,265.565,163.323,31459935.6,0.0318,1.89,1.89,18.20,ids 来自本后端 encode（7083 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,8k,decode_generic_fastokens,single,1,36771,7083,1,7083,30,816.691,679.275,945.822,997.167,45.024,8672797.5,0.1153,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,53.234,50.886,61.664,75.110,0.000,4808911.5,0.2079,1.89,1.89,18.18,prompt_tokens=3541 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,52.763,50.354,62.056,67.856,0.000,4851930.8,0.2061,1.89,1.89,18.18,prompt_tokens=3541 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,51.626,50.143,58.289,61.555,0.000,4958789.7,0.2017,1.89,1.89,18.18,prompt_tokens=3541 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,en,128,encode,single,1,705,128,1,128,30,61.935,59.371,75.380,81.922,11.383,2066682.8,0.4839,1.89,1.89,18.18,input=变体轮转(4 个变体)；本后端在变体 0 上实测 129 tokens；encode 全流程 2 ms
+tiktoken_rs,tiktoken,en,128,decode,single,1,705,129,1,129,30,5.130,4.819,8.065,9.979,137.427,25146198.8,0.0398,1.89,1.89,18.18,ids 来自本后端 encode（129 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,128,decode_generic_fastokens,single,1,705,129,1,129,30,20.167,18.235,22.551,33.403,34.957,6396429.9,0.1563,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,en,1k,encode,single,1,5693,1024,1,1024,30,456.976,438.285,482.239,579.609,12.458,2240817.9,0.4463,1.89,1.89,18.18,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1029 tokens；encode 全流程 15 ms
+tiktoken_rs,tiktoken,en,1k,decode,single,1,5693,1029,1,1029,30,31.969,31.248,42.890,50.073,178.079,32187431.6,0.0311,1.89,1.89,18.18,ids 来自本后端 encode（1029 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,1k,decode_generic_fastokens,single,1,5693,1029,1,1029,30,140.978,129.962,158.826,179.244,40.382,7299011.2,0.1370,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,50.970,49.062,52.929,60.543,0.000,5022562.3,0.1991,1.89,1.89,18.17,prompt_tokens=514 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,50.904,49.192,54.130,58.910,0.000,5029024.9,0.1988,1.89,1.89,18.17,prompt_tokens=514 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,50.935,48.921,52.118,58.429,0.000,5026013.5,0.1990,1.89,1.89,18.17,prompt_tokens=514 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,en,8k,encode,single,1,45412,8192,1,8192,30,3656.039,3552.917,3914.922,5631.920,12.421,2240676.3,0.4463,1.89,1.89,18.17,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8227 tokens；encode 全流程 123 ms
+tiktoken_rs,tiktoken,en,8k,decode,single,1,45412,8227,1,8227,30,243.374,237.452,286.994,318.573,186.594,33804009.1,0.0296,1.89,1.89,18.14,ids 来自本后端 encode（8227 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,8k,decode_generic_fastokens,single,1,45412,8227,1,8227,30,1238.482,1030.018,1393.986,1488.673,36.667,6642809.5,0.1505,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,64.435,61.624,68.076,77.595,0.000,3972996.0,0.2517,1.89,1.89,18.11,prompt_tokens=4113 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,65.537,61.865,68.808,77.454,0.000,3906160.6,0.2560,1.89,1.89,18.11,prompt_tokens=4113 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,66.179,61.605,69.910,77.945,0.000,3868325.8,0.2585,1.89,1.89,18.11,prompt_tokens=4113 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,code,128,encode,single,1,526,128,1,128,30,62.131,57.677,79.849,85.319,8.466,2060179.8,0.4854,1.89,1.89,18.11,input=变体轮转(4 个变体)；本后端在变体 0 上实测 127 tokens；encode 全流程 2 ms
+tiktoken_rs,tiktoken,code,128,decode,single,1,526,127,1,127,30,4.714,4.458,7.875,8.896,111.583,26941026.7,0.0371,1.89,1.89,18.11,ids 来自本后端 encode（127 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,128,decode_generic_fastokens,single,1,526,127,1,127,30,21.746,18.385,28.092,36.608,24.188,5840154.5,0.1712,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,code,1k,encode,single,1,4098,1024,1,1024,30,471.048,448.665,563.761,755.257,8.700,2173878.4,0.4600,1.89,1.89,18.11,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1011 tokens；encode 全流程 17 ms
+tiktoken_rs,tiktoken,code,1k,decode,single,1,4098,1011,1,1011,30,27.852,27.431,31.830,38.292,147.137,36299660.7,0.0275,1.89,1.89,18.10,ids 来自本后端 encode（1011 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,1k,decode_generic_fastokens,single,1,4098,1011,1,1011,30,145.596,120.494,161.020,165.669,28.146,6943872.1,0.1440,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,48.369,47.459,52.247,58.589,0.000,5292591.4,0.1889,1.89,1.89,18.10,prompt_tokens=505 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,48.826,47.158,55.713,62.225,0.000,5243161.9,0.1907,1.89,1.89,18.10,prompt_tokens=505 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,49.832,47.068,61.104,67.485,0.000,5137209.7,0.1947,1.89,1.89,18.10,prompt_tokens=505 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,code,8k,encode,single,1,32854,8192,1,8192,30,3859.684,3603.151,6111.904,6384.330,8.512,2122453.8,0.4712,1.89,1.89,18.10,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8087 tokens；encode 全流程 149 ms
+tiktoken_rs,tiktoken,code,8k,decode,single,1,32854,8087,1,8087,30,202.748,201.456,211.494,214.740,162.043,39886854.9,0.0251,1.89,1.89,18.06,ids 来自本后端 encode（8087 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,8k,decode_generic_fastokens,single,1,32854,8087,1,8087,30,1115.161,974.144,1310.029,1481.108,29.461,7251864.4,0.1379,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,61.625,55.543,72.856,82.424,0.000,4154158.2,0.2407,1.89,1.89,18.04,prompt_tokens=4043 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,59.261,56.226,62.146,74.939,0.000,4319909.6,0.2315,1.89,1.89,18.04,prompt_tokens=4043 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,58.659,56.134,63.087,89.777,0.000,4364206.7,0.2291,1.89,1.89,18.04,prompt_tokens=4043 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,mixed,128,encode,single,1,502,128,1,128,30,59.836,50.775,72.285,97.450,8.390,2139180.4,0.4675,1.89,1.89,18.04,input=变体轮转(4 个变体)；本后端在变体 0 上实测 131 tokens；encode 全流程 2 ms
+tiktoken_rs,tiktoken,mixed,128,decode,single,1,502,131,1,131,30,5.941,5.561,6.281,8.857,84.498,22050159.9,0.0454,1.89,1.89,18.04,ids 来自本后端 encode（131 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,128,decode_generic_fastokens,single,1,502,131,1,131,30,22.307,20.467,26.559,39.382,22.504,5872596.0,0.1703,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,mixed,1k,encode,single,1,3643,1024,1,1024,30,437.790,305.168,458.414,467.591,8.321,2339021.0,0.4275,1.89,1.89,18.04,input=变体轮转(4 个变体)；本后端在变体 0 上实测 913 tokens；encode 全流程 14 ms
+tiktoken_rs,tiktoken,mixed,1k,decode,single,1,3643,913,1,913,30,26.324,25.687,30.337,36.026,138.393,34683837.6,0.0288,1.89,1.89,18.04,ids 来自本后端 encode（913 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,1k,decode_generic_fastokens,single,1,3643,913,1,913,30,145.580,123.900,166.891,201.124,25.024,6271444.3,0.1595,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,68.036,48.800,74.068,82.474,0.000,3762686.2,0.2658,1.89,1.89,18.04,prompt_tokens=456 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,51.867,49.121,55.555,69.009,0.000,4935700.9,0.2026,1.89,1.89,18.04,prompt_tokens=456 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,49.291,48.480,52.458,63.118,0.000,5193645.9,0.1925,1.89,1.89,18.04,prompt_tokens=456 min_bytes_to_buffer=8
+tiktoken_rs,tiktoken,mixed,8k,encode,single,1,29274,8192,1,8192,30,2652.150,2442.800,2983.466,4329.123,11.038,3088814.7,0.3237,1.89,1.89,18.03,input=变体轮转(4 个变体)；本后端在变体 0 上实测 7315 tokens；encode 全流程 92 ms
+tiktoken_rs,tiktoken,mixed,8k,decode,single,1,29274,7315,1,7315,30,208.223,198.451,309.647,329.214,140.590,35130689.5,0.0285,1.89,1.89,18.01,ids 来自本后端 encode（7315 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,8k,decode_generic_fastokens,single,1,29274,7315,1,7315,30,1392.588,1250.219,1573.210,1762.492,21.021,5252809.9,0.1904,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tiktoken_rs,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,71.478,68.037,85.239,92.383,0.000,3581521.6,0.2792,1.89,1.89,18.00,prompt_tokens=3657 min_bytes_to_buffer=1
+tiktoken_rs,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,72.445,67.135,84.877,91.981,0.000,3533715.2,0.2830,1.89,1.89,18.00,prompt_tokens=3657 min_bytes_to_buffer=4
+tiktoken_rs,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,71.458,68.167,85.850,104.655,0.000,3582524.0,0.2791,1.89,1.89,18.00,prompt_tokens=3657 min_bytes_to_buffer=8
+riptoken,tiktoken,zh,128,encode,single,1,583,128,1,128,30,35.291,30.767,47.598,79.929,16.520,3626935.7,0.2757,1.89,1.89,18.00,input=变体轮转(4 个变体)；本后端在变体 0 上实测 110 tokens；encode 全流程 1 ms
+riptoken,tiktoken,zh,128,decode,single,1,583,110,1,110,30,1.508,1.413,1.843,1.964,386.605,72944297.1,0.0137,1.89,1.89,18.00,ids 来自本后端 encode（110 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,128,decode_generic_fastokens,single,1,583,110,1,110,30,20.158,16.390,24.045,34.875,28.922,5457025.9,0.1833,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,zh,1k,encode,single,1,4612,1024,1,1024,30,213.296,138.188,231.271,264.884,21.622,4800828.9,0.2083,1.89,1.89,18.00,input=变体轮转(4 个变体)；本后端在变体 0 上实测 887 tokens；encode 全流程 7 ms
+riptoken,tiktoken,zh,1k,decode,single,1,4612,887,1,887,30,6.888,6.833,7.013,23.504,669.570,128774680.6,0.0078,1.89,1.89,18.00,ids 来自本后端 encode（887 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,1k,decode_generic_fastokens,single,1,4612,887,1,887,30,128.709,118.640,142.735,155.870,35.833,6891515.0,0.1451,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,30.361,28.955,36.728,51.317,0.000,8431869.8,0.1186,1.89,1.89,18.00,prompt_tokens=443 min_bytes_to_buffer=1
+riptoken,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,31.229,30.156,34.514,44.092,0.000,8197640.0,0.1220,1.89,1.89,18.00,prompt_tokens=443 min_bytes_to_buffer=4
+riptoken,tiktoken,zh,1k,stream_decode,single,1,0,256,1,256,30,30.477,29.736,33.884,43.190,0.000,8399914.7,0.1190,1.89,1.89,17.99,prompt_tokens=443 min_bytes_to_buffer=8
+riptoken,tiktoken,zh,8k,encode,single,1,36771,8192,1,8192,30,1109.637,1074.121,1169.849,1310.050,33.138,7382594.5,0.1355,1.89,1.89,17.99,input=变体轮转(4 个变体)；本后端在变体 0 上实测 7083 tokens；encode 全流程 37 ms
+riptoken,tiktoken,zh,8k,decode,single,1,36771,7083,1,7083,30,53.890,53.459,64.981,67.547,682.334,131434403.4,0.0076,1.89,1.89,17.96,ids 来自本后端 encode（7083 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,zh,8k,decode_generic_fastokens,single,1,36771,7083,1,7083,30,1039.532,883.486,1277.789,1479.956,35.373,6813646.3,0.1468,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,30.386,29.494,32.110,42.259,0.000,8424793.9,0.1187,1.89,1.89,17.93,prompt_tokens=3541 min_bytes_to_buffer=1
+riptoken,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,30.026,29.043,32.311,39.805,0.000,8525944.2,0.1173,1.89,1.89,17.93,prompt_tokens=3541 min_bytes_to_buffer=4
+riptoken,tiktoken,zh,8k,stream_decode,single,1,0,256,1,256,30,29.936,29.254,32.540,42.830,0.000,8551719.5,0.1169,1.89,1.89,17.93,prompt_tokens=3541 min_bytes_to_buffer=8
+riptoken,tiktoken,en,128,encode,single,1,705,128,1,128,30,13.330,12.574,16.010,24.095,52.888,9602400.6,0.1041,1.89,1.89,17.93,input=变体轮转(4 个变体)；本后端在变体 0 上实测 129 tokens；encode 全流程 1 ms
+riptoken,tiktoken,en,128,decode,single,1,705,129,1,129,30,1.042,0.952,1.593,1.824,676.583,123800383.9,0.0081,1.89,1.89,17.93,ids 来自本后端 encode（129 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,128,decode_generic_fastokens,single,1,705,129,1,129,30,19.532,17.483,22.642,31.568,36.095,6604546.4,0.1514,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,en,1k,encode,single,1,5693,1024,1,1024,30,65.121,64.349,67.796,77.886,87.422,15724574.3,0.0636,1.89,1.89,17.93,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1029 tokens；encode 全流程 2 ms
+riptoken,tiktoken,en,1k,decode,single,1,5693,1029,1,1029,30,5.876,5.831,5.931,5.981,968.856,175119128.7,0.0057,1.89,1.89,17.93,ids 来自本后端 encode（1029 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,1k,decode_generic_fastokens,single,1,5693,1029,1,1029,30,144.298,135.462,154.277,164.957,39.453,7131051.3,0.1402,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,30.998,28.694,32.350,46.566,0.000,8258730.5,0.1211,1.89,1.89,17.92,prompt_tokens=514 min_bytes_to_buffer=1
+riptoken,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,30.637,28.201,32.131,44.683,0.000,8356045.9,0.1197,1.89,1.89,17.92,prompt_tokens=514 min_bytes_to_buffer=4
+riptoken,tiktoken,en,1k,stream_decode,single,1,0,256,1,256,30,30.642,28.582,32.612,43.862,0.000,8354546.0,0.1197,1.89,1.89,17.92,prompt_tokens=514 min_bytes_to_buffer=8
+riptoken,tiktoken,en,8k,encode,single,1,45412,8192,1,8192,30,497.515,481.787,526.530,550.445,91.278,16465818.7,0.0607,1.89,1.89,17.92,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8227 tokens；encode 全流程 17 ms
+riptoken,tiktoken,en,8k,decode,single,1,45412,8227,1,8227,30,45.489,45.294,45.656,55.053,998.296,180854922.6,0.0055,1.89,1.89,17.90,ids 来自本后端 encode（8227 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,en,8k,decode_generic_fastokens,single,1,45412,8227,1,8227,30,1240.505,1014.059,1385.261,1434.522,36.608,6631973.8,0.1508,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,31.309,29.545,33.792,43.360,0.000,8176693.2,0.1223,1.89,1.89,17.89,prompt_tokens=4113 min_bytes_to_buffer=1
+riptoken,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,31.128,28.955,32.820,39.323,0.000,8224106.9,0.1216,1.89,1.89,17.89,prompt_tokens=4113 min_bytes_to_buffer=4
+riptoken,tiktoken,en,8k,stream_decode,single,1,0,256,1,256,30,31.053,28.393,40.244,53.800,0.000,8244102.7,0.1213,1.89,1.89,17.89,prompt_tokens=4113 min_bytes_to_buffer=8
+riptoken,tiktoken,code,128,encode,single,1,526,128,1,128,30,13.410,12.002,22.111,33.293,39.224,9545115.6,0.1048,1.89,1.89,17.89,input=变体轮转(4 个变体)；本后端在变体 0 上实测 127 tokens；encode 全流程 1 ms
+riptoken,tiktoken,code,128,decode,single,1,526,127,1,127,30,0.901,0.871,0.932,1.122,583.796,140954495.0,0.0071,1.89,1.89,17.89,ids 来自本后端 encode（127 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,128,decode_generic_fastokens,single,1,526,127,1,127,30,21.064,16.941,24.275,33.282,24.972,6029244.2,0.1659,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,code,1k,encode,single,1,4098,1024,1,1024,30,63.073,62.015,72.164,84.116,64.973,16235284.8,0.0616,1.89,1.89,17.89,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1011 tokens；encode 全流程 2 ms
+riptoken,tiktoken,code,1k,decode,single,1,4098,1011,1,1011,30,5.695,5.631,6.722,14.357,719.515,177508559.4,0.0056,1.89,1.89,17.88,ids 来自本后端 encode（1011 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,1k,decode_generic_fastokens,single,1,4098,1011,1,1011,30,165.503,140.592,182.029,200.804,24.761,6108632.1,0.1637,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,27.886,26.900,29.755,44.142,0.000,9180233.8,0.1089,1.89,1.89,17.88,prompt_tokens=505 min_bytes_to_buffer=1
+riptoken,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,27.767,26.769,30.616,39.554,0.000,9219577.2,0.1085,1.89,1.89,17.88,prompt_tokens=505 min_bytes_to_buffer=4
+riptoken,tiktoken,code,1k,stream_decode,single,1,0,256,1,256,30,27.602,27.009,30.206,41.116,0.000,9274858.3,0.1078,1.89,1.89,17.88,prompt_tokens=505 min_bytes_to_buffer=8
+riptoken,tiktoken,code,8k,encode,single,1,32854,8192,1,8192,30,484.332,461.960,743.234,818.385,67.834,16914000.2,0.0591,1.89,1.89,17.88,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8087 tokens；encode 全流程 17 ms
+riptoken,tiktoken,code,8k,decode,single,1,32854,8087,1,8087,30,44.619,44.223,73.136,74.609,736.331,181247688.7,0.0055,1.89,1.89,17.84,ids 来自本后端 encode（8087 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,code,8k,decode_generic_fastokens,single,1,32854,8087,1,8087,30,1140.794,865.782,1389.047,1906.391,28.799,7088919.2,0.1411,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,38.732,27.681,43.923,51.366,0.000,6609521.8,0.1513,1.89,1.89,17.82,prompt_tokens=4043 min_bytes_to_buffer=1
+riptoken,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,31.183,26.118,36.678,42.179,0.000,8209733.0,0.1218,1.89,1.89,17.82,prompt_tokens=4043 min_bytes_to_buffer=4
+riptoken,tiktoken,code,8k,stream_decode,single,1,0,256,1,256,30,27.146,26.209,29.916,42.059,0.000,9430487.0,0.1060,1.89,1.89,17.81,prompt_tokens=4043 min_bytes_to_buffer=8
+riptoken,tiktoken,mixed,128,encode,single,1,502,128,1,128,30,15.098,13.064,18.544,52.639,33.249,8477944.1,0.1180,1.89,1.89,17.82,input=变体轮转(4 个变体)；本后端在变体 0 上实测 131 tokens；encode 全流程 1 ms
+riptoken,tiktoken,mixed,128,decode,single,1,502,131,1,131,30,0.887,0.852,0.922,0.972,566.272,147772137.6,0.0068,1.89,1.89,17.82,ids 来自本后端 encode（131 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,128,decode_generic_fastokens,single,1,502,131,1,131,30,22.021,19.898,24.876,26.989,22.796,5948731.9,0.1681,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,mixed,1k,encode,single,1,3643,1024,1,1024,30,83.550,80.320,113.120,129.422,43.602,12256060.7,0.0816,1.89,1.89,17.82,input=变体轮转(4 个变体)；本后端在变体 0 上实测 913 tokens；encode 全流程 3 ms
+riptoken,tiktoken,mixed,1k,decode,single,1,3643,913,1,913,30,6.181,6.000,8.977,9.808,589.339,147698778.6,0.0068,1.89,1.89,17.82,ids 来自本后端 encode（913 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,1k,decode_generic_fastokens,single,1,3643,913,1,913,30,144.549,131.426,156.852,162.293,25.203,6316197.3,0.1583,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,40.395,39.002,44.463,57.667,0.000,6337339.6,0.1578,1.89,1.89,17.82,prompt_tokens=456 min_bytes_to_buffer=1
+riptoken,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,40.670,32.010,46.235,83.295,0.000,6294488.6,0.1589,1.89,1.89,17.82,prompt_tokens=456 min_bytes_to_buffer=4
+riptoken,tiktoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,40.681,39.273,44.052,58.679,0.000,6292786.6,0.1589,1.89,1.89,17.82,prompt_tokens=456 min_bytes_to_buffer=8
+riptoken,tiktoken,mixed,8k,encode,single,1,29274,8192,1,8192,30,839.237,622.980,1121.920,1222.437,34.882,9761241.6,0.1024,1.89,1.89,17.82,input=变体轮转(4 个变体)；本后端在变体 0 上实测 7315 tokens；encode 全流程 28 ms
+riptoken,tiktoken,mixed,8k,decode,single,1,29274,7315,1,7315,30,44.387,44.062,52.187,58.659,659.510,164798648.3,0.0061,1.89,1.89,17.80,ids 来自本后端 encode（7315 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tiktoken,mixed,8k,decode_generic_fastokens,single,1,29274,7315,1,7315,30,1182.983,1064.572,1430.354,1818.287,24.746,6183518.2,0.1617,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+riptoken,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,31.779,29.014,33.733,43.972,0.000,8055761.0,0.1241,1.89,1.89,17.80,prompt_tokens=3657 min_bytes_to_buffer=1
+riptoken,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,31.328,28.803,33.674,46.286,0.000,8171473.3,0.1224,1.89,1.89,17.80,prompt_tokens=3657 min_bytes_to_buffer=4
+riptoken,tiktoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,31.599,28.563,39.775,43.140,0.000,8101650.4,0.1234,1.89,1.89,17.80,prompt_tokens=3657 min_bytes_to_buffer=8
+tekken,tekken,zh,128,encode,single,1,583,128,1,128,30,37.816,33.321,49.963,75.681,15.417,3384855.4,0.2954,1.89,1.89,17.80,input=变体轮转(4 个变体)；本后端在变体 0 上实测 180 tokens；encode 全流程 1 ms
+tekken,tekken,zh,128,decode,single,1,583,180,1,180,30,2.420,2.164,2.996,5.470,240.909,74380165.3,0.0134,1.89,1.89,17.80,ids 来自本后端 encode（180 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,zh,128,decode_generic_fastokens,single,1,583,180,1,180,30,30.517,26.079,35.155,52.618,19.104,5898255.1,0.1695,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,zh,1k,encode,single,1,4612,1024,1,1024,30,277.187,269.883,301.000,338.631,16.639,3694256.9,0.2707,1.89,1.89,17.80,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1448 tokens；encode 全流程 9 ms
+tekken,tekken,zh,1k,decode,single,1,4612,1448,1,1448,30,12.343,11.902,18.344,21.651,373.653,117313457.0,0.0085,1.89,1.89,17.80,ids 来自本后端 encode（1448 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,zh,1k,decode_generic_fastokens,single,1,4612,1448,1,1448,30,222.840,194.653,257.009,291.793,20.696,6497935.7,0.1539,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,zh,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=724 min_bytes_to_buffer=1: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,zh,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=724 min_bytes_to_buffer=4: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,zh,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=724 min_bytes_to_buffer=8: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,zh,8k,encode,single,1,36771,8192,1,8192,30,2480.730,2154.554,3288.565,3316.947,14.823,3302253.1,0.3028,1.89,1.89,17.86,input=变体轮转(4 个变体)；本后端在变体 0 上实测 11552 tokens；encode 全流程 85 ms
+tekken,tekken,zh,8k,decode,single,1,36771,11552,1,11552,30,88.174,87.172,117.029,146.994,417.028,131013677.5,0.0076,1.89,1.89,17.98,ids 来自本后端 encode（11552 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,zh,8k,decode_generic_fastokens,single,1,36771,11552,1,11552,30,1456.668,1281.528,1708.211,2087.738,25.243,7930427.5,0.1261,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,zh,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=5776 min_bytes_to_buffer=1: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 6
+tekken,tekken,zh,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=5776 min_bytes_to_buffer=4: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 6
+tekken,tekken,zh,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=5776 min_bytes_to_buffer=8: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 6
+tekken,tekken,en,128,encode,single,1,705,128,1,128,30,55.233,53.379,63.398,70.170,12.764,2317476.1,0.4315,1.89,1.89,17.98,input=变体轮转(4 个变体)；本后端在变体 0 上实测 130 tokens；encode 全流程 2 ms
+tekken,tekken,en,128,decode,single,1,705,130,1,130,30,1.468,1.232,1.682,3.887,480.409,88586030.7,0.0113,1.89,1.89,17.98,ids 来自本后端 encode（130 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,en,128,decode_generic_fastokens,single,1,705,130,1,130,30,19.556,17.212,21.470,33.122,36.049,6647406.2,0.1504,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,en,1k,encode,single,1,5693,1024,1,1024,30,425.527,416.877,447.924,450.700,13.379,2406427.8,0.4156,1.89,1.89,17.98,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1034 tokens；encode 全流程 14 ms
+tekken,tekken,en,1k,decode,single,1,5693,1034,1,1034,30,6.823,6.611,7.013,9.908,834.384,151546240.7,0.0066,1.89,1.89,17.98,ids 来自本后端 encode（1034 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,en,1k,decode_generic_fastokens,single,1,5693,1034,1,1034,30,149.189,136.554,157.684,173.513,38.160,6930829.1,0.1443,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,en,1k,stream_decode,single,1,0,256,1,256,30,47.704,45.595,52.908,64.080,0.000,5366482.5,0.1863,1.89,1.89,17.98,prompt_tokens=517 min_bytes_to_buffer=1
+tekken,tekken,en,1k,stream_decode,single,1,0,256,1,256,30,47.173,44.613,48.881,55.352,0.000,5426833.1,0.1843,1.89,1.89,17.98,prompt_tokens=517 min_bytes_to_buffer=4
+tekken,tekken,en,1k,stream_decode,single,1,0,256,1,256,30,47.199,44.803,54.331,58.530,0.000,5423843.7,0.1844,1.89,1.89,17.98,prompt_tokens=517 min_bytes_to_buffer=8
+tekken,tekken,en,8k,encode,single,1,45412,8192,1,8192,30,3431.841,3325.514,3518.063,3677.930,13.233,2387056.6,0.4189,1.89,1.89,17.98,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8262 tokens；encode 全流程 114 ms
+tekken,tekken,en,8k,decode,single,1,45412,8262,1,8262,30,48.165,47.508,61.725,68.818,942.842,171535347.2,0.0058,1.89,1.89,17.97,ids 来自本后端 encode（8262 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,en,8k,decode_generic_fastokens,single,1,45412,8262,1,8262,30,968.248,849.442,1059.023,1203.993,46.901,8532933.4,0.1172,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,en,8k,stream_decode,single,1,0,256,1,256,30,47.334,45.215,48.790,64.499,0.000,5408374.5,0.1849,1.89,1.89,17.97,prompt_tokens=4131 min_bytes_to_buffer=1
+tekken,tekken,en,8k,stream_decode,single,1,0,256,1,256,30,47.614,45.735,52.006,68.419,0.000,5376626.4,0.1860,1.89,1.89,17.97,prompt_tokens=4131 min_bytes_to_buffer=4
+tekken,tekken,en,8k,stream_decode,single,1,0,256,1,256,30,48.251,45.305,50.504,59.381,0.000,5305644.5,0.1885,1.89,1.89,17.97,prompt_tokens=4131 min_bytes_to_buffer=8
+tekken,tekken,code,128,encode,single,1,526,128,1,128,30,58.544,52.418,69.290,73.677,8.985,2186389.7,0.4574,1.89,1.89,17.97,input=变体轮转(4 个变体)；本后端在变体 0 上实测 134 tokens；encode 全流程 2 ms
+tekken,tekken,code,128,decode,single,1,526,134,1,134,30,1.623,1.142,4.468,5.200,323.991,82537727.1,0.0121,1.89,1.89,17.97,ids 来自本后端 encode（134 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,code,128,decode_generic_fastokens,single,1,526,134,1,134,30,19.356,16.019,25.067,33.202,27.175,6922918.0,0.1444,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,code,1k,encode,single,1,4098,1024,1,1024,30,444.388,429.089,486.756,495.162,9.222,2304292.6,0.4340,1.89,1.89,17.97,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1093 tokens；encode 全流程 15 ms
+tekken,tekken,code,1k,decode,single,1,4098,1093,1,1093,30,7.489,6.943,10.078,10.830,547.239,145957134.3,0.0069,1.89,1.89,17.96,ids 来自本后端 encode（1093 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,code,1k,decode_generic_fastokens,single,1,4098,1093,1,1093,30,157.939,141.353,193.862,226.122,25.947,6920393.3,0.1445,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,code,1k,stream_decode,single,1,0,256,1,256,30,44.483,43.431,48.511,59.721,0.000,5754942.8,0.1738,1.89,1.89,17.96,prompt_tokens=546 min_bytes_to_buffer=1
+tekken,tekken,code,1k,stream_decode,single,1,0,256,1,256,30,44.823,43.761,47.048,55.794,0.000,5711289.8,0.1751,1.89,1.89,17.96,prompt_tokens=546 min_bytes_to_buffer=4
+tekken,tekken,code,1k,stream_decode,single,1,0,256,1,256,30,46.537,43.171,55.393,61.835,0.000,5501058.3,0.1818,1.89,1.89,17.96,prompt_tokens=546 min_bytes_to_buffer=8
+tekken,tekken,code,8k,encode,single,1,32854,8192,1,8192,30,3573.731,3459.413,3906.936,4530.738,9.193,2292281.9,0.4362,1.89,1.89,17.96,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8766 tokens；encode 全流程 121 ms
+tekken,tekken,code,8k,decode,single,1,32854,8766,1,8766,30,53.065,52.136,73.978,75.861,619.127,165193630.5,0.0061,1.89,1.89,17.95,ids 来自本后端 encode（8766 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,code,8k,decode_generic_fastokens,single,1,32854,8766,1,8766,30,1282.750,1099.518,1491.927,1805.923,25.612,6833755.6,0.1463,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,code,8k,stream_decode,single,1,0,256,1,256,30,43.391,42.628,45.053,56.566,0.000,5899909.0,0.1695,1.89,1.89,17.95,prompt_tokens=4383 min_bytes_to_buffer=1
+tekken,tekken,code,8k,stream_decode,single,1,0,256,1,256,30,43.611,42.510,46.586,55.453,0.000,5870011.4,0.1704,1.89,1.89,17.95,prompt_tokens=4383 min_bytes_to_buffer=4
+tekken,tekken,code,8k,stream_decode,single,1,0,256,1,256,30,44.609,42.950,58.378,65.492,0.000,5738816.6,0.1743,1.89,1.89,17.95,prompt_tokens=4383 min_bytes_to_buffer=8
+tekken,tekken,mixed,128,encode,single,1,502,128,1,128,30,41.115,37.680,51.285,68.389,12.210,3113181.2,0.3212,1.89,1.89,17.95,input=变体轮转(4 个变体)；本后端在变体 0 上实测 169 tokens；encode 全流程 2 ms
+tekken,tekken,mixed,128,decode,single,1,502,169,1,169,30,1.994,1.774,2.445,5.520,251.818,84775520.4,0.0118,1.89,1.89,17.95,ids 来自本后端 encode（169 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,mixed,128,decode_generic_fastokens,single,1,502,169,1,169,30,25.542,23.765,29.655,31.057,19.654,6616553.1,0.1511,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,mixed,1k,encode,single,1,3643,1024,1,1024,30,338.029,326.578,367.514,413.360,10.777,3029325.9,0.3301,1.89,1.89,17.95,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1219 tokens；encode 全流程 11 ms
+tekken,tekken,mixed,1k,decode,single,1,3643,1219,1,1219,30,9.091,8.917,9.358,12.143,400.704,134081284.7,0.0075,1.89,1.89,17.95,ids 来自本后端 encode（1219 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,mixed,1k,decode_generic_fastokens,single,1,3643,1219,1,1219,30,172.352,163.685,190.595,197.558,21.137,7072734.9,0.1414,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,mixed,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=609 min_bytes_to_buffer=1: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,mixed,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=609 min_bytes_to_buffer=4: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,mixed,1k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=609 min_bytes_to_buffer=8: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,mixed,8k,encode,single,1,29274,8192,1,8192,30,2747.417,2617.656,2936.119,3090.677,10.655,2981709.7,0.3354,1.89,1.89,17.95,input=变体轮转(4 个变体)；本后端在变体 0 上实测 9739 tokens；encode 全流程 92 ms
+tekken,tekken,mixed,8k,decode,single,1,29274,9739,1,9739,30,66.885,65.672,78.837,87.403,437.677,145608133.4,0.0069,1.89,1.89,17.94,ids 来自本后端 encode（9739 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,tekken,mixed,8k,decode_generic_fastokens,single,1,29274,9739,1,9739,30,884.112,633.710,1256.230,1336.579,33.111,11015566.5,0.0908,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+tekken,tekken,mixed,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=4869 min_bytes_to_buffer=1: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,mixed,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=4869 min_bytes_to_buffer=4: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+tekken,tekken,mixed,8k,stream_decode,single,1,0,0,0,0,0,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,ERROR: prompt_tokens=4869 min_bytes_to_buffer=8: tekken stream_decode 失败: tokenizer error: decoding failed: Tokenizers error: Unable to decode into a valid UTF-8 string: incomplete utf-8 byte sequence from index 3
+gigatoken,gigatoken,zh,128,encode,single,1,583,128,1,128,30,2.354,2.054,3.096,36.158,247.611,54363983.9,0.0184,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,zh,128,decode,single,1,583,128,1,128,30,1.588,1.342,1.833,3.797,367.128,80604534.0,0.0124,1.89,1.89,17.94,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,zh,128,decode_generic_fastokens,single,1,583,128,1,128,30,14.943,12.763,16.491,17.624,39.015,8565883.7,0.1167,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,zh,1k,encode,single,1,4612,1024,1,1024,30,14.647,14.467,15.108,23.674,314.877,69911927.4,0.0143,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 1 ms
+gigatoken,gigatoken,zh,1k,decode,single,1,4612,1024,1,1024,30,7.298,7.082,7.534,9.027,631.954,140312414.4,0.0071,1.89,1.89,17.94,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,zh,1k,decode_generic_fastokens,single,1,4612,1024,1,1024,30,127.803,111.176,154.016,167.783,36.087,8012331.5,0.1248,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,zh,1k,stream_decode,single,1,0,256,1,256,30,25.553,24.947,27.331,31.178,0.000,10018589.2,0.0998,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=1
+gigatoken,gigatoken,zh,1k,stream_decode,single,1,0,256,1,256,30,25.308,24.526,26.540,26.840,0.000,10115578.4,0.0989,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=4
+gigatoken,gigatoken,zh,1k,stream_decode,single,1,0,256,1,256,30,25.432,24.827,28.092,32.891,0.000,10065860.6,0.0993,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=8
+gigatoken,gigatoken,zh,8k,encode,single,1,36771,8192,1,8192,30,120.549,117.388,133.188,164.316,305.028,67955487.2,0.0147,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 4 ms
+gigatoken,gigatoken,zh,8k,decode,single,1,36771,8192,1,8192,30,50.990,50.734,51.205,58.870,721.134,160657377.4,0.0062,1.89,1.89,17.94,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,zh,8k,decode_generic_fastokens,single,1,36771,8192,1,8192,30,845.956,628.992,1273.321,1344.775,43.467,9683724.5,0.1033,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,zh,8k,stream_decode,single,1,0,256,1,256,30,25.663,25.007,26.690,37.100,0.000,9975451.0,0.1002,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=1
+gigatoken,gigatoken,zh,8k,stream_decode,single,1,0,256,1,256,30,25.352,24.807,28.111,32.942,0.000,10097623.5,0.0990,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=4
+gigatoken,gigatoken,zh,8k,stream_decode,single,1,0,256,1,256,30,25.097,24.576,26.229,33.122,0.000,10200422.4,0.0980,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=8
+gigatoken,gigatoken,en,128,encode,single,1,705,128,1,128,30,0.932,0.891,1.102,1.774,756.438,137339055.8,0.0073,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,en,128,decode,single,1,705,128,1,128,30,1.268,1.123,1.482,2.475,556.213,100986193.3,0.0099,1.89,1.89,17.94,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,en,128,decode_generic_fastokens,single,1,705,128,1,128,30,11.211,9.939,12.082,20.649,62.885,11417358.0,0.0876,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,en,1k,encode,single,1,5693,1024,1,1024,30,5.590,5.550,5.801,6.923,1018.426,183184257.6,0.0055,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,en,1k,decode,single,1,5693,1024,1,1024,30,6.027,5.890,7.383,14.857,944.661,169916203.4,0.0059,1.89,1.89,17.94,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,en,1k,decode_generic_fastokens,single,1,5693,1024,1,1024,30,89.261,80.269,102.231,107.321,63.779,11471975.4,0.0872,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,en,1k,stream_decode,single,1,0,256,1,256,30,26.609,24.566,31.209,37.219,0.000,9620805.0,0.1039,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=1
+gigatoken,gigatoken,en,1k,stream_decode,single,1,0,256,1,256,30,26.644,24.345,30.247,40.254,0.000,9608166.9,0.1041,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=4
+gigatoken,gigatoken,en,1k,stream_decode,single,1,0,256,1,256,30,26.059,24.576,30.196,36.458,0.000,9823861.2,0.1018,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=8
+gigatoken,gigatoken,en,8k,encode,single,1,45412,8192,1,8192,30,44.252,43.952,49.803,55.783,1026.202,185119484.8,0.0054,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 2 ms
+gigatoken,gigatoken,en,8k,decode,single,1,45412,8192,1,8192,30,42.635,42.320,44.704,57.437,1065.147,192144859.2,0.0052,1.89,1.89,17.94,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,en,8k,decode_generic_fastokens,single,1,45412,8192,1,8192,30,926.936,694.995,1137.478,1205.256,48.992,8837719.1,0.1132,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,en,8k,stream_decode,single,1,0,256,1,256,30,25.858,24.727,27.782,38.561,0.000,9900032.9,0.1010,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=1
+gigatoken,gigatoken,en,8k,stream_decode,single,1,0,256,1,256,30,27.727,24.687,32.190,39.544,0.000,9233044.2,0.1083,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=4
+gigatoken,gigatoken,en,8k,stream_decode,single,1,0,256,1,256,30,26.714,24.627,31.499,39.084,0.000,9582990.2,0.1044,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=8
+gigatoken,gigatoken,code,128,encode,single,1,526,128,1,128,30,1.282,0.952,2.014,2.766,410.296,99843993.8,0.0100,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,code,128,decode,single,1,526,128,1,128,30,1.207,0.992,1.743,3.676,435.791,106048053.0,0.0094,1.89,1.89,17.94,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,code,128,decode_generic_fastokens,single,1,526,128,1,128,30,15.379,13.375,17.823,18.594,34.204,8323308.5,0.1201,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,code,1k,encode,single,1,4098,1024,1,1024,30,7.780,7.233,10.530,13.075,526.735,131619537.3,0.0076,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,code,1k,decode,single,1,4098,1024,1,1024,30,5.490,4.789,8.085,16.762,746.380,186503961.4,0.0054,1.89,1.89,17.94,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,code,1k,decode_generic_fastokens,single,1,4098,1024,1,1024,30,105.462,92.362,122.067,125.924,38.858,9709704.5,0.1030,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,code,1k,stream_decode,single,1,0,256,1,256,30,23.324,22.481,26.740,35.948,0.000,10975818.9,0.0911,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=1
+gigatoken,gigatoken,code,1k,stream_decode,single,1,0,256,1,256,30,23.148,22.573,24.504,31.229,0.000,11059270.8,0.0904,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=4
+gigatoken,gigatoken,code,1k,stream_decode,single,1,0,256,1,256,30,22.692,22.102,24.326,31.529,0.000,11281508.9,0.0886,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=8
+gigatoken,gigatoken,code,8k,encode,single,1,32854,8192,1,8192,30,60.121,58.929,67.185,81.832,546.460,136257412.1,0.0073,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 2 ms
+gigatoken,gigatoken,code,8k,decode,single,1,32854,8192,1,8192,30,33.909,33.623,40.676,48.672,968.887,241587779.1,0.0041,1.89,1.89,17.94,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,code,8k,decode_generic_fastokens,single,1,32854,8192,1,8192,30,598.244,487.368,867.496,929.802,54.917,13693409.4,0.0730,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,code,8k,stream_decode,single,1,0,256,1,256,30,22.722,21.951,23.914,31.229,0.000,11266613.9,0.0888,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=1
+gigatoken,gigatoken,code,8k,stream_decode,single,1,0,256,1,256,30,22.541,22.120,23.134,29.514,0.000,11356830.7,0.0881,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=4
+gigatoken,gigatoken,code,8k,stream_decode,single,1,0,256,1,256,30,22.542,21.911,23.623,36.858,0.000,11356578.8,0.0881,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=8
+gigatoken,gigatoken,mixed,128,encode,single,1,502,128,1,128,30,1.533,1.412,2.975,16.751,327.462,83496412.3,0.0120,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 128 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,mixed,128,decode,single,1,502,128,1,128,30,1.157,0.912,1.553,2.244,433.881,110630942.1,0.0090,1.89,1.89,17.94,ids 来自本后端 encode（128 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,mixed,128,decode_generic_fastokens,single,1,502,128,1,128,30,9.227,7.764,11.421,18.714,54.406,13872331.2,0.0721,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,mixed,1k,encode,single,1,3643,1024,1,1024,30,12.008,11.741,12.985,15.278,303.394,85280033.3,0.0117,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 1024 tokens；encode 全流程 0 ms
+gigatoken,gigatoken,mixed,1k,decode,single,1,3643,1024,1,1024,30,5.030,4.919,5.230,6.261,724.254,203578528.8,0.0049,1.89,1.89,17.94,ids 来自本后端 encode（1024 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,mixed,1k,decode_generic_fastokens,single,1,3643,1024,1,1024,30,78.236,71.273,98.774,104.253,46.565,13088687.4,0.0764,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,23.193,22.612,26.529,33.562,0.000,11037813.1,0.0906,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=1
+gigatoken,gigatoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,23.072,22.441,26.299,37.639,0.000,11095460.0,0.0901,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=4
+gigatoken,gigatoken,mixed,1k,stream_decode,single,1,0,256,1,256,30,22.647,22.070,24.716,35.206,0.000,11303925.5,0.0885,1.89,1.89,17.94,prompt_tokens=512 min_bytes_to_buffer=8
+gigatoken,gigatoken,mixed,8k,encode,single,1,29274,8192,1,8192,30,93.169,91.841,100.517,103.724,314.203,87926241.6,0.0114,1.89,1.89,17.94,input=变体轮转(4 个变体)；本后端在变体 0 上实测 8192 tokens；encode 全流程 3 ms
+gigatoken,gigatoken,mixed,8k,decode,single,1,29274,8192,1,8192,30,35.836,35.647,36.830,43.542,816.888,228596941.6,0.0044,1.89,1.89,17.94,ids 来自本后端 encode（8192 tokens）；roundtrip_reencode_ids_eq=true
+fastokens_generic,gigatoken,mixed,8k,decode_generic_fastokens,single,1,29274,8192,1,8192,30,748.029,498.778,878.507,1182.022,39.135,10951447.1,0.0913,0.00,0.00,0.00,对照臂：fastokens 通用 decode（旁路未生效）；与 fastokens_byte_level 同一 ids
+gigatoken,gigatoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,23.610,22.913,24.466,39.603,0.000,10842863.2,0.0922,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=1
+gigatoken,gigatoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,23.172,22.611,24.206,34.144,0.000,11047577.9,0.0905,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=4
+gigatoken,gigatoken,mixed,8k,stream_decode,single,1,0,256,1,256,30,23.178,22.151,26.379,39.272,0.000,11044956.4,0.0905,1.89,1.89,17.94,prompt_tokens=4096 min_bytes_to_buffer=8
+hf,hf,zh,128,encode_batch,batch-1thread,1,577,0,4,129,10,58.925,56.364,67.586,76.383,9.792,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,zh,1k,encode_batch,batch-1thread,1,4603,0,4,1021,10,324.810,315.868,335.996,345.493,14.171,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,zh,8k,encode_batch,batch-1thread,1,36699,0,32,8186,10,2495.222,2419.065,2563.825,2608.018,14.708,0.0,NaN,1.89,1.89,17.94,batch_docs=32 每文档≈256 tokens
+hf,hf,en,128,encode_batch,batch-1thread,1,705,0,4,131,10,109.148,106.027,124.352,139.269,6.459,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,en,1k,encode_batch,batch-1thread,1,5693,0,4,1028,10,799.168,747.102,881.171,951.973,7.124,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,en,8k,encode_batch,batch-1thread,1,45412,0,32,8235,10,6172.807,5964.749,6768.135,7419.560,7.357,0.0,NaN,1.89,1.89,17.94,batch_docs=32 每文档≈256 tokens
+hf,hf,code,128,encode_batch,batch-1thread,1,526,0,4,132,10,94.361,89.317,100.416,117.770,5.574,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,code,1k,encode_batch,batch-1thread,1,4098,0,4,1026,10,697.649,656.582,759.755,781.276,5.874,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+hf,hf,code,8k,encode_batch,batch-1thread,1,32851,0,32,8227,10,5413.713,5322.673,5517.446,5932.619,6.068,0.0,NaN,1.89,1.89,17.94,batch_docs=32 每文档≈256 tokens
+hf,hf,mixed,128,encode_batch,batch-1thread,1,493,0,4,126,10,87.423,73.968,103.122,103.974,5.639,0.0,NaN,1.89,1.89,17.96,batch_docs=4 每文档≈256 tokens
+hf,hf,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,1028,10,523.080,511.963,531.861,538.022,6.965,0.0,NaN,1.89,1.89,17.96,batch_docs=4 每文档≈256 tokens
+hf,hf,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,8212,10,4378.104,4249.425,5843.944,6050.710,6.679,0.0,NaN,1.89,1.89,17.96,batch_docs=32 每文档≈256 tokens
+fastokens_byte_level,hf,zh,128,encode_batch,batch-1thread,1,577,0,4,129,10,15.684,14.978,16.841,16.941,36.788,0.0,NaN,1.89,1.89,17.96,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,zh,1k,encode_batch,batch-1thread,1,4603,0,4,1021,10,37.995,36.849,41.898,49.012,121.146,0.0,NaN,1.89,1.89,17.96,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,zh,8k,encode_batch,batch-1thread,1,36699,0,32,8186,10,201.630,194.803,213.717,214.020,182.012,0.0,NaN,1.89,1.89,17.96,batch_docs=32 每文档≈256 tokens
+fastokens_byte_level,hf,en,128,encode_batch,batch-1thread,1,705,0,4,131,10,29.495,26.830,36.959,38.001,23.902,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,en,1k,encode_batch,batch-1thread,1,5693,0,4,1028,10,77.263,70.441,107.310,111.998,73.683,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,en,8k,encode_batch,batch-1thread,1,45412,0,32,8235,10,535.623,496.906,707.937,772.219,84.784,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+fastokens_byte_level,hf,code,128,encode_batch,batch-1thread,1,526,0,4,132,10,20.087,18.965,23.063,32.932,26.185,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,code,1k,encode_batch,batch-1thread,1,4098,0,4,1026,10,87.668,85.169,97.882,98.053,46.745,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,code,8k,encode_batch,batch-1thread,1,32851,0,32,8227,10,538.257,525.197,549.062,555.806,61.032,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+fastokens_byte_level,hf,mixed,128,encode_batch,batch-1thread,1,493,0,4,126,10,23.679,22.471,24.405,25.297,20.820,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,1028,10,69.675,68.067,80.350,86.622,52.286,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+fastokens_byte_level,hf,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,8212,10,404.528,396.889,438.416,443.877,72.284,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+tiktoken_rs,tiktoken,zh,128,encode_batch,batch-1thread,1,577,0,4,112,10,54.046,52.327,55.713,55.813,10.676,0.0,NaN,1.89,1.89,17.93,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,zh,1k,encode_batch,batch-1thread,1,4603,0,4,885,10,237.061,230.830,253.853,289.719,19.417,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,zh,8k,encode_batch,batch-1thread,1,36699,0,32,7080,10,1854.870,1808.118,2091.486,2104.038,19.785,0.0,NaN,1.89,1.89,17.94,batch_docs=32 每文档≈256 tokens
+tiktoken_rs,tiktoken,en,128,encode_batch,batch-1thread,1,705,0,4,132,10,91.125,83.605,102.611,105.506,7.737,0.0,NaN,1.89,1.89,17.94,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,en,1k,encode_batch,batch-1thread,1,5693,0,4,1033,10,477.429,469.785,486.616,514.838,11.924,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,en,8k,encode_batch,batch-1thread,1,45412,0,32,8268,10,3823.216,3749.174,4093.544,4105.497,11.878,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+tiktoken_rs,tiktoken,code,128,encode_batch,batch-1thread,1,526,0,4,132,10,102.376,99.906,111.008,114.755,5.138,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,code,1k,encode_batch,batch-1thread,1,4098,0,4,1013,10,548.652,507.636,782.387,814.266,7.469,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,code,8k,encode_batch,batch-1thread,1,32851,0,32,8122,10,4039.969,3960.477,4140.782,4539.154,8.131,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+tiktoken_rs,tiktoken,mixed,128,encode_batch,batch-1thread,1,493,0,4,129,10,87.053,70.983,93.023,97.260,5.663,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,924,10,341.902,333.531,352.497,353.258,10.655,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+tiktoken_rs,tiktoken,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,7332,10,2719.224,2678.549,2795.126,2940.177,10.753,0.0,NaN,1.89,1.89,17.95,batch_docs=32 每文档≈256 tokens
+riptoken,tiktoken,zh,128,encode_batch,batch-1thread,1,577,0,4,112,10,51.180,49.802,72.886,86.321,11.274,0.0,NaN,1.89,1.89,17.95,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,zh,1k,encode_batch,batch-1thread,1,4603,0,4,885,10,176.589,157.433,219.399,236.811,26.066,0.0,NaN,1.74,1.74,17.95,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,zh,8k,encode_batch,batch-1thread,1,36699,0,32,7080,10,1216.611,1209.804,1224.690,1245.429,30.165,0.0,NaN,1.74,1.74,17.94,batch_docs=32 每文档≈256 tokens
+riptoken,tiktoken,en,128,encode_batch,batch-1thread,1,705,0,4,132,10,44.608,43.050,45.635,45.865,15.804,0.0,NaN,1.74,1.74,17.94,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,en,1k,encode_batch,batch-1thread,1,5693,0,4,1033,10,101.524,88.275,127.717,129.912,56.075,0.0,NaN,1.74,1.74,17.96,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,en,8k,encode_batch,batch-1thread,1,45412,0,32,8268,10,654.524,642.396,687.961,705.364,69.382,0.0,NaN,1.74,1.74,17.96,batch_docs=32 每文档≈256 tokens
+riptoken,tiktoken,code,128,encode_batch,batch-1thread,1,526,0,4,132,10,41.362,40.465,47.829,56.655,12.717,0.0,NaN,1.74,1.74,17.96,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,code,1k,encode_batch,batch-1thread,1,4098,0,4,1013,10,85.680,84.518,97.011,119.072,47.829,0.0,NaN,1.74,1.74,17.96,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,code,8k,encode_batch,batch-1thread,1,32851,0,32,8122,10,629.753,622.599,657.564,663.236,52.165,0.0,NaN,1.74,1.74,17.95,batch_docs=32 每文档≈256 tokens
+riptoken,tiktoken,mixed,128,encode_batch,batch-1thread,1,493,0,4,129,10,46.172,36.469,48.610,60.592,10.678,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,924,10,291.808,213.839,332.258,403.842,12.484,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+riptoken,tiktoken,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,7332,10,2455.820,2045.329,2987.093,3094.242,11.907,0.0,NaN,1.74,1.74,17.97,batch_docs=32 每文档≈256 tokens
+tekken,tekken,zh,128,encode_batch,batch-1thread,1,577,0,4,179,10,67.842,66.203,70.812,78.416,8.505,0.0,NaN,1.74,1.74,17.96,batch_docs=4 每文档≈256 tokens
+tekken,tekken,zh,1k,encode_batch,batch-1thread,1,4603,0,4,1444,10,297.685,284.690,354.861,412.989,15.463,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+tekken,tekken,zh,8k,encode_batch,batch-1thread,1,36699,0,32,11533,10,2342.228,2270.398,2554.387,2682.676,15.668,0.0,NaN,1.74,1.74,17.97,batch_docs=32 每文档≈256 tokens
+tekken,tekken,en,128,encode_batch,batch-1thread,1,705,0,4,133,10,82.493,64.652,95.789,100.538,8.546,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+tekken,tekken,en,1k,encode_batch,batch-1thread,1,5693,0,4,1038,10,461.935,445.290,486.947,493.069,12.324,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+tekken,tekken,en,8k,encode_batch,batch-1thread,1,45412,0,32,8301,10,3668.237,3552.336,3806.060,3806.730,12.380,0.0,NaN,1.74,1.74,17.97,batch_docs=32 每文档≈256 tokens
+tekken,tekken,code,128,encode_batch,batch-1thread,1,526,0,4,139,10,66.855,64.811,76.853,99.105,7.868,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+tekken,tekken,code,1k,encode_batch,batch-1thread,1,4098,0,4,1095,10,487.297,468.543,506.093,519.778,8.410,0.0,NaN,1.74,1.74,17.97,batch_docs=4 每文档≈256 tokens
+tekken,tekken,code,8k,encode_batch,batch-1thread,1,32851,0,32,8801,10,3659.406,3624.501,3823.380,3828.120,8.977,0.0,NaN,1.74,1.74,17.97,batch_docs=32 每文档≈256 tokens
+tekken,tekken,mixed,128,encode_batch,batch-1thread,1,493,0,4,166,10,69.214,66.264,82.614,84.387,7.123,0.0,NaN,1.74,1.74,18.00,batch_docs=4 每文档≈256 tokens
+tekken,tekken,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,1223,10,364.584,352.967,385.999,433.989,9.992,0.0,NaN,1.74,1.74,18.00,batch_docs=4 每文档≈256 tokens
+tekken,tekken,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,9743,10,2997.148,2861.880,3073.334,3463.059,9.756,0.0,NaN,1.74,1.74,18.00,batch_docs=32 每文档≈256 tokens
+gigatoken,gigatoken,zh,128,encode_batch,batch-1thread,1,577,0,4,129,10,3.176,3.066,3.516,23.793,181.675,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,zh,1k,encode_batch,batch-1thread,1,4603,0,4,1021,10,18.515,18.434,18.644,18.934,248.609,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,zh,8k,encode_batch,batch-1thread,1,36699,0,32,8186,10,131.404,119.853,159.688,165.018,279.283,0.0,NaN,1.74,1.74,17.99,batch_docs=32 每文档≈256 tokens
+gigatoken,gigatoken,en,128,encode_batch,batch-1thread,1,705,0,4,131,10,4.879,3.977,8.546,19.035,144.497,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,en,1k,encode_batch,batch-1thread,1,5693,0,4,1028,10,8.541,8.176,8.636,8.766,666.589,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,en,8k,encode_batch,batch-1thread,1,45412,0,32,8235,10,59.942,59.120,60.392,76.192,757.599,0.0,NaN,1.74,1.74,17.99,batch_docs=32 每文档≈256 tokens
+gigatoken,gigatoken,code,128,encode_batch,batch-1thread,1,526,0,4,132,10,3.121,2.695,8.314,9.728,168.536,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,code,1k,encode_batch,batch-1thread,1,4098,0,4,1026,10,8.596,8.476,8.797,8.967,476.733,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,code,8k,encode_batch,batch-1thread,1,32851,0,32,8227,10,77.810,62.277,79.598,88.204,422.195,0.0,NaN,1.74,1.74,17.99,batch_docs=32 每文档≈256 tokens
+gigatoken,gigatoken,mixed,128,encode_batch,batch-1thread,1,493,0,4,126,10,4.228,3.787,4.929,6.302,116.604,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,mixed,1k,encode_batch,batch-1thread,1,3643,0,4,1028,10,13.820,13.425,14.247,24.845,263.594,0.0,NaN,1.74,1.74,17.99,batch_docs=4 每文档≈256 tokens
+gigatoken,gigatoken,mixed,8k,encode_batch,batch-1thread,1,29241,0,32,8212,10,104.209,102.221,105.928,114.923,280.598,0.0,NaN,1.74,1.74,17.99,batch_docs=32 每文档≈256 tokens
