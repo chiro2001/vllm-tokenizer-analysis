@@ -5,10 +5,11 @@
 | 项 | 值 |
 |---|---|
 | 仓库 | **https://github.com/chiro2001/vllm-tokenizer-analysis**（private） |
-| 分支 | `main`，单提交 `a84906d` |
+| 分支 | `main` |
+| 提交 | 首次 `a84906d`；数据回填后 `e53f6fd`（追加提交，保留演进） |
 | 导出目录 | `/home/chiro/projects/vllm/tokenizer-publish`（本工作树之外） |
 | 提交者 | `Chiro <41908064+chiro2001@users.noreply.github.com>`（GitHub noreply） |
-| 内容 | 306 个文件 / 9.7 MB |
+| 内容 | 307 个文件 / 9.7 MB |
 
 ### 净化处置
 
@@ -23,9 +24,18 @@
 | 内部员工号 | `REMOTE_USER` | 1 文件（仅映射表） |
 | 发布者邮箱 | `PUBLISHER_EMAIL` | 1 文件（仅映射表） |
 
-**发布前的安全检查**（全部为 0）：明文凭据（`ghp_` / `PRIVATE KEY` /
-`BEGIN RSA` / `secretid` / `secretkey`）、内网 IP（`192.168`）、
-内部镜像源（`quay.nju`）。
+**发布前的安全检查**（以下各类**命中数全部为 0**）：
+
+| 检查类别 | 结果 |
+|---|---|
+| 明文凭据模式（GitHub token 前缀、私钥头、对象存储 secret id/key 字段） | 0 |
+| 内网 IP 段（RFC1918 私有地址） | 0 |
+| 内部镜像源域名 | 0 |
+| 真实员工号 / 内部邮箱 | 0 |
+| 内部项目目录名 / 本机主机名 | 0 |
+
+> 上述类别在**发布副本**里逐类用 `grep -rIl` 复扫过；唯一会命中同类字样的文件是
+> 本文件自身（它在描述这些检查项），因此本文件已加入净化脚本的跳过清单。
 
 ### 整体排除的内容
 
