@@ -95,6 +95,13 @@ export PYTHONPATH=$OVERLAY
 export COST_OVERLAY=$OVERLAY
 EOF
 )
+    # 注意：LiteScope 的选型在**进程内第一次调用** record_function_or_nullcontext
+    # 时就定下来并缓存，所以 env 必须在启动容器时就设好（不能在脚本里 setdefault）。
+    # 踩过：只设了 PYTHONPATH 没设这个 env，bench_litescope.py 直接以
+    # "必须先设 VLLM_LITE_PROFILER_LOG_PATH" 退出。
+    LITEPROF_ENV=(-e "VLLM_LITE_PROFILER_LOG_PATH=${COST_LITE_LOG:-/tmp/c-litescope/lite.log}")
+else
+    LITEPROF_ENV=()
 fi
 PRELUDE="$PRELUDE
 export COST_IMAGE='$IMAGE'
@@ -141,6 +148,7 @@ if [ "${1:-}" = "-c" ]; then
     trap 'rm -f "$TMP_CODE"' EXIT
     exec docker run --rm "${DOCKER_LIMITS[@]}" \
         -e PYTHONUNBUFFERED=1 -e PYTHONPATH=/workspace/harness/python \
+        "${LITEPROF_ENV[@]}" \
         -v "$MODELS:/models:ro" -v "$HOST_ROOT:/workspace" \
         -v "/tmp/c-cost-system-snapshot.txt:/workspace/system-snapshot.txt:ro" \
         -v "$TMP_CODE:/workspace/_inline_code.py:ro" \
@@ -150,6 +158,7 @@ fi
 SCRIPT="$1"; shift
 exec docker run --rm "${DOCKER_LIMITS[@]}" \
     -e PYTHONUNBUFFERED=1 -e PYTHONPATH=/workspace/harness/python \
+    "${LITEPROF_ENV[@]}" \
     -v "$MODELS:/models:ro" -v "$HOST_ROOT:/workspace" \
     -v "/tmp/c-cost-system-snapshot.txt:/workspace/system-snapshot.txt:ro" \
     --entrypoint bash "$IMAGE" -lc "$PRELUDE cd /workspace && bash /opt/va26-scripts/run_real_test_official.sh /workspace/${SCRIPT} $*"

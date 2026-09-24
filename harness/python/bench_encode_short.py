@@ -102,6 +102,7 @@ def main() -> int:
             "manifest": make_manifest(
                 experiment="E2.1 short-prompt encode",
                 script=os.path.abspath(__file__),
+                model=args.model,
                 extra={
                     "args": vars(args),
                     "fixed_cost_note": (

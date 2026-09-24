@@ -10,6 +10,27 @@
 # ---------------------------------------------------------------------------
 set -uo pipefail
 
+usage() {
+    cat <<'EOF'
+用法: fetch_remote_bg.sh [选项] [目标目录]
+
+  目标目录      拉取落盘位置（默认 /tmp/c-remote）
+  -h, --help    显示本帮助
+
+环境变量:
+  MAX_ROUNDS    最多重试轮数（默认 12）
+  SLEEP_S       每轮间隔秒数（默认 120）
+
+行为: 在 a3-22 / a3-21 之间轮流重试 --list，成功后一次性 --fetch。
+**全程只读远端**，不在远端写任何文件。
+EOF
+    exit 0
+}
+
+case "${1:-}" in
+    -h|--help) usage ;;
+esac
+
 DEST="${1:-/tmp/c-remote}"
 MAX_ROUNDS="${MAX_ROUNDS:-12}"
 SLEEP_S="${SLEEP_S:-120}"

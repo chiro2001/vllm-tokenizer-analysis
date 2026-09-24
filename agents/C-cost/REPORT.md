@@ -14,7 +14,7 @@
 
 | 类型 | 路径 |
 |---|---|
-| 正文 | `docs/02-cost-and-share.md`（约 420 行，中文） |
+| 正文 | `docs/02-cost-and-share.md`（543 行，中文） |
 | harness | `harness/python/{common,corpora,bench_paths,bench_detokenize,bench_concurrency,bench_litescope,flame_target,probe_env}.py` |
 | 脚本 | `scripts/{c_cost_run,build_liteprof_overlay,collect_historical,compose_e2_4,make_figures,run_flamegraph,analyze_flamegraph,sync_remote_runs,fetch_remote_bg}.sh` |
 | 数据 | `data/cost/{e2_paths,e2_detokenize,e2_concurrency,e2_litescope,e2_share}.json`、`e2_share.csv`、`e3_flamegraph_frames.csv` |
@@ -25,18 +25,20 @@
 
 | scope | 128 目标 ISL | 1k | 8k | 备注 |
 |---|---|---|---|---|
-| `tokenizer: encode` | **265–303 µs**（实测 220 token） | **1106–1262 µs** | **11830 µs** | 128–8k 线性，**1.47 µs/token**，R²=0.99975；**<64 token 有 ~45 µs 固定成本** |
-| `tokenizer: render_messages`（chat + tools） | **805 µs**（渲染 519 token） | **1675 µs** | **12292 µs** | 含模板内 encode；Jinja 只占 ~50–70 µs 且**不随 ISL 变** |
+| `tokenizer: encode` | **286 µs**（实测 220 token；各次运行 262–303） | **1100 µs** | **10537 µs** | 128–8k 线性，**1.47 µs/token**，R²=0.99975；**<64 token 有 25–45 µs 固定成本** |
+| `tokenizer: render_messages`（chat + tools） | **1015 µs**（渲染 519 token；各次 805–1015） | **2075 µs** | **12231 µs** | 含模板内 encode；Jinja 只占 ~50–70 µs 且**不随 ISL 变** |
 | `tokenizer: decode`（历史口径 = prompt 反解） | 43 µs（220 token） | 177 µs | 1393 µs | **0.17–0.20 µs/token**，真实服务里极少触发 |
-| `detokenize: stream`（**生成期，无插桩**） | — | — | — | **1.39 µs/token**（fast）/ 1.55（slow），另加首步 216–292 µs |
+| `detokenize: stream`（**生成期，无插桩**） | — | — | — | **1.39–1.51 µs/token**（fast）/ 1.50–1.59（slow），另加首步 216–292 µs |
 
 短 prompt 曲线（`bench_encode_short.py`，固定成本的直接证据）：
 
 | 实测 token | 4 | 10 | 32 | 64 | 220 | 990 |
 |---|---|---|---|---|---|---|
-| mean (µs) | **43.5** | 47.4 | 65.2 | 84.3 | 303.6 | 1261.8 |
+| mean (µs) 运行1 | **43.5** | 47.4 | 65.2 | 84.3 | 303.6 | 1261.8 |
+| mean (µs) 运行2 | **26.5** | 36.2 | 60.0 | 79.5 | 280.4 | 1095.2 |
 
-4–16 token 之间几乎是常数 ⇒ **固定成本 ≈45 µs**，`µs/token` 从 10.9 降到 1.28。
+4–16 token 之间几乎是常数 ⇒ **固定成本 ≈25–45 µs**（两次运行分别 43.5 / 26.5 µs），
+`µs/token` 从 6.6 降到 1.1。
 
 ## 4. 占 TTFT / TPOT 的比例（分子分母见文档 §1.5）
 
@@ -53,13 +55,13 @@
 | 分子 | 占 prefill 199.2 ms | 占 prefill 101.0 ms |
 |---|---|---|
 | `encode` @220 token | 0.14% | 0.28% |
-| `encode` @990 token | 0.61% | 1.20% |
-| `encode` @8140 token | **5.94%** | **11.71%** |
-| `detokenize: stream` 1.372 µs/token | 0.325%（占 decode 步 422 µs） | 0.575%（占 240 µs） |
+| `encode` @990 token | 0.55% | 1.09% |
+| `encode` @8140 token | **5.29%** | **10.43%** |
+| `detokenize: stream` 1.51 µs/token | 0.357%（占 decode 步 422 µs） | 0.628%（占 240 µs） |
 
 **关键结论**：几百 token 的短 prompt 上 tokenizer 占 TTFT < 1%（与历史数据
-"163–613 µs"的量级判断一致）；**8k prompt 上升到 5.9–11.7%**，这是分水岭。
-生成期解码占 TPOT **千分之几**。
+"163–613 µs"的量级判断一致）；**8k prompt 上升到 5.3–10.4%**，这是分水岭。
+生成期解码占 TPOT **千分之几**（0.36–0.63%，上界口径）。
 
 ## 5. 图的路径
 
@@ -71,6 +73,14 @@
 | `figures/fig-02-share-of-ttft-tpot.svg` | E2.4 占比（蓝=同装置，橙=跨装置上界） |
 | `figures/e3-1a-python-frontend.svg` | E3.1 混合路径火焰图 |
 | `figures/e3-1b/c/d-python-frontend.svg` | encode / render / detokenize 各自的火焰图 |
+
+全部 8 张图都验证过可渲染（`rsvg-convert` 无报错）。
+**17 个脚本 + 9 个 harness 模块全部支持 `--help`**（已逐个验证）。
+
+> 一处如实说明：正文文档是 **543 行**，超出任务书要求的 200–300 行。
+> 超出部分主要是口径章节（§1，5 小节）与两条"容易测错"的修正说明——
+> 这两块是硬要求，删掉会让数字失去前提。若根代理需要压到 300 行，
+> 建议把 §1 与 §8 拆成独立的 `docs/02a-cost-method.md`。
 
 ## 6. 发现的"会让人测错"的口径问题（最重要）
 
@@ -106,19 +116,19 @@ tokenize 被 `make_async` 丢进了 ThreadPoolExecutor 的 worker 线程。
 | 段 | fast | slow |
 |---|---|---|
 | `init`（`from_new_request`） | 17.1 µs | 16.4 µs |
-| 第 1 次 `update()`（**惰性**灌 prompt） | **231.0 µs** | 262.9 µs |
-| 稳定期 `update` + `get_next_output_text` | **1.372 µs/token** | 1.466 µs/token |
+| 第 1 次 `update()`（**惰性**灌 prompt） | **215.6–257.5 µs** | 219.9–291.9 µs |
+| 稳定期 `update` + `get_next_output_text` | **1.394–1.509 µs/token** | **1.504–1.590 µs/token** |
 
-只测构造函数会低估（漏掉 231 µs）；只测"整请求 ÷ OSL"会在小 OSL 上高估
+只测构造函数会低估（漏掉 216–292 µs）；只测"整请求 ÷ OSL"会在小 OSL 上高估
 （OSL=32 时算出 9.7 µs/token）。
 
 ## 7. 并发与池（E2.5）
 
 | `renderer_num_workers` | 池 | 饱和并发 | 饱和吞吐 |
 |---|---|---|---|
-| 1（默认） | 2 | **4** | ~700 req/s |
-| 4 | 5 | **16** | ~2250 req/s |
-| 8 | 9 | 8（4 核限制） | ~1755 req/s |
+| 1（默认） | 2 | **2–4** | ~740–770 req/s |
+| 4 | 5 | **16–32** | ~2200–2470 req/s |
+| 8 | 9 | 16–32（4 核限制） | ~1970–2030 req/s |
 
 - **`renderer_num_workers` 是唯一真正影响前端吞吐的旋钮**（`tokenizer_pool_size`
   在 0.26.0 不存在）。
@@ -181,7 +191,7 @@ tokenize 被 `make_async` 丢进了 ThreadPoolExecutor 的 worker 线程。
 | 装置 | 代价 |
 |---|---|
 | 主数据 harness | 只用 `perf_counter_ns()` 包住调用，每次 20–70 ns；相对 283 µs 起 < 0.03% |
-| LiteScope 插桩 | 每 scope 两次取时钟 + 一次 open/append/close；**已用同进程对照臂交叉校验**（`e2_litescope.json`） |
+| LiteScope 插桩 | **实测 <3%**：同一进程、同一轮里 LiteScope 读数 vs 自测 `perf_counter` 读数，encode 差 1.5%、render 2.3%、decode 2.9%（`e2_litescope.json`，各 300 采样） |
 | perf 采样 | `-e cpu-clock -F 99 --call-graph dwarf,16384`；脚本提供 `--cost-control` 跑"无采样/有采样"各 3 轮 |
 
 ## 10. 复跑
@@ -214,16 +224,25 @@ COST_CORES=4-5 /home/chiro/projects/vllm/tokenizer/scripts/heavy_lock.sh \
 与任务书给的"163–461 µs"吻合。
 
 **但顺手挖出一个口径问题（重要）**：稳态 run 的响应体 `usage` 显示
-**prompt_tokens 只有 10–11**，而本机 x86 量 10 token 只要 **47 µs**。
-同一量级 prompt 相差 3.4–9.7 倍，且本机固定成本只有 ~45 µs，无法解释。
+**prompt_tokens 只有 10–11**，而本机 x86 量 10 token 只要 **36–47 µs**。
+同一量级 prompt 相差 3.4–12.7 倍，且本机固定成本只有 25–45 µs，无法解释。
 三类候选原因（机器差异 / LiteProfiler 插桩开销 / 池冷启动）**本文不判定**，
 需要同装置复核。⇒ **引用"163–461 µs"时必须同时说明它是 10–11 token 的
 prompt 且开着 LiteProfiler**，不要当成"几百 token 的典型成本"。
 
-## 12. 给根代理的三条提醒
+**关于插桩开销的补充证据**：本机做的 LiteScope 交叉校验显示 LiteScope
+自身开销 **<3%**（§9）。所以"插桩开销"这条解释在**本机 x86 上不成立**；
+若历史值也是插桩造成的，那只能是 aarch64 上前端与 engine core 争 CPU 时
+`open/append/close` 的代价被放大——这条**未验证**，只是候选之一。
+
+## 12. 给根代理的提醒（4 条）
 
 1. 引用占比时务必带上"分母是 `Step:Model`（模型执行段），所以是**上界**"；
    跨装置的行不要与同装置的行混表。
 2. 不要写"`render_messages` 与 `encode` 可以直接相加"——**chat 请求根本不走
    `tokenizer: encode`**，两者是互补负载，相加没有对应的请求形态。
 3. `tokenizer: decode` 必须与 `detokenize: stream` 分开命名，前者是 prompt 反解。
+
+第 4 条（补）：引用历史"163–461 µs"时必须带上"**prompt 只有 10–11 token、
+且开着 LiteProfiler**"这个前提；本线已确认它与本机 x86 相差 3.4–12.7 倍，
+**原因未定**，不要当成跨平台可比数。

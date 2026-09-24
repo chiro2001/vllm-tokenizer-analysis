@@ -51,26 +51,64 @@ Qwen3-0.6B / 单请求 / x86 2 核 / 无批量：
 
 | 环节 | @220 tok | @1k | @8k | 边际成本 |
 |---|---:|---:|---:|---:|
-| `tokenizer: encode`（text 路径） | 283 µs | 1 211 µs | 11 830 µs | **≈1.47 µs/token**（R²=0.9998） |
-| `render_messages`（chat + tools，**含模板内 encode**） | 878 µs | 1 837 µs | 11 597 µs | 同上 |
-| ├ 其中 **Jinja 渲染** | 70 µs | 57 µs | 70 µs | **常数级** |
-| └ 其中模板内 encode | 578 µs | 1 235 µs | 8 475 µs | 随 ISL 线性 |
-| `detokenize: stream`（生成期增量解码） | — | — | — | **≈1.4 µs/token** |
+| `tokenizer: encode`（text 路径） | 286 µs | 1 100 µs | 10 537 µs | **≈1.47 µs/token**（R²=0.99975） |
+| `render_messages`（chat + tools，**含模板内 encode**） | 1 015 µs | 2 075 µs | 12 231 µs | 同上 |
+| ├ 其中 **Jinja 渲染** | 63 µs | 69 µs | 63 µs | **常数级** |
+| └ 其中模板内 encode | 603 µs | 1 403 µs | 10 009 µs | 随 ISL 线性 |
+| `decode: prompt_reverse`（历史口径，非生成期） | — | — | — | 0.17–0.19 µs/token |
+| `detokenize: stream`（生成期增量解码） | — | — | — | **1.39–1.59 µs/token**（另有首步 216–292 µs） |
 
 **占 TTFT 的比例**（跨装置上界口径）：1k prompt ≈ **0.3–1.2%**、
-8k prompt ≈ **5.7–11.7%**。⇒ **8k 以下 tokenizer 不是瓶颈；8k 以上开始进入
-TTFT 的两位数百分比区间。**
+8k prompt ≈ **5.3–10.4%**。⇒ **8k 以下 tokenizer 不是瓶颈；8k 以上开始进入
+TTFT 的两位数百分比区间。** 同装置可比的那一格更小：
+`tokenizer: encode ÷ http:` = **0.09%**、`÷ Step:Model` prefill = **0.26%**
+（分母只含模型执行，所以跨装置那组是**上界**）。
 
 ### 2.1 三条可直接行动的结论
 
 1. **优化 chat 请求的前端成本，矛头应指向编码速度，不是 Jinja。**
    Jinja 在 128→8k 全程都是 47–147 µs 的同一个量级，**换模板引擎收益有限**
    （`02` §3.1 实测）。
-2. **encode 有约 45 µs 的固定成本，线性只在 ≳64 token 之后成立**
-   （`02` §2.1）。短 prompt 场景下线性外推会严重低估。
-3. **历史"163–613 µs"的数字必须带口径引用**：那些稳态样本的 prompt
-   只有 **10–11 token** 且**开着 LiteProfiler**（`02` §7.1），不能当成
-   "几百 token 的典型成本"。
+2. **encode 在 64 token 以下有 25–45 µs 的固定成本**，线性只在 ≳64 token
+   之后成立（`02` §2.1）。短 prompt 场景下线性外推会给出负数。
+3. **历史"163–461 µs"的数字必须带口径引用**：那些稳态样本（52/52 全部回收）
+   的 prompt 只有 **10–11 token**（从响应体 `usage` 读出），不是"几百 token"。
+   但同量级 prompt 在本机只需 **36–47 µs**，**相差 3.4–12.7 倍且原因未定**
+   （候选：机器差异 / 插桩开销 / 池冷启动；C 线明确**不判定**，需同装置复核）。
+   ⇒ 引用时要同时说明"10–11 token + 原因未定"，不要当成典型成本，也不要
+   擅自归因给 LiteProfiler。
+
+### 2.2 插桩开销：本文的测量装置自证 <3%
+
+C 线在**同一进程、同一轮**里把 LiteScope 读数与自己的 `perf_counter` 对齐：
+encode 差 **1.5%**、render **2.3%**、decode **2.9%**（`02` §9）。
+⇒ 本项目的成本数字**不是插桩撑起来的**。
+（注意这**不能**反推历史数字也干净——历史的 LiteProfiler 采样器另当别论，
+见 `02` §7.1。）
+
+### 2.3 火焰图：热点不在 BPE merge（`02` §8）
+
+四张 perf 火焰图（`figures/e3-1{a,b,c,d}-python-frontend.svg`）的 self-time 分类：
+
+| 类别 | encode | render(chat+tools) | detokenize |
+|---|---:|---:|---:|
+| `rust-tokenizers`（`tokenizers::*`） | 15.9% | 5.8% | 13.6% |
+| `rust-stdlib-or-dep`（core/alloc/hashbrown/regex/serde） | **48.1%** | 12.6% | 26.1% |
+| CPython | 9.5% | 14.9% | **34.3%** |
+| libc 符号 + malloc/free | 6.8% | **54.9%** | 10.0% |
+
+**三条可引用的结论**：
+
+1. **encode 由 Rust 主导（两类合计 64%），但最大头不是 BPE merge**
+   ——`BPE::tokenize` 的 inclusive 只有 ~1%。真正花时间的是**词表/缓存查找与
+   正则预分词**：`hash_one` 8.5%、`RawTable::reserve_rehash` 5.4%、
+   `HashMap::insert` 4.9%、正则匹配 5.1%、`Cache::get` 3.2%。
+   ⇒ **这一层还有优化空间**（更便宜的哈希 / 预分配 / 关缓存换内存）。
+2. **chat 渲染里真正贵的是内存分配**（libc+malloc/free ≈55%，Rust 仅 18%）：
+   Jinja 拼串 + serde_json 序列化 tools 是堆分配大户。
+   与"Jinja 是常数级"互相印证——它是**固定量级**的分配成本，不随 ISL 增长。
+3. **detokenize 里 Python 侧占比最高（34%）**，Rust 侧集中在
+   `id_to_token`(4.2%) + `is_special_token`(2.6%)，即每步的"id→串 + 特判"。
 
 ---
 
@@ -238,16 +276,26 @@ vLLM 的 `DecodeStream` 依赖 `decode` 对不完整 UTF-8 **返回替换字符*
 | 默认 | 保持现状。8k 以下 tokenizer 不是瓶颈（占 TTFT <2%） |
 | 长 prompt（≥8k）、高 QPS、前端 CPU 紧张 | 开 `VLLM_USE_FASTOKENS=1`：encode 拿 8–13×，**但先看 §4.1 的 panic 风险**——若 prompt 会到 8k 且含中文，先确认该 bug 是否已修 |
 | chat 密集 | 不要为了 Jinja 做优化（它是常数级）；优化编码 |
-| 并发高且出现延迟劣化 | 检查 `renderer_num_workers` 与池空扩容行为（§1.2 第 1 条） |
+| 并发高且出现延迟劣化 | 检查 `renderer_num_workers`。实测默认值 1 时**在 2–4 并发就饱和**（吞吐 ~750 req/s），提到 4 约 **3.2×**（4 核容器）、再提到 8 **反而更低**（核已用尽，多出的线程只增加竞争）——`02` §6。**注意这不是免费旋钮**：池按 `N+1` 预建，启动期约 0.35–0.65 s/份（8 worker 时渲染器构造要 **9.5 s**），且超额借用时的现场 deepcopy 平均 **3.6 s** |
 
 ### 7.2 如果你在评估下一代（Rust 前端）
 
+- **已经在可用区间**：**单模型 + 标准目录 + 模板在 `tokenizer_config.json` +
+  不需要 LoRA/多模态**的标准 HF chat 服务——本次 E2E 恰好落在这个交集里并全程通过。
 - **值得跟进**：南北向边界没动、二进制零编译可得、tokenizer 默认走 fastokens、
   六后端统一抽象、`DecodeStream` 是自研且比上游快 9%。
-- **暂时不能上生产**：50 个未实现参数 + 7 个静默 Noop + 传了就拒绝启动的
-  tokenizer 参数；且"省了多少"没有实测数。
+- **暂时不能上生产**：**怪配置还早**——一旦用到 `--tokenizer` /
+  `--skip-tokenizer-init` / `--hf-overrides` / 请求级 chat 模板，**直接拒绝启动**；
+  另有 7 个 `Noop` 参数静默不生效。功能差距清单见 `04` §4。
 - **建议的第一步**：用 `harness/rust-frontend/verify_vllm_rs.sh` 在自己的模型上
-  跑一次抽取 + 启动，确认你的启动参数落不落在"未实现"名单里。
+  跑一次抽取 + 启动，确认启动参数落不落在"未实现"名单里。
+
+> **跨线交叉推论（本节由根代理合成，注意等级）**：把 tokenizer 搬进 Rust 的
+> **收益上限**可以由 C 线的占比数据框定——tokenizer 在 8k 以下只占 TTFT **<2%**，
+> 8k 才到 5.3–10.4%。因此**"换代"本身不该以"tokenizer 更快"为主要理由**；
+> 它的真实价值更可能在**换掉整层 Python 前端**（GIL、跨进程对象、线程池、
+> 进程内编排）与**统一多后端**上。D 线原文把这条净收益标为【推断】，
+> 本项目**没有**做同负载端到端对照，所以这里只是**上界框定**，不是实测结论。
 
 ### 7.3 如果你在评估 gigatoken
 

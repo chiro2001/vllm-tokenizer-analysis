@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import statistics
 import sys
@@ -39,6 +40,17 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+
+def _sha256(path: str | Path) -> str | None:
+    p = Path(path)
+    if not p.is_file():
+        return None
+    h = hashlib.sha256()
+    with p.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def parse_lite_log_events(path: Path) -> list[tuple[str, float, float, int, int]]:
@@ -189,6 +201,11 @@ def main() -> int:
                 }
             elif key and key.startswith("detokenize_stream_"):
                 k = f"{key}@osl{rec['osl_tokens']}"
+                # OSL ≤ steady_after_index 时稳定期样本不可用，
+                # steady_total_us_per_token 为 None。**必须跳过**，否则下面除法会
+                # 抛 TypeError（踩过：整个脚本静默失败，输出文件保持上一次的旧值）。
+                if rec.get("steady_total_us_per_token") is None:
+                    continue
                 numerators[k] = {
                     "us_per_token": rec["steady_total_us_per_token"],
                     "first_step_us": rec["first_step_us"]["mean_us"],
@@ -216,8 +233,10 @@ def main() -> int:
     # --- 3. 算比例 ----------------------------------------------------
     table: list[dict[str, Any]] = []
 
-    def pct(num: float, den: float) -> float | None:
-        return round(num / den * 100, 4) if den else None
+    def pct(num: float | None, den: float | None) -> float | None:
+        if num is None or den is None or not den:
+            return None
+        return round(num / den * 100, 4)
 
     for run_id, a in anchors.items():
         eng = a["engine"]
@@ -278,7 +297,7 @@ def main() -> int:
         for label in ("detokenize_stream_fast", "detokenize_stream_slow"):
             for osl in (32, 256, 1024):
                 num = numerators.get(f"{label}@osl{osl}")
-                if num and tpot:
+                if num and num.get("us_per_token") is not None and tpot:
                     table.append(
                         {
                             "anchor_run": run_id,
@@ -297,6 +316,18 @@ def main() -> int:
 
     payload = {
         "generated_at": datetime.now(tz=timezone.utc).isoformat(),
+        # 派生文件的 provenance：本文件由下面这些输入算出，自身不做测量。
+        # 验收要求"每条实验写 manifest"，e2_share 属于派生件，所以记录**输入**
+        # 的身份（路径 + sha256）而不是重复一份 manifest。
+        "provenance": {
+            "kind": "derived",
+            "inputs": [
+                {"path": p, "sha256": _sha256(p)} for p in args.cost_json
+            ],
+            "anchor_runs": [str(Path(r)) for r in args.anchor_run],
+            "generator": "scripts/compose_e2_4.py",
+            "source_script_sha256": _sha256(__file__),
+        },
         "definitions": {
             "TTFT_denominator": (
                 "lite.log 里 engine core 线程的 Step:Model（>10ms 的步）p50 —— "

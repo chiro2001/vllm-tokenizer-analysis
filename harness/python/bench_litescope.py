@@ -212,6 +212,7 @@ def main() -> int:
     manifest = make_manifest(
         experiment="E2 cross-check (real LiteScope)",
         script=os.path.abspath(__file__),
+        model=args.model,
         extra={
             "args": vars(args),
             "scope_line_raw_count": sum(v["n"] for v in summary.values()),

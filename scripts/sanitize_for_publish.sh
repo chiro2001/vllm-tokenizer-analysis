@@ -61,6 +61,8 @@ read_map() {
 #   * docs/SANITIZATION.md —— 它**本身就在列举占位符**，卷进替换会自指
 #   * scripts/sanitize-map.example.tsv —— 同上，模板里全是占位符名，
 #     不排除会让撞名预检永远为真（误报）
+#   * PUBLISH.md —— 发布记录，正文**就在列举占位符名与替换计数**
+#     （与 docs/SANITIZATION.md 同理，排除以免自指与误报）
 #   * .git/ —— 版本库元数据（含提交者邮箱），不靠 sed 处理，靠重建仓库解决
 #   * refs/ —— upstream vLLM 源码副本，不属于本项目产出，发布时整目录排除
 #   * target/ __pycache__/ *.pyc —— 构建与缓存产物，可重建
@@ -75,6 +77,7 @@ find_text_files() {
     -not -name "*.pyc" \
     -not -name ".sanitize-map.tsv" \
     -not -path "./scripts/sanitize-map.example.tsv" \
+    -not -path "./PUBLISH.md" \
     -not -path "./docs/SANITIZATION.md" \
     -not -path "./$SELF_REL" \
     -print0

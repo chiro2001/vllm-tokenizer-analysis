@@ -239,10 +239,12 @@ def make_manifest(
     *,
     experiment: str,
     script: str,
+    model: str | None = None,
     extra: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     root = Path(__file__).resolve().parents[2]
     snap = read_launch_snapshot()
+    model_path = model or os.environ.get("COST_MODEL", "/models/Qwen3-0.6B")
     manifest: dict[str, Any] = {
         "experiment": experiment,
         "timestamp": now_iso(),
@@ -256,7 +258,11 @@ def make_manifest(
         or snap.get("image")
         or "local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922",
         "image_id": image_id() or snap.get("image_id"),
-        "model": os.environ.get("COST_MODEL", "/models/Qwen3-0.6B"),
+        "model": model_path,
+        # 模型 revision 在**每个**实验里都要有（验收判据要求），所以在 common
+        # 里统一采集，而不是让每个 bench 脚本各写一遍（踩过：只有 bench_paths
+        # 写了，其余 4 份 JSON 的 model_revision 是空的）。
+        "model_revision": model_revision(model_path),
         "vllm_src": None,
         "vllm_src_commit": None,
         "liteprof_overlay": os.environ.get("COST_OVERLAY", ""),

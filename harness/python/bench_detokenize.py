@@ -296,6 +296,7 @@ def main() -> int:
     manifest = make_manifest(
         experiment="E2.3 streaming detokenize",
         script=os.path.abspath(__file__),
+        model=args.model,
         extra={
             "args": vars(args),
             "tokenizers_version": tokenizers.__version__,

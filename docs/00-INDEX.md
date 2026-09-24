@@ -21,16 +21,18 @@
 
 | 环节 | @220 tok | @1k | @8k | 边际成本 |
 |---|---:|---:|---:|---:|
-| `tokenizer: encode`（completion 路径） | 283 µs | 1211 µs | 11 830 µs | **≈1.47 µs/token**（R²=0.9998） |
-| `render_messages`（chat + tools，**含模板内 encode**） | 878 µs | 1837 µs | 11 597 µs | 同上 |
-| ├ 其中 Jinja 渲染 | 70 µs | 57 µs | 70 µs | **常数级** |
-| └ 其中模板内 encode | 578 µs | 1235 µs | 8475 µs | 随 ISL 线性 |
-| `detokenize: stream`（生成期解码） | — | — | — | **≈1.4 µs/token** |
+| `tokenizer: encode`（completion 路径） | 286 µs | 1 100 µs | 10 537 µs | **≈1.47 µs/token**（R²=0.99975） |
+| `render_messages`（chat + tools，**含模板内 encode**） | 1 015 µs | 2 075 µs | 12 231 µs | 同上 |
+| ├ 其中 Jinja 渲染 | 63 µs | 69 µs | 63 µs | **常数级** |
+| └ 其中模板内 encode | 603 µs | 1 403 µs | 10 009 µs | 随 ISL 线性 |
+| `decode: prompt_reverse`（历史口径） | — | — | — | 0.17–0.19 µs/token |
+| `detokenize: stream`（生成期解码） | — | — | — | **1.39–1.59 µs/token**（另有首步 216–292 µs） |
 
 ⇒ **优化 chat 请求的前端成本，矛头应指向编码速度，不是 Jinja**
 （Jinja 在 128→8k 全程都是同一个量级，换模板引擎收益有限）。
-占 TTFT 的比例：**1k prompt ≈0.3–1.2%、8k prompt ≈5.7–11.7%**（跨装置上界口径）；
+占 TTFT 的比例：**1k prompt ≈0.3–1.2%、8k prompt ≈5.3–10.4%**（跨装置上界口径）；
 **8k 是分水岭**，再往上 tokenizer 开始进入 TTFT 的两位数百分比。
+短 prompt（<64 token）**有 25–45 µs 固定成本**，线性外推会给出负数。
 见 [`02-cost-and-share.md`](02-cost-and-share.md)。
 
 ⚠️ **三条必读的口径修正**（C 线与 A 线独立发现，推翻了此前的直觉）：
@@ -41,7 +43,12 @@
 2. **`tokenizer: decode` 不是生成期解码**，它只是 prompt token ids 反解；
    生成期逐 token 解码在 `vllm/v1/engine/detokenizer.py`，**LiteProfiler 没有插桩它**。
 3. **`tokenizer_pool_size` 在 0.26.0 不存在**；真实参数是 `renderer_num_workers`，
-   池空时**不阻塞**而是现场 deepcopy 并让池无上限增长。
+   池空时**不阻塞**而是现场 deepcopy 并让池无上限增长（A 线静态发现）。
+   **C 线实测补充**：默认 async 路径上**池空分支命中 0 次**——因为池 = `N+1` 份
+   而工作线程只有 `N`，天然不会取空；但代价转移到**启动期**——
+   `renderer_num_workers=8` 时渲染器构造要 **9.5 s**（池预建 9 份，0.35–0.65 s/份），
+   而强制触发现场 deepcopy 平均要 **3.6 s**。⇒ 调大这个旋钮是
+   "换吞吐但付启动时间"，不是免费的（`02` §6）。
 
 **3. 多后端成色：fastokens 的加速是真的，但要分清是哪一段。**
 根代理与 B 线用**两套独立装置**互证：
@@ -82,6 +89,13 @@ Python 侧只剩 engine core。**Python 前端要手动开的 `VLLM_USE_FASTOKEN
 | a | **fastokens 0.2.1 越界 panic**（`split.rs:419`，`.min(pcre2.len())` 后接 `.max(2)` 导致 `pcre2[1]` 越界） | **panic 不是 `Err`，vLLM 的回落逻辑拦不住 ⇒ 8k 级中文 prompt 直接崩掉前端进程** |
 | b | **tekken-rs 0.1.1 对不完整 UTF-8 报错**（而非返回替换字符） | vLLM 的 `DecodeStream` 依赖替换字符语义 ⇒ **6/12 语料组的流式 decode 不可用（中文/中英混合）** |
 | c | **Rust 前端 7 个参数"接受但无效"**（Noop） | 传了不报错也不生效，静默不一致；比"未实现"更危险 |
+
+**7. 火焰图显示热点不在 BPE merge。** encode 的 Rust 帧里
+`BPE::tokenize` inclusive 只有 **~1%**，真正花时间的是**词表/缓存查找与正则预分词**
+（`hash_one` 8.5%、`RawTable::reserve_rehash` 5.4%、正则匹配 5.1%）。
+chat 渲染里 **libc+malloc/free ≈55%**（Jinja 拼串 + serde_json 序列化 tools），
+detokenize 里 **CPython 占 34%**。见 [`02`](02-cost-and-share.md) §8 与
+`figures/e3-1{a,b,c,d}-python-frontend.svg`。
 
 ---
 

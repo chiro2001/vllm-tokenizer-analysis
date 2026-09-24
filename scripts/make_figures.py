@@ -104,13 +104,13 @@ def fig_scope_cost(cost_dir: Path, out: Path) -> str:
             ls="--",
             lw=1.3,
             color="#718096",
-            label="encode, short-prompt sweep (fixed cost ~45us)",
+            label="encode, short-prompt sweep (fixed cost 25-45us)",
         )
-        ax.axhline(45, color="#718096", lw=0.9, ls=":", alpha=0.8)
+        ax.axhspan(25, 45, color="#718096", alpha=0.15)
         ax.annotate(
-            "~45us fixed cost",
+            "fixed cost 25-45us",
             xy=(4.5, 45),
-            xytext=(5.2, 18),
+            xytext=(5.2, 15),
             fontsize=7,
             color="#4a5568",
         )

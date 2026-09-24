@@ -73,8 +73,21 @@ core → 从 engine core 回来的 `list[int]` 变回增量文本并做停止串
 token ids 反解回文本"（`needs_detokenization`，`vllm/renderers/base.py:502`）；生成期逐
 token 解码在 `vllm/v1/engine/detokenizer.py`，**完全没有被这三个 scope 覆盖**——
 历史上 `decode` 计数为 0 ≠ 生成期不解码。**②** `tokenizer: render_messages` 的 `with` 体
-**只包住** `rendered = [...render_messages...]`（patch `:375-380`），`tokenize_prompts`
-在 `with` 之外，所以 **`render_messages` 与 `encode` 互不重叠，可以直接相加**。
+**只包住** `rendered = [...render_messages...]`（patch `:375-380`），其后的
+`tokenize_prompts` 在 `with` 之外。
+
+> ⚠️ **本节有一处推论被 C 线实测推翻，已修正（2026-09-25）**：
+> 初稿据此推断"`render_messages` 与 `encode` 互不重叠、可以直接相加"，**这是错的**。
+> C 线用 `_tokenize_prompt` 打桩计数验证（`docs/02` §1.2）：
+> `render_chat(messages)` 下 `_tokenize_prompt` 调用 **0 次**，
+> 但**编码确实发生了**——它走的是 `apply_chat_template(tokenize=True)`
+> （`vllm/renderers/hf.py:778`），发生在 `render_messages()` **内部**，
+> 因此落在 `render_messages` scope 的区间里。
+>
+> 正确口径：**`render_messages` 含"模板内 encode"，`tokenizer: encode` 只服务文本
+> prompt 路径；两者是互补负载，不存在同时走两条的请求形态，所以"相加"没有意义。**
+> 这也解释了历史日志里为何二者总有一个计数为 0（历史 run 全是 `/v1/completions` +
+> 文本 prompt）。
 
 ## 2. 进程模型
 

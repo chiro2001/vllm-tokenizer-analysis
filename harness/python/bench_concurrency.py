@@ -183,6 +183,7 @@ def main() -> int:
         m = make_manifest(
             experiment="E2.5 frontend concurrency",
             script=os.path.abspath(__file__),
+            model=args.model,
             extra={
                 "args": vars(args),
                 "renderer_num_workers": workers,

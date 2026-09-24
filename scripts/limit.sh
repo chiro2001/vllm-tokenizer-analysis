@@ -12,13 +12,21 @@
 #
 # 用法:
 #   scripts/limit.sh <命令...>                 # 默认 4 核 + 8 GiB
-#   CORES=2 scripts/limit.sh <命令...>          # 只用 2 核（跑基准时更稳）
+#   CORES=4-5 scripts/limit.sh <命令...>        # 绑到核 4、5（即 2 核）
+#   CORES=2 scripts/limit.sh <命令...>          # ⚠️ 绑到核 2，**只有 1 核**！
 #   MEM_GB=4 scripts/limit.sh <命令...>         # 收紧内存
 #   NO_ULIMIT=1 scripts/limit.sh <命令...>      # 不设 ulimit（少数场景需要）
 #
 # 例:
 #   scripts/limit.sh cargo bench -p vllm-tokenizer
-#   CORES=2 scripts/limit.sh ./target/release/demo
+#   CORES=4-5 scripts/limit.sh ./target/release/demo
+#
+# ⚠️ **CORES 是"绑到哪些核"，不是"多少个核"**（踩过的坑）：
+#   CORES=2   → taskset -c 2   → 1 个核
+#   CORES=4-5 → taskset -c 4-5 → 2 个核
+#   CORES=4-7 → 默认           → 4 个核
+#   要 N 个核请写区间（如 2 核 = `4-5`）。运行时会把实际核数打出来，
+#   引用数据时请以那行输出或 manifest 里的 `threads_effective` / `cpu_affinity` 为准。
 #
 # 注意：ulimit -v 对 Rust/C 程序有效，但某些 JIT / 大页分配会误伤。
 # 若命令因 "out of memory" 之类的分配失败退出，先确认是否 ulimit 所致。
@@ -63,4 +71,5 @@ if [[ "${NO_ULIMIT:-0}" != "1" ]]; then
 fi
 
 echo "[limit] cores=$CORES ($NCORES) mem=${MEM_GB}GiB jobs=$JOBS cmd=$*" >&2
+echo "[limit] 注意：CORES=$CORES 表示绑到这些核（共 $NCORES 个核），不是核数" >&2
 exec taskset -c "$CORES" "$@"

@@ -1,14 +1,23 @@
 {
   "manifest": {
     "experiment": "E2.1 short-prompt encode",
-    "timestamp": "2026-09-24T16:09:24+0000",
+    "timestamp": "2026-09-24T16:31:24+0000",
     "script": "/workspace/harness/python/bench_encode_short.py",
-    "script_sha256": "db30c9e5f7d32114e23a3c829ea5ff36bc12bd294cb31467393adfa2d3edbf9a",
-    "repo_commit": "93c3c36e4f5feab069dcb7b3b0e755f8d84a9757",
+    "script_sha256": "04c3ab428df189c9f098b7b8030f07d67d517f00499950237b1a5c4b2235f033",
+    "repo_commit": "e6eff6c9554f790c75919ad65369e6b1ec23be98",
     "repo_branch": "agent/C-cost",
     "image": "local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922",
     "image_id": "sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d",
     "model": "/models/Qwen3-0.6B",
+    "model_revision": {
+      "path": "/models/Qwen3-0.6B",
+      "tokenizer.json_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer.json_bytes": 11422654,
+      "tokenizer_config.json_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "tokenizer_config.json_bytes": 9732,
+      "config.json_sha256": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+      "config.json_bytes": 726
+    },
     "vllm_src": "/vllm-workspace/vllm/vllm",
     "vllm_src_commit": "568afb3a13806beb53bb2e6bd518269357b237c0",
     "liteprof_overlay": "",
@@ -42,17 +51,17 @@
     },
     "system_load": {
       "loadavg_1_5_15": [
-        1.95,
-        1.96,
-        2.32
+        1.59,
+        1.41,
+        1.8
       ],
-      "running_procs": "4/805",
+      "running_procs": "1/706",
       "MemTotal_GiB": 29.33,
-      "MemFree_GiB": 0.93,
-      "MemAvailable_GiB": 16.9,
+      "MemFree_GiB": 0.53,
+      "MemAvailable_GiB": 17.93,
       "SwapTotal_GiB": 25.0,
-      "SwapFree_GiB": 17.44,
-      "host_snapshot_at_launch": "2026-09-25T00:09:12+08:00\nloadavg 1.93 1.96 2.33 2/806 2675935\nMemTotal:       30753688 kB\nMemAvailable:   18648532 kB\ncpuset 4-5 docker_cpus=6 mem=8g\nimage=local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922\nimage_id=sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d\nworktree_head=93c3c36e4f5feab069dcb7b3b0e755f8d84a9757\nworktree_branch=agent/C-cost\nvllm_src=/home/chiro/projects/vllm/HIST_PROJECT/vllm\nvllm_src_commit=568afb3a13806beb53bb2e6bd518269357b237c0\n"
+      "SwapFree_GiB": 17.06,
+      "host_snapshot_at_launch": "2026-09-25T00:31:12+08:00\nloadavg 0.99 1.30 1.77 1/679 2748038\nMemTotal:       30753688 kB\nMemAvailable:   19606260 kB\ncpuset 4-5 docker_cpus=6 mem=8g\nimage=local/vllm-ascend-stub-x86:v0.26.0rc1-a3-cpuonly-20260922\nimage_id=sha256:d0e26eb95616adac22433018c4da4bbb447d403b4b25cfb7d2c50d48c9dedc7d\nworktree_head=e6eff6c9554f790c75919ad65369e6b1ec23be98\nworktree_branch=agent/C-cost\nvllm_src=/home/chiro/projects/vllm/HIST_PROJECT/vllm\nvllm_src_commit=568afb3a13806beb53bb2e6bd518269357b237c0\n"
     },
     "vllm_version": "0.26.0",
     "args": {
@@ -64,8 +73,8 @@
       "out": "/workspace/data/cost/e2_encode_short.json"
     },
     "fixed_cost_note": "用小 token 数两点的差分估计边际成本；固定成本 = mean(最小点) − 边际 × 该点 token 数",
-    "marginal_us_per_token_from_two_smallest": 1.4192,
-    "finished_at": "2026-09-24T16:09:24+0000"
+    "marginal_us_per_token_from_two_smallest": 2.5397,
+    "finished_at": "2026-09-24T16:31:24+0000"
   },
   "results": [
     {
@@ -76,15 +85,15 @@
       "n_chars": 16,
       "stats_us": {
         "n": 100,
-        "mean_us": 43.54,
-        "p50_us": 43.908,
-        "p90_us": 52.994,
-        "p99_us": 73.275,
-        "min_us": 25.027,
-        "max_us": 74.169,
-        "stdev_us": 10.535
+        "mean_us": 26.516,
+        "p50_us": 24.62,
+        "p90_us": 31.796,
+        "p99_us": 43.672,
+        "min_us": 23.774,
+        "max_us": 57.657,
+        "stdev_us": 5.094
       },
-      "us_per_token": 10.885
+      "us_per_token": 6.629
     },
     {
       "case": "encode_short",
@@ -94,15 +103,15 @@
       "n_chars": 35,
       "stats_us": {
         "n": 100,
-        "mean_us": 49.217,
-        "p50_us": 52.017,
-        "p90_us": 60.942,
-        "p99_us": 78.899,
-        "min_us": 31.338,
-        "max_us": 79.047,
-        "stdev_us": 11.478
+        "mean_us": 36.675,
+        "p50_us": 31.919,
+        "p90_us": 48.407,
+        "p99_us": 68.066,
+        "min_us": 29.375,
+        "max_us": 73.918,
+        "stdev_us": 8.953
       },
-      "us_per_token": 6.152
+      "us_per_token": 4.584
     },
     {
       "case": "encode_short",
@@ -112,15 +121,15 @@
       "n_chars": 44,
       "stats_us": {
         "n": 100,
-        "mean_us": 47.374,
-        "p50_us": 46.632,
-        "p90_us": 64.196,
-        "p99_us": 80.115,
-        "min_us": 32.441,
-        "max_us": 91.631,
-        "stdev_us": 12.954
+        "mean_us": 36.239,
+        "p50_us": 33.778,
+        "p90_us": 40.317,
+        "p99_us": 76.341,
+        "min_us": 32.18,
+        "max_us": 98.133,
+        "stdev_us": 8.709
       },
-      "us_per_token": 4.737
+      "us_per_token": 3.624
     },
     {
       "case": "encode_short",
@@ -130,15 +139,15 @@
       "n_chars": 75,
       "stats_us": {
         "n": 100,
-        "mean_us": 48.565,
-        "p50_us": 41.462,
-        "p90_us": 61.455,
-        "p99_us": 110.675,
-        "min_us": 38.992,
-        "max_us": 168.976,
-        "stdev_us": 17.495
+        "mean_us": 41.889,
+        "p50_us": 40.486,
+        "p90_us": 46.002,
+        "p99_us": 61.927,
+        "min_us": 38.812,
+        "max_us": 63.058,
+        "stdev_us": 4.24
       },
-      "us_per_token": 3.035
+      "us_per_token": 2.618
     },
     {
       "case": "encode_short",
@@ -148,15 +157,15 @@
       "n_chars": 149,
       "stats_us": {
         "n": 100,
-        "mean_us": 65.186,
-        "p50_us": 58.79,
-        "p90_us": 82.798,
-        "p99_us": 107.525,
-        "min_us": 55.803,
-        "max_us": 120.746,
-        "stdev_us": 12.324
+        "mean_us": 59.985,
+        "p50_us": 57.136,
+        "p90_us": 64.888,
+        "p99_us": 106.584,
+        "min_us": 54.561,
+        "max_us": 146.883,
+        "stdev_us": 11.371
       },
-      "us_per_token": 2.037
+      "us_per_token": 1.875
     },
     {
       "case": "encode_short",
@@ -166,15 +175,15 @@
       "n_chars": 205,
       "stats_us": {
         "n": 100,
-        "mean_us": 84.294,
-        "p50_us": 80.3,
-        "p90_us": 95.529,
-        "p99_us": 122.895,
-        "min_us": 74.258,
-        "max_us": 132.387,
-        "stdev_us": 10.638
+        "mean_us": 79.46,
+        "p50_us": 77.855,
+        "p90_us": 86.357,
+        "p99_us": 97.275,
+        "min_us": 73.787,
+        "max_us": 98.563,
+        "stdev_us": 5.053
       },
-      "us_per_token": 1.317
+      "us_per_token": 1.242
     },
     {
       "case": "encode_short",
@@ -184,15 +193,15 @@
       "n_chars": 774,
       "stats_us": {
         "n": 100,
-        "mean_us": 303.568,
-        "p50_us": 292.211,
-        "p90_us": 349.035,
-        "p99_us": 434.554,
-        "min_us": 257.37,
-        "max_us": 454.618,
-        "stdev_us": 39.622
+        "mean_us": 280.408,
+        "p50_us": 269.045,
+        "p90_us": 323.475,
+        "p99_us": 414.331,
+        "min_us": 241.649,
+        "max_us": 440.128,
+        "stdev_us": 35.798
       },
-      "us_per_token": 1.38
+      "us_per_token": 1.275
     },
     {
       "case": "encode_short",
@@ -202,15 +211,15 @@
       "n_chars": 774,
       "stats_us": {
         "n": 100,
-        "mean_us": 313.198,
-        "p50_us": 307.534,
-        "p90_us": 372.297,
-        "p99_us": 423.781,
-        "min_us": 255.637,
-        "max_us": 428.75,
-        "stdev_us": 38.722
+        "mean_us": 263.824,
+        "p50_us": 256.532,
+        "p90_us": 284.516,
+        "p99_us": 396.776,
+        "min_us": 230.748,
+        "max_us": 397.64,
+        "stdev_us": 28.253
       },
-      "us_per_token": 1.424
+      "us_per_token": 1.199
     },
     {
       "case": "encode_short",
@@ -220,15 +229,15 @@
       "n_chars": 1548,
       "stats_us": {
         "n": 100,
-        "mean_us": 592.059,
-        "p50_us": 560.656,
-        "p90_us": 694.176,
-        "p99_us": 769.187,
-        "min_us": 499.872,
-        "max_us": 868.55,
-        "stdev_us": 71.631
+        "mean_us": 512.316,
+        "p50_us": 498.642,
+        "p90_us": 594.766,
+        "p99_us": 618.059,
+        "min_us": 432.484,
+        "max_us": 705.361,
+        "stdev_us": 55.74
       },
-      "us_per_token": 1.346
+      "us_per_token": 1.164
     },
     {
       "case": "encode_short",
@@ -238,15 +247,15 @@
       "n_chars": 3483,
       "stats_us": {
         "n": 100,
-        "mean_us": 1261.818,
-        "p50_us": 1152.264,
-        "p90_us": 1683.672,
-        "p99_us": 1923.272,
-        "min_us": 1065.356,
-        "max_us": 2018.876,
-        "stdev_us": 221.092
+        "mean_us": 1095.201,
+        "p50_us": 1054.244,
+        "p90_us": 1271.048,
+        "p99_us": 1415.001,
+        "min_us": 951.088,
+        "max_us": 1454.884,
+        "stdev_us": 114.318
       },
-      "us_per_token": 1.275
+      "us_per_token": 1.106
     }
   ]
 }
